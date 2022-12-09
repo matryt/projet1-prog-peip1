@@ -1,28 +1,38 @@
 from random import randint, choice
 from typing import List
+import doctest
 
 fini = False
 
 nombreAllumettes = randint(10, 30)
 
+
 def genererRegle() -> List[int]:
 	"""
 	Permet de générer la liste faisant office de règle pour le jeu en cours
+	:return: La liste contenant les différents choix possibles
+	:rtype: List[Int]
+
+	:Example:
+
+	>>> genererRegle() #doctest:+SKIP
+	[1, 2, 5]
 	"""
 	r = [1]
-	while len(r) < randint(2,5):
+	while len(r) < randint(2, 5):
 		n = randint(1, 7)
 		if n not in r:
 			r.append(n)
 	return r
 
+
 def testNombre() -> int:
 	"""
-	Permet de tester si la chaîne de caractères passée en paramètre peut être convertie ou non en entier, et sinon redemande à chaque fois un nombre jusqu'à qu'il puisse le convertir
-	Exemple :
-	>>> testNombre('5')
-	5
-	""" 
+	Demande une chaîne de caractères qu'il convertit en nombre si possible, ou en redemande tant que la conversion n'est pas possible y a besoin
+
+	:return: Le nombre converti
+	:rtype: int
+	"""
 	n = input("Joueur, combien voulez-vous prendre d'allumettes ?")
 	while type(n) != int:
 		try:
@@ -30,18 +40,35 @@ def testNombre() -> int:
 		except ValueError:
 			print("Vous devez rentrer un nombre !")
 			n = input("Joueur, combien voulez-vous prendre d'allumettes ?")
-	return n #type: ignore
+	return n  # type: ignore
 
-def afficheChoix(regle : List[int]) -> None:
+
+def afficheChoix(regle: List[int]) -> None:
 	"""
-	Permet d'afficher les choix d'allumettes possibles.
+	Permet d'afficher à l'écran les choix d'allumettes possibles.
+	:param regle: Les choix possibles d'allumettes
+	:type regle: List[int]
+
+	:example:
+	>>> afficheChoix([1, 2, 5])
+	Les choix possibles sont 1 - 2 - 5 -
 	"""
 	print("Les choix possibles sont ", end="")
 	for c in regle:
 		print(c, end=" - ")
 	print("")
 
-def enleverAllumettes(allumettes : int, regle : List[int]) -> int:
+
+def enleverAllumettes(allumettes: int, regle: List[int]) -> int:
+	"""
+	Permet de retourner le nombre d'allumettes après le tour du joueur
+	:param allumettes: Le nombre d'allumettes au départ
+	:type allumettes: int
+	:param regle: Les choix possibles
+	:type regle: List[int]
+	:return: Le nombre d'allumettes final
+	:rtype: int
+	"""
 	nombre = testNombre()
 
 	while nombre > allumettes or nombre not in regle:
@@ -49,23 +76,38 @@ def enleverAllumettes(allumettes : int, regle : List[int]) -> int:
 		nombre = testNombre()
 
 	return allumettes - nombre
-	
-def afficherAllumettes(allumettes : int) -> None:
+
+
+def afficherAllumettes(allumettes: int) -> None:
+	"""
+	Affiche le nombre d'allumettes passées en paramètre
+	:param allumettes: Le nombre d'allumettes
+	:type allumettes: int
+
+	:example:
+
+	>>> afficherAllumettes(3)
+	| | |
+	<BLANKLINE>
+	"""
 	for i in range(allumettes):
 		print('|', end=" ")
 	print("\n")
 
-def jeuPossible(allumettes : int, regle : List[int]) -> bool:
+
+def jeuPossible(allumettes: int, regle: List[int]) -> bool:
 	m = regle[0]
 	return allumettes == 0 or allumettes - m >= 0
 
-def tirageOrdi(allumettes : int, REGLE : List[int]) -> int:
+
+def tirageOrdi(allumettes: int, REGLE: List[int]) -> int:
 	c = choice(REGLE)
 	while c > allumettes:
 		c = choice(REGLE)
 	allumettes -= c
 	print(f"L'ordi a pris {c} allumettes")
 	return allumettes
+
 
 def jeu(fini, nombreAllumettes):
 	REGLE = genererRegle()
@@ -91,6 +133,8 @@ def jeu(fini, nombreAllumettes):
 				fini = True
 			if not jeuPossible(nombreAllumettes, REGLE):
 				print("Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
-				fini = True 
+				fini = True
 
+
+doctest.testmod()
 jeu(fini, nombreAllumettes)
