@@ -31,7 +31,7 @@ def afficherAllumettes(allumettes : int) -> None:
 
 def jeuPossible(allumettes : int, regle : List[int]) -> bool:
     m = regle[0]
-    return allumettes != 0 and allumettes - m < 0
+    return allumettes == 0  or allumettes - m >= 0
 
 def tirageOrdi(allumettes : int) -> int:
     c = choice(REGLE)
