@@ -5,7 +5,7 @@ fini = False
 
 nombreAllumettes = randint(10, 30)
 
-def genererRegle() -> None:
+def genererRegle() -> List[int]:
 	"""
 	Permet de générer la liste faisant office de règle pour le jeu en cours
 	"""
@@ -17,73 +17,80 @@ def genererRegle() -> None:
 	return r
 
 def testNombre() -> int:
-    """
-    Permet de tester si la chaîne de caractères passée en paramètre peut être convertie ou non en entier, et sinon redemande à chaque fois un nombre jusqu'à qu'il puisse le convertir""" 
-    n = input("Joueur, combien voulez-vous prendre d'allumettes ?")
-    while type(n) != int:
-        try:
-            return int(n)
-        except:
-            print("Vous devez rentrer un nombre !")
-            n = input("Joueur, combien voulez-vous prendre d'allumettes ?")
+	"""
+	Permet de tester si la chaîne de caractères passée en paramètre peut être convertie ou non en entier, et sinon redemande à chaque fois un nombre jusqu'à qu'il puisse le convertir
+	Exemple :
+	>>> testNombre('5')
+	5
+	""" 
+	n = input("Joueur, combien voulez-vous prendre d'allumettes ?")
+	while type(n) != int:
+		try:
+			n = int(n)
+		except ValueError:
+			print("Vous devez rentrer un nombre !")
+			n = input("Joueur, combien voulez-vous prendre d'allumettes ?")
+	return n #type: ignore
 
-def afficheChoix(regle : List[int]):
+def afficheChoix(regle : List[int]) -> None:
+	"""
+	Permet d'afficher les choix d'allumettes possibles.
+	"""
 	print("Les choix possibles sont ", end="")
 	for c in regle:
 		print(c, end=" - ")
 	print("")
 
 def enleverAllumettes(allumettes : int, regle : List[int]) -> int:
-    nombre = testNombre()
+	nombre = testNombre()
 
-    while nombre > allumettes or nombre not in regle:
-        print(f"Vous voulez prendre {nombre} allumettes, ce qui est impossible !")
-        nombre = testNombre()
+	while nombre > allumettes or nombre not in regle:
+		print(f"Vous voulez prendre {nombre} allumettes, ce qui est impossible !")
+		nombre = testNombre()
 
-    return allumettes - nombre
-    
+	return allumettes - nombre
+	
 def afficherAllumettes(allumettes : int) -> None:
-    for i in range(allumettes):
-        print('|', end=" ")
-    print("\n")
+	for i in range(allumettes):
+		print('|', end=" ")
+	print("\n")
 
 def jeuPossible(allumettes : int, regle : List[int]) -> bool:
-    m = regle[0]
-    return allumettes == 0 or allumettes - m >= 0
+	m = regle[0]
+	return allumettes == 0 or allumettes - m >= 0
 
 def tirageOrdi(allumettes : int, REGLE : List[int]) -> int:
-    c = choice(REGLE)
-    while c > allumettes:
-        c = choice(REGLE)
-    allumettes -= c
-    print(f"L'ordi a pris {c} allumettes")
-    return allumettes
+	c = choice(REGLE)
+	while c > allumettes:
+		c = choice(REGLE)
+	allumettes -= c
+	print(f"L'ordi a pris {c} allumettes")
+	return allumettes
 
-def jeu(fini, nombreAllumettes) :
-    REGLE = genererRegle()
-    REGLE.sort()
-    afficheChoix(REGLE)
-    print(f"Il y a {nombreAllumettes} allumettes au début.")
+def jeu(fini, nombreAllumettes):
+	REGLE = genererRegle()
+	REGLE.sort()
+	afficheChoix(REGLE)
+	print(f"Il y a {nombreAllumettes} allumettes au début.")
 
-    while not fini:
-        afficherAllumettes(nombreAllumettes)
-        nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
-        allumettesVides = nombreAllumettes == 0
-        if allumettesVides or not jeuPossible(nombreAllumettes, REGLE):
-            if allumettesVides:
-                print("Bravo, vous avez gagné !")
-                fini = True
-            else:
-                print("Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
-                fini = True
-        else:
-            afficherAllumettes(nombreAllumettes)
-            nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
-            if nombreAllumettes == 0:
-                print("Malheureusement l'ordi a gagné ! Peut-être la prochaine fois !")
-                fini = True
-            if not jeuPossible(nombreAllumettes, REGLE):
-                print("Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
-                fini = True 
+	while not fini:
+		afficherAllumettes(nombreAllumettes)
+		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
+		allumettesVides = nombreAllumettes == 0
+		if allumettesVides:
+			print("Bravo, vous avez gagné !")
+			fini = True
+		elif not jeuPossible(nombreAllumettes, REGLE):
+			print("Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
+			fini = True
+		else:
+			afficherAllumettes(nombreAllumettes)
+			nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
+			if nombreAllumettes == 0:
+				print("Malheureusement l'ordi a gagné ! Peut-être la prochaine fois !")
+				fini = True
+			if not jeuPossible(nombreAllumettes, REGLE):
+				print("Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
+				fini = True 
 
 jeu(fini, nombreAllumettes)
