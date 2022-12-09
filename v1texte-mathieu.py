@@ -1,10 +1,5 @@
 from random import randint, choice
 from typing import List
-import doctest
-
-fini = False
-
-nombreAllumettes = randint(10, 30)
 
 
 def genererRegle() -> List[int]:
@@ -15,7 +10,7 @@ def genererRegle() -> List[int]:
 
 	:Example:
 
-	>>> genererRegle() #doctest:+SKIP
+	>>> genererRegle()
 	[1, 2, 5]
 	"""
 	r = [1]
@@ -51,12 +46,12 @@ def afficheChoix(regle: List[int]) -> None:
 
 	:example:
 	>>> afficheChoix([1, 2, 5])
-	Les choix possibles sont 1 - 2 - 5 -
+	Les choix possibles sont 1 - 2 - 5
 	"""
-	print("Les choix possibles sont ", end="")
-	for c in regle:
-		print(c, end=" - ")
-	print("")
+	c = "Les choix possibles sont "
+	for choix in regle:
+		c = c + str(choix) + " - "
+	print(c[:-2])
 
 
 def enleverAllumettes(allumettes: int, regle: List[int]) -> int:
@@ -88,7 +83,6 @@ def afficherAllumettes(allumettes: int) -> None:
 
 	>>> afficherAllumettes(3)
 	| | |
-	<BLANKLINE>
 	"""
 	for i in range(allumettes):
 		print('|', end=" ")
@@ -96,20 +90,50 @@ def afficherAllumettes(allumettes: int) -> None:
 
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
+	"""
+	Détermine s'il est encore possible de jouer, en fonction de si le jeu est fini ou non, et si un des choix permet d'enlever des allumettes
+	:param allumettes: Nombre d'allumettes restantes
+	:type allumettes: int
+	:param regle: Choix d'allumettes possibles
+	:type regle: List[int]
+	:return: True s'il est encore possible de jouer, False sinon
+	:rtype: bool
+	"""
 	m = regle[0]
 	return allumettes == 0 or allumettes - m >= 0
 
 
 def tirageOrdi(allumettes: int, REGLE: List[int]) -> int:
+	"""
+	Permet de générer un nombre aléatoire d'allumettes corrspondant au nombre d'allumettes qu'enlève l'ordinateur
+	:param allumettes: Nombre d'allumettes restantes
+	:type allumettes: int
+	:param REGLE: Choix d'allumettes possibles
+	:type REGLE: List[int]
+	:return: Le nombre d'allumettes après le tour de l'ordinateur
+	:rtype: int
+	"""
 	c = choice(REGLE)
 	while c > allumettes:
 		c = choice(REGLE)
 	allumettes -= c
-	print(f"L'ordi a pris {c} allumettes")
+	print(f"--> L'ordi a pris {c} allumette(s)")
 	return allumettes
 
 
-def jeu(fini, nombreAllumettes):
+def jeu() -> None:
+	"""
+	Fonction principale du jeu, qui appelle toutes les autres
+	:param fini:
+	:type fini:
+	:param nombreAllumettes:
+	:type nombreAllumettes:
+	:return: None
+	:rtype: None
+	"""
+
+	fini = False
+	nombreAllumettes = randint(10, 30)
 	REGLE = genererRegle()
 	REGLE.sort()
 	afficheChoix(REGLE)
@@ -120,21 +144,20 @@ def jeu(fini, nombreAllumettes):
 		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
 		allumettesVides = nombreAllumettes == 0
 		if allumettesVides:
-			print("Bravo, vous avez gagné !")
+			print("🎂 Bravo, vous avez gagné !")
 			fini = True
 		elif not jeuPossible(nombreAllumettes, REGLE):
-			print("Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
+			print("⚐ Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
 			fini = True
 		else:
 			afficherAllumettes(nombreAllumettes)
 			nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
 			if nombreAllumettes == 0:
-				print("Malheureusement l'ordi a gagné ! Peut-être la prochaine fois !")
+				print("☠ Malheureusement l'ordi a gagné ! Peut-être la prochaine fois !")
 				fini = True
 			if not jeuPossible(nombreAllumettes, REGLE):
-				print("Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
+				print("⚐ Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
 				fini = True
 
 
-doctest.testmod()
-jeu(fini, nombreAllumettes)
+jeu()
