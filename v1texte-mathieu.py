@@ -1,5 +1,4 @@
-3
-777from random import randint, choice
+from random import randint, choice
 from typing import List
 
 
@@ -24,7 +23,7 @@ def genererRegle() -> List[int]:
 
 def testNombre() -> int:
 	"""
-	Demande une chaîne de caractères qu'il convertit en nombre si possible, ou en redemande tant que la conversion n'est pas possible y a besoin
+	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
 	:return: Le nombre converti
 	:rtype: int
@@ -92,7 +91,7 @@ def afficherAllumettes(allumettes: int) -> None:
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
 	"""
-	Détermine s'il est encore possible de jouer, en fonction de si le jeu est fini ou non, et si un des choix permet d'enlever des allumettes
+	Détermine s'il est encore possible de jouer, en fonction du nombre d'allumettes, et si un des nombres du choix permet d'enlever des allumettesi un des choix permet d'enlever des allumettes
 	:param allumettes: Nombre d'allumettes restantes
 	:type allumettes: int
 	:param regle: Choix d'allumettes possibles
@@ -104,19 +103,19 @@ def jeuPossible(allumettes: int, regle: List[int]) -> bool:
 	return allumettes == 0 or allumettes - m >= 0
 
 
-def tirageOrdi(allumettes: int, REGLE: List[int]) -> int:
+def tirageOrdi(allumettes: int, regle: List[int]) -> int:
 	"""
-	Permet de générer un nombre aléatoire d'allumettes corrspondant au nombre d'allumettes qu'enlève l'ordinateur
+	Permet de générer un nombre aléatoire d'allumettes correspondant au nombre d'allumettes qu'enlève l'ordinateur
 	:param allumettes: Nombre d'allumettes restantes
 	:type allumettes: int
-	:param REGLE: Choix d'allumettes possibles
-	:type REGLE: List[int]
+	:param regle: Choix d'allumettes possibles
+	:type regle: List[int]
 	:return: Le nombre d'allumettes après le tour de l'ordinateur
 	:rtype: int
 	"""
-	c = choice(REGLE)
+	c = choice(regle)
 	while c > allumettes:
-		c = choice(REGLE)
+		c = choice(regle)
 	allumettes -= c
 	print(f"--> L'ordi a pris {c} allumette(s)")
 	return allumettes
@@ -125,10 +124,6 @@ def tirageOrdi(allumettes: int, REGLE: List[int]) -> int:
 def jeu() -> None:
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
-	:param fini:
-	:type fini:
-	:param nombreAllumettes:
-	:type nombreAllumettes:
 	:return: None
 	:rtype: None
 	"""
