@@ -1,3 +1,5 @@
+# Loic LAMOUR et Mathieu CUVELIER - Groupe 5
+
 from random import randint, choice
 from typing import List
 
@@ -91,7 +93,7 @@ def afficherAllumettes(allumettes: int) -> None:
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
 	"""
-	Détermine s'il est encore possible de jouer, en fonction du nombre d'allumettes, et si un des nombres du choix permet d'enlever des allumettesi un des choix permet d'enlever des allumettes
+	Détermine s'il est encore possible de jouer, en fonction du nombre d'allumettes, et si un des nombres du choix permet d'enlever des allumettes
 	:param allumettes: Nombre d'allumettes restantes
 	:type allumettes: int
 	:param regle: Choix d'allumettes possibles
