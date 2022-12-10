@@ -26,7 +26,7 @@ def genererRegle() -> List[int]:
 def testNombre() -> int:
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
-
+    
 	:return: Le nombre converti
 	:rtype: int
 	"""
@@ -59,16 +59,16 @@ def afficheChoix(regle: List[int]) -> None:
 def enleverAllumettes(allumettes: int, regle: List[int]) -> int:
 	"""
 	Permet de retourner le nombre d'allumettes après le tour du joueur
-	:param allumettes: Le nombre d'allumettes au départ
+	:param allumettes: Le nombre d'allumettes avant que le joueur ne joue
 	:type allumettes: int
 	:param regle: Les choix possibles
 	:type regle: List[int]
-	:return: Le nombre d'allumettes final
+	:return: Le nombre d'allumettes après le tour
 	:rtype: int
 	"""
 	nombre = testNombre()
 
-	while nombre > allumettes or nombre not in regle:
+	while nombre > allumettes or nombre not in regle: # Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre  et qu'il respecte les règles
 		print(f"Vous voulez prendre {nombre} allumettes, ce qui est impossible !")
 		nombre = testNombre()
 
@@ -78,7 +78,7 @@ def enleverAllumettes(allumettes: int, regle: List[int]) -> int:
 def afficherAllumettes(allumettes: int) -> None:
 	"""
 	Affiche le nombre d'allumettes passées en paramètre
-	:param allumettes: Le nombre d'allumettes
+	:param allumettes: Le nombre d'allumettes actuel
 	:type allumettes: int
 
 	:example:
@@ -93,16 +93,23 @@ def afficherAllumettes(allumettes: int) -> None:
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
 	"""
-	Détermine s'il est encore possible de jouer, en fonction du nombre d'allumettes, et si un des nombres du choix permet d'enlever des allumettes
+	Détermine s'il est encore possible de jouer, en fonction du nombre d'allumettes, et si au moins un des nombres contenu dans la règle permet d'enlever des allumettes
 	:param allumettes: Nombre d'allumettes restantes
 	:type allumettes: int
 	:param regle: Choix d'allumettes possibles
 	:type regle: List[int]
 	:return: True s'il est encore possible de jouer, False sinon
 	:rtype: bool
+
+	:example:
+	>>> jeuPossible(1,[2,3,4])
+	False
+
+	>>> jeuPossible(3,[3,5,7])
+	True
+
 	"""
-	m = regle[0]
-	return allumettes == 0 or allumettes - m >= 0
+	return allumettes == 0 or allumettes - regle[0] >= 0
 
 
 def tirageOrdi(allumettes: int, regle: List[int]) -> int:
@@ -126,10 +133,7 @@ def tirageOrdi(allumettes: int, regle: List[int]) -> int:
 def jeu() -> None:
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
-	:return: None
-	:rtype: None
 	"""
-
 	fini = False
 	nombreAllumettes = randint(10, 30)
 	REGLE = genererRegle()
@@ -140,9 +144,8 @@ def jeu() -> None:
 	while not fini:
 		afficherAllumettes(nombreAllumettes)
 		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
-		allumettesVides = nombreAllumettes == 0
-		if allumettesVides:
-			print("🎂 Bravo, vous avez gagné !")
+		if nombreAllumettes==0 :
+			print("🎂 Bravo, vous avez gagné ! 👍 ")
 			fini = True
 		elif not jeuPossible(nombreAllumettes, REGLE):
 			print("⚐ Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
@@ -158,4 +161,4 @@ def jeu() -> None:
 				fini = True
 
 
-jeu()
+jeu() # Appelle la fonction principale jeu et lance le mini jeu 
