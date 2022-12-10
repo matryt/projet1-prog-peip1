@@ -1,4 +1,5 @@
-from random import randint, choice
+3
+777from random import randint, choice
 from typing import List
 
 
@@ -153,7 +154,7 @@ def jeu() -> None:
 			afficherAllumettes(nombreAllumettes)
 			nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
 			if nombreAllumettes == 0:
-				print("☠ Malheureusement l'ordi a gagné ! Peut-être la prochaine fois !")
+				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 				fini = True
 			if not jeuPossible(nombreAllumettes, REGLE):
 				print("⚐ Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
