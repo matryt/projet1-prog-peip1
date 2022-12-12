@@ -35,5 +35,16 @@ Ajout des deux prénoms au début du fichier comme demandé.
 
 ## Lundi 12 décembre
 Loïc : changement testNombre()
+
 Mathieu : changement comportement fin lorsqu'il n'y a plus assez d'allumettes
+
 Ensemble : Début d'affichage : fond , allumettes(paquets)
+
+**Soir**
+
+Mathieu : Test boucle principale dans `allumettes.py`.
+
+Conclusions : 
+
+* Il manque l'affichage dans turtle d'un émoji à la fin
+* Les allumettes ne sont pas assez grandes.
