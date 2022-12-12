@@ -2,6 +2,8 @@
 
 from random import randint, choice
 from typing import List
+from affichage import dessinePaquet
+from turtle import *
 
 
 def genererRegle() -> List[int]:
@@ -9,7 +11,9 @@ def genererRegle() -> List[int]:
 	Permet de générer la liste faisant office de règle pour le jeu en cours
 	:return: La liste contenant les différents choix possibles
 	:rtype: List[Int]
+
 	:Example:
+
 	>>> genererRegle()
 	[1, 2, 5]
 	"""
@@ -43,6 +47,7 @@ def afficheChoix(regle: List[int]) -> None:
 	Permet d'afficher à l'écran les choix d'allumettes possibles.
 	:param regle: Les choix possibles d'allumettes
 	:type regle: List[int]
+
 	:example:
 	>>> afficheChoix([1, 2, 5])
 	Les choix possibles sont 1 - 2 - 5
@@ -72,18 +77,17 @@ def enleverAllumettes(allumettes: int, regle: List[int]) -> int:
 	return allumettes - nombre
 
 
-def afficherAllumettes(allumettes: int) -> None:
+def afficherAllumettes(allumettes: int, t) -> None:
 	"""
 	Affiche le nombre d'allumettes passées en paramètre
 	:param allumettes: Le nombre d'allumettes actuel
 	:type allumettes: int
-	:example:
-	>>> afficherAllumettes(3)
-	| | |
+	:param t: L'objet Turtle à utiliser pour le dessin
+	:type t: Turtle
+
 	"""
-	for i in range(allumettes):
-		print('|', end=" ")
-	print("\n")
+	t.clear()
+	dessinePaquet(-200, -200, 10, "white", t, allumettes)
 
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
@@ -95,11 +99,14 @@ def jeuPossible(allumettes: int, regle: List[int]) -> bool:
 	:type regle: List[int]
 	:return: True s'il est encore possible de jouer, False sinon
 	:rtype: bool
+
 	:example:
 	>>> jeuPossible(1,[2,3,4])
 	False
+
 	>>> jeuPossible(3,[3,5,7])
 	True
+
 	"""
 	return allumettes == 0 or allumettes - regle[0] >= 0
 
@@ -126,6 +133,13 @@ def jeu() -> None:
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
 	"""
+	s = Screen()
+	s.colormode(255)
+	s.bgcolor(1, 139, 104)
+
+	tc = Turtle()
+	tc.hideturtle()
+        
 	fini = False
 	nombreAllumettes = randint(10, 30)
 	REGLE = genererRegle()
@@ -134,23 +148,15 @@ def jeu() -> None:
 	print(f"Il y a {nombreAllumettes} allumettes au début.")
 
 	while not fini:
-		afficherAllumettes(nombreAllumettes)
+		afficherAllumettes(nombreAllumettes, tc)
 		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
-		if nombreAllumettes==0 :
-			print("🎂 Bravo, vous avez gagné ! 👍 ")
-			fini = True
-		elif not jeuPossible(nombreAllumettes, REGLE):
-			print("⚐ Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
+		if nombreAllumettes==0 or not jeuPossible(nombreAllumettes, REGLE):
+			print("Vous avez gagné !")
 			fini = True
 		else:
-			afficherAllumettes(nombreAllumettes)
 			nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
-			if nombreAllumettes == 0:
+			if nombreAllumettes == 0 or not jeuPossible(nombreAllumettes, REGLE):
 				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 				fini = True
-			if not jeuPossible(nombreAllumettes, REGLE):
-				print("⚐ Le nombre d'allumettes est tel qu'il n'est plus possible de jouer ! Match nul.")
-				fini = True
 
-
-jeu() # Appelle la fonction principale jeu et lance le mini jeu
+jeu() # Appelle la fonction principale jeu et lance le mini jeu 
