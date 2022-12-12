@@ -32,3 +32,8 @@ Changement de documentation, ajout de quelques commentaires expliquant les étap
 Ajout des deux prénoms au début du fichier comme demandé.
 
 🖥️ Test des différentes fonctions, selon différents scénarios (match nul, ordinateur gagnant et joueur gagnant). Aucun problème détecté.
+
+## Lundi 12 décembre
+Loïc : changement testNombre()
+Mathieu : changement comportement fin lorsqu'il n'y a plus assez d'allumettes
+Ensemble : Début d'affichage : fond , allumettes(paquets)
