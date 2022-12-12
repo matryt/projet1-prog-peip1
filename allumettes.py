@@ -2,7 +2,7 @@
 
 from random import randint, choice
 from typing import List
-from affichage import dessinePaquet
+from affichage import *
 from turtle import *
 
 

@@ -4,7 +4,6 @@ import time
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t
 def dessineCroix(x,y,l,c,t):
-    for i in range(
     t.up()
     t.goto(x,y)
     t.down()
@@ -28,5 +27,5 @@ def dessineAllumette(x,y,l,c,t):
     t.forward(l)
 
 def dessinePaquet(x, y, l, c, t, nb):
-    for i in range(n):
+    for i in range(nb):
         dessineAllumette(x+i*20,y,l,c,t)
