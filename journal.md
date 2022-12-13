@@ -57,3 +57,10 @@ Tests chacun de son côté.
 
 Mathieu + Loïc : 
 * changement affichage allumettes
+* définition taille d'écran
+
+Mathieu : centrage des allumettes
+
+Loïc : changement de la couleur des allumettes
+
+🚧 **Problème détecté** : Une tortue s'affiche tout le temps en plein milieu, résolé en utilisant `hideturtle`.
