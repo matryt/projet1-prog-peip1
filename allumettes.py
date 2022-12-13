@@ -89,7 +89,7 @@ def afficherAllumettes(allumettes: int, t) -> None:
 
 	"""
 	t.clear()
-	dessinePaquet(-200, -200, 10, "white", t, allumettes)
+	dessinePaquet(-200, -200, 200, "white", t, allumettes)
 
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
@@ -155,6 +155,7 @@ def jeu() -> None:
 		if nombreAllumettes==0 or not jeuPossible(nombreAllumettes, REGLE):
 			print("Vous avez gagné !")
 			couronne(s)
+			sleep(5)
 
 			fini = True
 		else:

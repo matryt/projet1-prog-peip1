@@ -23,14 +23,19 @@ def dessineAllumette(x,y,l,c,t):
     t.down()
     t.color(c)
     t.setheading(90)
-    t.width(10)
+    t.width(20)
     t.forward(l)
+    t.width(30)
+    t.color("red")
+    t.forward(2)
 
 def dessinePaquet(x, y, l, c, t, nb):
     for i in range(nb):
-        dessineAllumette(x+i*20,y,l,c,t)
+        dessineAllumette(x+i*50,y,l,c,t)
     
 def couronne(s : Screen) -> None:
+    s.clear()
+    s.colormode(255)
     hideturtle()
     color(236, 228, 0)
     up()

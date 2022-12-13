@@ -48,3 +48,12 @@ Conclusions :
 
 * Il manque l'affichage dans turtle d'un émoji à la fin
 * Les allumettes ne sont pas assez grandes.
+
+## Mardi 13 décembre
+Mathieu : 
+* affichage émoji couronne fin
+
+Tests chacun de son côté.
+
+Mathieu + Loïc : 
+* changement affichage allumettes
