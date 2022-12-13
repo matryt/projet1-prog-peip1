@@ -50,12 +50,16 @@ Conclusions :
 * Les allumettes ne sont pas assez grandes.
 
 ## Mardi 13 décembre
-Mathieu : 
-* affichage émoji couronne fin
-
-Tests chacun de son côté.
+Mathieu : affichage émoji couronne fin.
 
 Mathieu + Loïc : 
 * changement affichage allumettes
-  
+* définition taille d'écran
 
+Mathieu : centrage des allumettes
+
+Loïc : changement de la couleur des allumettes
+
+🚧 **Problème détecté** : Une tortue s'affiche tout le temps en plein milieu, résolu en utilisant `hideturtle`.
+
+Mathieu et Loïc : révision et ajout de documentation dans le fichier principal `allumettes` et le module `affichage`.

@@ -85,10 +85,12 @@ def afficherAllumettes(allumettes: int, t, ECRAN : tuple) -> None:
 	:type allumettes: int
 	:param t: L'objet Turtle à utiliser pour le dessin
 	:type t: Turtle
+	:param ECRAN: La taille de la fenêtre fixée
+	:type ECRAN: tuple[int]
 
 	"""
-	clear()
-	espaceRestant = (ECRAN[0] - 50 - allumettes * 50) / 2
+	t.clear()
+	espaceRestant = (ECRAN[0] - allumettes * 50) / 2
 	dessinePaquet(-ECRAN[0]/2+espaceRestant, -200, 200,(244, 164, 96), t, allumettes)
 
 
@@ -132,7 +134,7 @@ def tirageOrdi(allumettes: int, regle: List[int]) -> int:
 
 
 def jeu() -> None:
-    """
+	"""
 	Fonction principale du jeu, qui appelle toutes les autres
 	"""
     TAILLE_ECRAN=(1400,700)
@@ -144,27 +146,29 @@ def jeu() -> None:
     
     TAILLE_ECRAN = (1920, 1080)
 
-    tc = Turtle()
-    tc.hideturtle()
+	hideturtle()
+
+	tc = Turtle()
+	tc.hideturtle()
 		
-    fini = False
-    nombreAllumettes = randint(10, 30)
-    REGLE = genererRegle()
-    REGLE.sort()
-    afficheChoix(REGLE)
-    print(f"Il y a {nombreAllumettes} allumettes au début.")
-    while not fini:
-        afficherAllumettes(nombreAllumettes, tc, TAILLE_ECRAN)
-        nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
-        if nombreAllumettes==0 or not jeuPossible(nombreAllumettes, REGLE):
-            print("Vous avez gagné !")
-            couronne(s)
-            sleep(5)
-            fini = True
-        else:
-            nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
-            if nombreAllumettes == 0 or not jeuPossible(nombreAllumettes, REGLE):
-                print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
-                fini = True
+	fini = False
+	nombreAllumettes = randint(10, 30)
+	REGLE = genererRegle()
+	REGLE.sort()
+	afficheChoix(REGLE)
+	print(f"Il y a {nombreAllumettes} allumettes au début.")
+	while not fini:
+		afficherAllumettes(nombreAllumettes, tc, TAILLE_ECRAN)
+		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
+		if nombreAllumettes==0 or not jeuPossible(nombreAllumettes, REGLE):
+			print("Vous avez gagné !")
+			couronne(s)
+			sleep(5)
+			fini = True
+		else:
+			nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
+			if nombreAllumettes == 0 or not jeuPossible(nombreAllumettes, REGLE):
+				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
+				fini = True
 
 jeu() # Appelle la fonction principale jeu et lance le mini jeu 
