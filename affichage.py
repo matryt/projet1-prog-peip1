@@ -1,8 +1,17 @@
 from turtle import *
+from typing import Union
 
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t
 def dessineCroix(x,y,l,c,t):
+    """"
+    x:int position en abcisse 
+    y:int position en ordonnée
+    l:int longueur 
+    c:str or tuple  couleur 
+    t:turtle
+    Fonction pour dessiner une croix
+    """
     t.up()
     t.goto(x,y)
     t.down()
@@ -17,6 +26,14 @@ def dessineCroix(x,y,l,c,t):
 
 # dessine une allumette avec la tortue t
 def dessineAllumette(x,y,l,c,t):
+     """"
+    x:int position en abcisse 
+    y:int position en ordonnée
+    l:int longueur de l'allumette
+    c:str or tuple  couleur de l'allumette
+    t:turtle
+    fonction pour dessiner une allumette
+    """
     t.up()
     t.goto(x,y)
     t.down()
@@ -29,10 +46,22 @@ def dessineAllumette(x,y,l,c,t):
     t.forward(2)
 
 def dessinePaquet(x, y, l, c, t, nb):
+     """"
+    x:int position en abcisse 
+    y:int position en ordonnée
+    l:int longueur de l'allumette
+    c:str or tuple  couleur de l'allumette
+    t:turtle
+    nb:int nombre d'allumette dans le paquet
+    Fonction reprennant la fonction dessineAllumette() pour dessiner un paquet d'allumette
+    """
     for i in range(nb):
         dessineAllumette(x+i*50,y,l,c,t)
     
 def couronne(s : Screen) -> None:
+    """
+    fonction pour dessiner une couronne à la fin lorsque le joueur gagne
+    """
     s.clear()
     s.colormode(255)
     hideturtle()
@@ -51,6 +80,11 @@ def couronne(s : Screen) -> None:
 
 
 def pointe(angle):
+    """
+    angle:float
+    dessine une pointe pour le dessin de la couronne 
+    fonction reutilisé danns la fonction couronne()
+    """
     left(180 - angle)
     forward(120)
     right(180-53.13)
