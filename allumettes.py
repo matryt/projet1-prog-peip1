@@ -6,7 +6,6 @@ from affichage import *
 from turtle import *
 from time import sleep
 
-
 def genererRegle() -> List[int]:
 	"""
 	Permet de générer la liste faisant office de règle pour le jeu en cours
@@ -79,7 +78,7 @@ def enleverAllumettes(allumettes: int, regle: List[int]) -> int:
 	return allumettes - nombre
 
 
-def afficherAllumettes(allumettes: int, t) -> None:
+def afficherAllumettes(allumettes: int, t, ECRAN : tuple) -> None:
 	"""
 	Affiche le nombre d'allumettes passées en paramètre
 	:param allumettes: Le nombre d'allumettes actuel
@@ -89,7 +88,8 @@ def afficherAllumettes(allumettes: int, t) -> None:
 
 	"""
 	t.clear()
-	dessinePaquet(-200, -200, 200, "white", t, allumettes)
+	espaceRestant = (ECRAN[0] - 50 - allumettes * 50) / 2
+	dessinePaquet(-ECRAN[0]/2+espaceRestant, -200, 200, "white", t, allumettes)
 
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
@@ -137,7 +137,10 @@ def jeu() -> None:
 	"""
 	s = Screen()
 	s.colormode(255)
+	speed(0)
 	s.bgcolor(1, 139, 104)
+
+	TAILLE_ECRAN = (1920, 1080)
 
 	tc = Turtle()
 	tc.hideturtle()
@@ -150,7 +153,7 @@ def jeu() -> None:
 	print(f"Il y a {nombreAllumettes} allumettes au début.")
 
 	while not fini:
-		afficherAllumettes(nombreAllumettes, tc)
+		afficherAllumettes(nombreAllumettes, tc, TAILLE_ECRAN)
 		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
 		if nombreAllumettes==0 or not jeuPossible(nombreAllumettes, REGLE):
 			print("Vous avez gagné !")

@@ -1,5 +1,4 @@
 from turtle import *
-from time import sleep
 
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t
