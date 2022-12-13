@@ -139,10 +139,10 @@ def jeu() -> None:
     s = Screen()
     s.colormode(255)
     s.screensize(TAILLE_ECRAN[0],TAILLE_ECRAN[1])
-	speed(0)
+    speed(0)
     s.bgcolor(1, 139, 104)
     
-	TAILLE_ECRAN = (1920, 1080)
+    TAILLE_ECRAN = (1920, 1080)
 
     tc = Turtle()
     tc.hideturtle()
