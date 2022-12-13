@@ -85,6 +85,8 @@ def afficherAllumettes(allumettes: int, t, ECRAN : tuple) -> None:
 	:type allumettes: int
 	:param t: L'objet Turtle à utiliser pour le dessin
 	:type t: Turtle
+	:param ECRAN: La taille de la fenêtre fixée
+	:type ECRAN: tuple[int]
 
 	"""
 	t.clear()
