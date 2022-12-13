@@ -4,6 +4,7 @@ from random import randint, choice
 from typing import List
 from affichage import *
 from turtle import *
+from time import sleep
 
 
 def genererRegle() -> List[int]:
@@ -153,6 +154,8 @@ def jeu() -> None:
 		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
 		if nombreAllumettes==0 or not jeuPossible(nombreAllumettes, REGLE):
 			print("Vous avez gagné !")
+			couronne(s)
+
 			fini = True
 		else:
 			nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)

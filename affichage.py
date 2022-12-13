@@ -1,5 +1,5 @@
 from turtle import *
-import time
+from time import sleep
 
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t
@@ -29,3 +29,25 @@ def dessineAllumette(x,y,l,c,t):
 def dessinePaquet(x, y, l, c, t, nb):
     for i in range(nb):
         dessineAllumette(x+i*20,y,l,c,t)
+    
+def couronne(s : Screen) -> None:
+    hideturtle()
+    color(236, 228, 0)
+    up()
+    goto(-100, -100)
+    seth(0)
+    down()
+    forward(215)
+    left(90)
+    forward(200)
+    pointe(26.57)
+    pointe(53.13)
+    setheading(270)
+    forward(200)
+
+
+def pointe(angle):
+    left(180 - angle)
+    forward(120)
+    right(180-53.13)
+    forward(120)
