@@ -63,3 +63,7 @@ Loïc : changement de la couleur des allumettes
 🚧 **Problème détecté** : Une tortue s'affiche tout le temps en plein milieu, résolu en utilisant `hideturtle`.
 
 Mathieu et Loïc : révision et ajout de documentation dans le fichier principal `allumettes` et le module `affichage`.
+
+## Dimanche 18 décembre
+
+Mathieu + Loïc : création du fond et des éléments représentant les allumettes prises et restantes
