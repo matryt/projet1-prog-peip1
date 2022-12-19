@@ -1,5 +1,6 @@
 from turtle import *
 from math import*
+import random as rd
 def dessinePolygone (nb_cotes,l,x,y,couleur) :
     up()
     color(couleur)
