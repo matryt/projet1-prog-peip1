@@ -26,10 +26,11 @@ def sapin_forêt(l,x,y):
 def forêt(l,x,y,n):
     for i in range(rd.randint(1,9)):
         sapin_forêt(l,x+i*2*l,y)
-def rectangle(l,x,y):
+def rectangle(l,x,y,couleur):
     up()
     goto(x,y)
     down()
+    color(couleur)
     forward(l)
     left(90)
     forward(2*l)
@@ -38,7 +39,7 @@ def rectangle(l,x,y):
     left(90)
     forward(2*l)
  
-rectangle(50,0,0)
+rectangle(50,0,0,'brown')
 
         
 
