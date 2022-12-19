@@ -41,10 +41,6 @@ def rectangle(l,x,y,couleur):
     left(90)
     forward(3/2*l)
     end_fill()
- 
-
-
-        
 
 
 
