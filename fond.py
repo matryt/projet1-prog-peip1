@@ -3,7 +3,7 @@ import turtle as tu
 from math import *
 
 
-def dessinePolygone(nb_cotes, l, x, y, couleur):
+def dessinePolygone(nb_cotes, longueur, x, y, couleur):
     tu.up()
     tu.color(couleur)
     tu.goto(x, y)
@@ -11,61 +11,64 @@ def dessinePolygone(nb_cotes, l, x, y, couleur):
     a = 360 / nb_cotes
     i = 1
     while i <= nb_cotes:
-        tu.forward(l)
+        tu.forward(longueur)
         tu.left(a)
         i += 1
 
 
-def dessineTriangle(l, x, y, couleur):
-    dessinePolygone(3, l, x, y, couleur)
+def dessineTriangle(longueur, x, y, couleur):
+    dessinePolygone(3, longueur, x, y, couleur)
 
 
-def sapin_foret(l, x, y):
+def sapin_foret(longueur, x, y):
     tu.hideturtle()
     tu.begin_fill()
-    dessinePolygone(4, l, x, y, 'brown')
+    dessinePolygone(4, longueur, x, y, 'brown')
     tu.end_fill()
     tu.begin_fill()
-    dessinePolygone(3, 2 * l, x - l / 2, l, 'green')
+    dessinePolygone(3, 2 * longueur, x - longueur / 2, longueur, 'green')
     tu.end_fill()
 
 
-def foret(l, x, y, n):
+def foret(longueur, x, y):
     for i in range(rd.randint(1, 9)):
-        sapin_foret(l, x + i * 2 * l, y)
+        sapin_foret(longueur, x + i * 2 * longueur, y)
 
 
-def rectangle(l, x, y, couleur):
+def rectangle(longueur, x, y, couleur):
     tu.up()
     tu.goto(x, y)
     tu.down()
     tu.begin_fill()
     tu.color(couleur)
-    tu.forward(l)
+    tu.forward(longueur)
     tu.left(90)
-    tu.forward(3 / 2 * l)
+    tu.forward(3 / 2 * longueur)
     tu.left(90)
-    tu.forward(l)
+    tu.forward(longueur)
     tu.left(90)
-    tu.forward(3 / 2 * l)
+    tu.forward(3 / 2 * longueur)
     tu.end_fill()
 
 
-def sapin(l, x, y):
+def sapin(longueur, x, y):
     tu.hideturtle()
     tu.begin_fill()
-    rectangle(l, x, y, 'brown')
+    rectangle(longueur, x, y, 'brown')
     tu.end_fill()
     tu.seth(0)
     tu.begin_fill()
     tu.up()
-    dessineTriangle(2 * l, x - l / 2, 3 / 2 * l, 'green')
+    dessineTriangle(2 * longueur, x - longueur / 2, 3 / 2 * longueur, 'green')
     tu.end_fill()
     tu.begin_fill()
-    dessineTriangle((3 / 2) * l, x - l / 3, 3 / 2 * l + sqrt(l ** 2 / 4 + l ** 2) - 1, 'green')
+    dessineTriangle((3 / 2) * longueur, x - longueur / 3,
+                    3 / 2 * longueur + sqrt(longueur ** 2 / 4 + longueur ** 2) - 1, 'green')
     tu.end_fill()
     tu.begin_fill()
-    dessineTriangle(l, x - l / 4 + 10, 3 / 2 * l + sqrt(l ** 2 / 4 + l ** 2) - 1 + l, 'green')
+    dessineTriangle(longueur, x - longueur / 4 + 10,
+                    3 / 2 * longueur + sqrt(longueur ** 2 / 4 + longueur ** 2) - 1 + longueur, 'green')
     tu.end_fill()
 
-sapin(60,0,0)
+
+sapin(60, 0, 0)

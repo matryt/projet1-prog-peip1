@@ -2,60 +2,61 @@ import turtle as tu
 
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t
-def dessineCroix(x,y,l,c,t):
+def dessineCroix(x, y, longueur, c, t):
     """"
     x:int position en abscisse 
     y:int position en ordonnée
-    l:int longueur 
+    longueur:int longueur
     c:str or tuple  couleur 
     t:turtle
     Fonction pour dessiner une croix
     """
     t.up()
-    t.goto(x,y)
+    t.goto(x, y)
     t.down()
     t.color(c)
     t.width(5)
-    t.goto(x+l,y+l)
+    t.goto(x + longueur, y + longueur)
     t.up()
-    t.goto(x+l,y)
+    t.goto(x + longueur, y)
     t.down()
-    t.goto(x,y+l)
+    t.goto(x, y + longueur)
     t.width(1)
 
 # dessine une allumette avec la tortue t
-def dessineAllumette(x,y,l,c,t):
+def dessineAllumette(x, y, longueur, c, t):
     """"
-    x:int position en abcisse 
+    x:int position en abscisse
     y:int position en ordonnée
-    l:int longueur de l'allumette
-    c:str or tuple  couleur de l'allumette
+    longueur:int longueur de l'allumette
+    c:str or tuple couleur de l'allumette
     t:turtle
     fonction pour dessiner une allumette
     """
     t.up()
-    t.goto(x,y)
+    t.goto(x, y)
     t.down()
     t.color(c)
     t.setheading(90)
     t.width(20)
-    t.forward(l)
+    t.forward(longueur)
     t.width(30)
     t.color("red")
     t.forward(2)
 
-def dessinePaquet(x, y, l, c, t, nb):
+
+def dessinePaquet(x, y, longueur, c, t, nb):
     """"
-    x:int position en abcisse 
+    x:int position en abscisse
     y:int position en ordonnée
-    l:int longueur de l'allumette
-    c:str or tuple  couleur de l'allumette
+    longueur:int longueur de l'allumette
+    c:str or tuple couleur de l'allumette
     t:turtle
-    nb:int nombre d'allumette dans le paquet
-    Fonction reprennant la fonction dessineAllumette() pour dessiner un paquet d'allumette
+    nb:int nombre d'allumettes dans le paquet
+    Fonction reprenant la fonction dessineAllumette() pour dessiner un paquet d'allumette
     """
     for i in range(nb):
-        dessineAllumette(x+i*50,y,l,c,t)
+        dessineAllumette(x + i * 50, y, longueur, c, t)
 
 
 def couronne(s) -> None:
@@ -83,7 +84,7 @@ def pointe(angle):
     """
     angle:float
     dessine une pointe pour le dessin de la couronne 
-    fonction reutilisé danns la fonction couronne()
+    fonction réutilisée dans la fonction couronne()
     """
     tu.left(180 - angle)
     tu.forward(120)

@@ -1,6 +1,5 @@
 # Loic LAMOUR et Mathieu CUVELIER - Groupe 5
 
-import turtle as tu
 from random import randint, choice
 from time import sleep
 from typing import List
@@ -34,14 +33,14 @@ def testNombre() -> int:
 	:return: Le nombre converti
 	:rtype: int
 	"""
-	test=False
-	while not test :
+	test = False
+	while not test:
 		try:
 			n = int(input("Joueur, combien voulez-vous prendre d'allumettes ?"))
-			test=True
+			test = True
 		except ValueError:
 			print("Vous devez rentrer un nombre !")
-			
+
 	return n  # type: ignore
 
 
@@ -73,14 +72,14 @@ def enleverAllumettes(allumettes: int, regle: List[int]) -> int:
 	"""
 	nombre = testNombre()
 
-	while nombre > allumettes or nombre not in regle: # Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre  et qu'il respecte les règles
+	while nombre > allumettes or nombre not in regle:  # Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre  et qu'il respecte les règles
 		print(f"Vous voulez prendre {nombre} allumettes, ce qui est impossible !")
 		nombre = testNombre()
 
 	return allumettes - nombre
 
 
-def afficherAllumettes(allumettes: int, t, ECRAN : tuple) -> None:
+def afficherAllumettes(allumettes: int, t, ECRAN: tuple) -> None:
 	"""
 	Affiche le nombre d'allumettes passées en paramètre
 	:param allumettes: Le nombre d'allumettes actuel
@@ -93,7 +92,7 @@ def afficherAllumettes(allumettes: int, t, ECRAN : tuple) -> None:
 	"""
 	t.clear()
 	espaceRestant = (ECRAN[0] - allumettes * 50) / 2
-	dessinePaquet(-ECRAN[0]/2+espaceRestant, -200, 200,(244, 164, 96), t, allumettes)
+	dessinePaquet(-ECRAN[0] / 2 + espaceRestant, -200, 200, (244, 164, 96), t, allumettes)
 
 
 def jeuPossible(allumettes: int, regle: List[int]) -> bool:
@@ -162,7 +161,7 @@ def jeu() -> None:
 	while not fini:
 		afficherAllumettes(nombreAllumettes, tc, TAILLE_ECRAN)
 		nombreAllumettes = enleverAllumettes(nombreAllumettes, REGLE)
-		if nombreAllumettes==0 or not jeuPossible(nombreAllumettes, REGLE):
+		if nombreAllumettes == 0 or not jeuPossible(nombreAllumettes, REGLE):
 			print("Vous avez gagné !")
 			couronne(s)
 			sleep(5)
@@ -173,4 +172,5 @@ def jeu() -> None:
 				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 				fini = True
 
-jeu() # Appelle la fonction principale jeu et lance le mini jeu 
+
+jeu()  # Appelle la fonction principale jeu et lance le mini jeu
