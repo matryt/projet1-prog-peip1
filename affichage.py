@@ -1,11 +1,10 @@
-from turtle import *
-from typing import Union
+import turtle as tu
 
 # dessine une croix dans le carré de largeur l dont le point en bas
 # à gauche est (x,y), avec la tortue t
 def dessineCroix(x,y,l,c,t):
     """"
-    x:int position en abcisse 
+    x:int position en abscisse 
     y:int position en ordonnée
     l:int longueur 
     c:str or tuple  couleur 
@@ -26,7 +25,7 @@ def dessineCroix(x,y,l,c,t):
 
 # dessine une allumette avec la tortue t
 def dessineAllumette(x,y,l,c,t):
-     """"
+    """"
     x:int position en abcisse 
     y:int position en ordonnée
     l:int longueur de l'allumette
@@ -46,7 +45,7 @@ def dessineAllumette(x,y,l,c,t):
     t.forward(2)
 
 def dessinePaquet(x, y, l, c, t, nb):
-     """"
+    """"
     x:int position en abcisse 
     y:int position en ordonnée
     l:int longueur de l'allumette
@@ -57,26 +56,27 @@ def dessinePaquet(x, y, l, c, t, nb):
     """
     for i in range(nb):
         dessineAllumette(x+i*50,y,l,c,t)
-    
-def couronne(s : Screen) -> None:
+
+
+def couronne(s) -> None:
     """
     fonction pour dessiner une couronne à la fin lorsque le joueur gagne
     """
     s.clear()
     s.colormode(255)
-    hideturtle()
-    color(236, 228, 0)
-    up()
-    goto(-100, -100)
-    seth(0)
-    down()
-    forward(215)
-    left(90)
-    forward(200)
+    tu.hideturtle()
+    tu.color(236, 228, 0)
+    tu.up()
+    tu.goto(-100, -100)
+    tu.seth(0)
+    tu.down()
+    tu.forward(215)
+    tu.left(90)
+    tu.forward(200)
     pointe(26.57)
     pointe(53.13)
-    setheading(270)
-    forward(200)
+    tu.setheading(270)
+    tu.forward(200)
 
 
 def pointe(angle):
@@ -85,7 +85,7 @@ def pointe(angle):
     dessine une pointe pour le dessin de la couronne 
     fonction reutilisé danns la fonction couronne()
     """
-    left(180 - angle)
-    forward(120)
-    right(180-53.13)
-    forward(120)
+    tu.left(180 - angle)
+    tu.forward(120)
+    tu.right(180 - 53.13)
+    tu.forward(120)

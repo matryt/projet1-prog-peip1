@@ -1,10 +1,12 @@
 # Loic LAMOUR et Mathieu CUVELIER - Groupe 5
 
+import turtle as tu
 from random import randint, choice
-from typing import List
-from affichage import *
-from turtle import *
 from time import sleep
+from typing import List
+
+from affichage import *
+
 
 def genererRegle() -> List[int]:
 	"""
@@ -137,20 +139,20 @@ def jeu() -> None:
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
 	"""
-    TAILLE_ECRAN=(1400,700)
-    s = Screen()
-    s.colormode(255)
-    s.screensize(TAILLE_ECRAN[0],TAILLE_ECRAN[1])
-    speed(0)
-    s.bgcolor(1, 139, 104)
-    
-    TAILLE_ECRAN = (1920, 1080)
+	TAILLE_ECRAN = (1400, 700)
+	s = tu.Screen()
+	s.colormode(255)
+	s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
+	tu.speed(0)
+	s.bgcolor(1, 139, 104)
 
-	hideturtle()
+	TAILLE_ECRAN = (1920, 1080)
 
-	tc = Turtle()
+	tu.hideturtle()
+
+	tc = tu.Turtle()
 	tc.hideturtle()
-		
+
 	fini = False
 	nombreAllumettes = randint(10, 30)
 	REGLE = genererRegle()
