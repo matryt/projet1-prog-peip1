@@ -72,5 +72,16 @@ Mathieu + Loïc : création du fond et des éléments représentant les allumett
 
 Mathieu : ajout du système de tas
 
-🚧 **Problème détecté** : Le programme demande parfois des entrées au moment de choisir des allumettes puis s'arrête
-prématurément, sans aucun message d'erreur 
+🚧 **Problèmes détectés** : Le programme demande parfois des entrées au moment de choisir des allumettes puis s'arrête
+prématurément, sans aucun message d'erreur.
+
+![img.png](pb_2112_img1.png)
+
+![img_1.png](pb_2112_img2.png)
+
+De plus, il semblerait que le jeu n'enlève pas toujours toutes les allumettes demandées tout le temps
+
+**TODO** (Mathieu) :
+
+* Chercher origine problème et le résoudre
+* Gérer le cas où le tas demandé n'existe pas, car pour le moment cela soulève une erreur et n'est pas géré.
