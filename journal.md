@@ -67,3 +67,10 @@ Mathieu et Loïc : révision et ajout de documentation dans le fichier principal
 ## Dimanche 18 décembre
 
 Mathieu + Loïc : création du fond et des éléments représentant les allumettes prises et restantes
+
+## Mercredi 21 décembre
+
+Mathieu : ajout du système de tas
+
+🚧 **Problème détecté** : Le programme demande parfois des entrées au moment de choisir des allumettes puis s'arrête
+prématurément, sans aucun message d'erreur 
