@@ -83,5 +83,5 @@ De plus, il semblerait que le jeu n'enlève pas toujours toutes les allumettes d
 
 **TODO** (Mathieu) :
 
-* Chercher origine problème et le résoudre
-* Gérer le cas où le tas demandé n'existe pas, car pour le moment cela soulève une erreur et n'est pas géré.
+* Chercher origine problème et le résoudre ----> Semble résolu en changeant une seule ligne dans tirageOrdi. A
+  surveiller.

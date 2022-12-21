@@ -7,7 +7,12 @@ from typing import List
 from affichage import *
 
 
-def genererTas():
+def genererTas() -> list:
+	"""
+	Permet de générer les différents tas d'allumettes pour la partie à jouer
+	:return: Le nombre d'allumettes par tas
+	:rtype: list
+	"""
 	tas = []
 	allumettesTotales = randint(15, 25)
 	for _ in range(randint(2, 3)):
@@ -21,6 +26,13 @@ def genererTas():
 
 
 def tasVide(tas):
+	"""
+	Teste si tous les tas sont vides ou non
+	:param tas: Le nombre d'allumettes par tas
+	:type tas: list
+	:return: True si tout est vide, False sinon
+	:rtype: bool
+	"""
 	for allumettes in tas:
 		if allumettes != 0:
 			return False
@@ -82,6 +94,21 @@ def afficheChoix(regle: List[int]) -> None:
 	print(c[:-2])
 
 
+def afficheTas(tas: list):
+	"""
+	Affiche le nombre de tas et le nombre d'allumettes dans chaque
+	:param tas: Le nombre d'allumettes dans chaque tas
+	:type tas: list
+	"""
+	c = ""
+
+	c += f"Il y a {len(tas)} tas. \nIls possèdent respectivement "
+
+	for allumettes in tas:
+		c += f"{allumettes}, "
+
+	print(c[:-2] + " allumettes.")
+
 def enleverAllumettes(tas: list, regle: List[int]) -> list:
 	"""
 	Permet de retourner le nombre d'allumettes après le tour du joueur
@@ -95,8 +122,8 @@ def enleverAllumettes(tas: list, regle: List[int]) -> list:
 	allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?")
 	tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?") - 1
 
-	while allumettesSouhaitees > tas[
-		tasDemande] or allumettesSouhaitees not in regle:  # Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre  et qu'il respecte les règles
+	while allumettesSouhaitees > tas[tasDemande] or allumettesSouhaitees not in regle:
+		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
 		print(f"Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible !")
 		allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?")
 		tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?") - 1
@@ -118,10 +145,12 @@ def afficherAllumettes(tas: list, t, ECRAN: tuple) -> None:
 
 	"""
 	t.clear()
-	coords = [-700, 0]
-	for i in range(len(tas)):
-		dessinePaquet(coords[0], coords[1], 200, (244, 164, 96), t, tas[i])
-		coords[0] += 50 * (tas[i] + 1)
+	espaceRestant = ECRAN[0] - 50 * (sum(tas) + len(tas) - 1)
+	coords = [-940 + espaceRestant / 2, 0]
+	print(espaceRestant)
+	for ta in tas:
+		dessinePaquet(coords[0], coords[1], 200, (244, 164, 96), t, ta)
+		coords[0] += 50 * (ta + 1)
 
 
 def jeuPossible(tas: list, regle: List[int]) -> bool:
@@ -135,10 +164,10 @@ def jeuPossible(tas: list, regle: List[int]) -> bool:
 	:rtype: bool
 
 	:example:
-	>>> jeuPossible(1,[2,3,4])
+	>>> jeuPossible([2, 5, 6],[2,3,4])
 	False
 
-	>>> jeuPossible(3,[3,5,7])
+	>>> jeuPossible([2, 2, 2],[3,5,7])
 	True
 
 	"""
@@ -164,6 +193,8 @@ def tirageOrdi(tas: list, regle: List[int]) -> list:
 	c = choice(regle)
 	while c > allumettesMax:
 		c = choice(regle)
+		tasAEnlever = randint(0, len(tas) - 1)
+		allumettesMax = tas[tasAEnlever]
 	tas[tasAEnlever] -= c
 	print(f"--> L'ordi a pris {c} allumette(s)")
 	return tas
@@ -193,6 +224,7 @@ def jeu() -> None:
 	REGLE.sort()
 	afficheChoix(REGLE)
 	print(f"Il y a {sum(tas)} allumettes au début.")
+	afficheTas(tas)
 	while not fini:
 		afficherAllumettes(tas, tc, TAILLE_ECRAN)
 		tas = enleverAllumettes(tas, REGLE)
