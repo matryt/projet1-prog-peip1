@@ -83,5 +83,8 @@ De plus, il semblerait que le jeu n'enlève pas toujours toutes les allumettes d
 
 **TODO** (Mathieu) :
 
-* Chercher origine problème et le résoudre ----> Semble résolu en changeant une seule ligne dans tirageOrdi. A
-  surveiller.
+* Chercher origine problème et le résoudre ----> Semble résolu en changeant une seule ligne dans tirageOrdi. A surveiller.
+
+## Jeudi 22 décembre
+
+Mathieu : dessin tête de mort + amélioration code

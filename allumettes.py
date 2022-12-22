@@ -107,7 +107,7 @@ def afficheTas(tas: list):
 	for allumettes in tas:
 		c += f"{allumettes}, "
 
-	print(c[:-2] + " allumettes.")
+	print(f"{c[:-2]} allumettes.")
 
 def enleverAllumettes(tas: list, regle: List[int]) -> list:
 	"""
@@ -147,7 +147,6 @@ def afficherAllumettes(tas: list, t, ECRAN: tuple) -> None:
 	t.clear()
 	espaceRestant = ECRAN[0] - 50 * (sum(tas) + len(tas) - 1)
 	coords = [-940 + espaceRestant / 2, 0]
-	print(espaceRestant)
 	for ta in tas:
 		dessinePaquet(coords[0], coords[1], 200, (244, 164, 96), t, ta)
 		coords[0] += 50 * (ta + 1)
@@ -196,7 +195,7 @@ def tirageOrdi(tas: list, regle: List[int]) -> list:
 		tasAEnlever = randint(0, len(tas) - 1)
 		allumettesMax = tas[tasAEnlever]
 	tas[tasAEnlever] -= c
-	print(f"--> L'ordi a pris {c} allumette(s)")
+	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever+1}")
 	return tas
 
 
@@ -238,6 +237,8 @@ def jeu() -> None:
 			if tasVide(tas) or not jeuPossible(tas, REGLE):
 				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 				fini = True
+				tete(s)
+				sleep(5)
 	s.bye()
 
 

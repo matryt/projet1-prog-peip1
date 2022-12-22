@@ -170,6 +170,8 @@ def jeu() -> None:
 			nombreAllumettes = tirageOrdi(nombreAllumettes, REGLE)
 			if nombreAllumettes == 0 or not jeuPossible(nombreAllumettes, REGLE):
 				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
+				tete(s)
+				sleep(5)
 				fini = True
 
 
