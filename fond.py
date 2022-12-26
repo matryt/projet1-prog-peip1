@@ -31,9 +31,11 @@ def sapin_foret(longueur, x, y):
 
 
 def foret(longueur, x, y):
+    tu.speed(0)
     for i in range(rd.randint(1, 9)):
         sapin_foret(longueur, x + i * 2 * longueur, y)
 
+foret(50,0,0)
 
 def rectangle(longueur, x, y, couleur):
     tu.up()
@@ -71,4 +73,3 @@ def sapin(longueur, x, y):
     tu.end_fill()
 
 
-sapin(60, 0, 0)
