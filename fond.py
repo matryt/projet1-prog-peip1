@@ -104,3 +104,32 @@ def fond_():
 
 fond_()
 
+def dessinePolygone(cotes, longueur, x, y, couleur = (1, 106, 136)):
+    tu.up()
+    tu.color(couleur)
+    tu.goto(x, y)
+    tu.down()
+    tu.seth(0)
+    for i in range(cotes):
+        tu.forward(longueur)
+        tu.left(360/cotes)
+
+def dessineCercle(x, y, couleur, longueur = 1):
+    tu.begin_fill()
+    dessinePolygone(250, longueur, x, y, couleur)
+    tu.end_fill()
+
+def buisson(x, y, fruits):
+    for i in range(3):
+        dessineCercle(x+25*i, y, (110, 196, 0))
+    for j in range(min(7, fruits)):
+        dessineCercle(x+15*(j - 1.5), y+20, (196, 14, 0), 0.1)
+    fruits -= 7
+    for i in range(min(7, fruits)):
+        dessineCercle(x+15*(i - 1.5), y+50, (196, 14, 0), 0.1)
+    
+screen = tu.Screen()
+screen.colormode(255)
+
+tu.speed(0)
+tu.hideturtle()
