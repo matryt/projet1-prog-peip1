@@ -67,6 +67,12 @@ Mathieu et Loïc : révision et ajout de documentation dans le fichier principal
 ## Dimanche 18 décembre
 
 Mathieu + Loïc : création du fond et des éléments représentant les allumettes prises et restantes
+## Lundi 19 décembre 
+Loïc : création fichier fond.py pour la création du décor
+        ajout :
+         fonction sapin 
+         sapin pour la forêt
+         fonction forêt 
 
 ## Mercredi 21 décembre
 
