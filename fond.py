@@ -1,6 +1,6 @@
 import random as rd
 import turtle as tu
-from math import *
+import math
 
 
 def dessinePolygone(nb_cotes, longueur, x, y, couleur):
@@ -35,7 +35,7 @@ def foret(longueur, x, y):
     for i in range(rd.randint(1, 9)):
         sapin_foret(longueur, x + i * 2 * longueur, y)
 
-foret(50,0,0)
+
 
 def rectangle(longueur, x, y, couleur):
     tu.up()
@@ -72,4 +72,35 @@ def sapin(longueur, x, y):
                     3 / 2 * longueur + sqrt(longueur ** 2 / 4 + longueur ** 2) - 1 + longueur, 'green')
     tu.end_fill()
 
+def dessineCercle (x,y,couleur):
+    tu.speed(0)
+    dessinePolygone(100,l,x,y,couleur)
+
+
+
+TAILLE_ECRAN = (1400, 700)
+s = tu.Screen()
+s.colormode(255)
+s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
+tu.speed(0)
+s.bgcolor(15,135,228)
+
+def fond_():
+    tu.up()
+    tu.goto(-700,27.5)
+    tu.down()
+    tu.begin_fill()
+    tu.color(8,40,100)
+    tu.goto(-350,150)
+    tu.goto(0,40)
+    tu.goto(350,220)
+    tu.goto(700,45)
+    tu.goto(700,-400)
+    tu.goto(-700,-400)
+    tu.goto(-700,27.5)
+    tu.end_fill()
+    tu.exitonclick()
+     
+
+fond_()
 
