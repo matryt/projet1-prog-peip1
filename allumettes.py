@@ -4,7 +4,9 @@ from random import randint, choice
 from time import sleep
 from typing import List
 
+import fond
 from affichage import *
+from fond import *
 
 
 def genererTas() -> list:
@@ -145,11 +147,9 @@ def afficherAllumettes(tas: list, t, ECRAN: tuple) -> None:
 
 	"""
 	t.clear()
-	espaceRestant = ECRAN[0] - 50 * (sum(tas) + len(tas) - 1)
-	coords = [-940 + espaceRestant / 2, 0]
-	for ta in tas:
-		dessinePaquet(coords[0], coords[1], 200, (244, 164, 96), t, ta)
-		coords[0] += 50 * (ta + 1)
+	coords = ((-325, -100), (-325, 100), (250, 100), (250, -100))
+	for ta in range(len(tas)):
+		buisson(coords[ta][0], coords[ta][1], tas[ta], t)
 
 
 def jeuPossible(tas: list, regle: List[int]) -> bool:
@@ -195,7 +195,7 @@ def tirageOrdi(tas: list, regle: List[int]) -> list:
 		tasAEnlever = randint(0, len(tas) - 1)
 		allumettesMax = tas[tasAEnlever]
 	tas[tasAEnlever] -= c
-	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever+1}")
+	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
 	return tas
 
 
@@ -205,10 +205,14 @@ def jeu() -> None:
 	"""
 	TAILLE_ECRAN = (1400, 700)
 	s = tu.Screen()
+	tu.delay(0)
 	s.colormode(255)
 	s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
 	tu.speed(0)
-	s.bgcolor(1, 139, 104)
+
+	tFond = tu.Turtle()
+
+	fond.fond_(tFond)
 
 	TAILLE_ECRAN = (1920, 1080)
 
@@ -221,10 +225,10 @@ def jeu() -> None:
 	tas = genererTas()
 	REGLE = genererRegle()
 	REGLE.sort()
-	afficheChoix(REGLE)
 	print(f"Il y a {sum(tas)} allumettes au début.")
 	afficheTas(tas)
 	while not fini:
+		afficheChoix(REGLE)
 		afficherAllumettes(tas, tc, TAILLE_ECRAN)
 		tas = enleverAllumettes(tas, REGLE)
 		if tasVide(tas) or not jeuPossible(tas, REGLE):

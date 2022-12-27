@@ -24,40 +24,34 @@ def dessineCroix(x, y, longueur, c, t):
     t.goto(x, y + longueur)
     t.width(1)
 
-# dessine une allumette avec la tortue t
-def dessineAllumette(x, y, longueur, c, t):
-    """"
-    x:int position en abscisse
-    y:int position en ordonnée
-    longueur:int longueur de l'allumette
-    c:str or tuple couleur de l'allumette
-    t:turtle
-    fonction pour dessiner une allumette
-    """
+
+def dessinePolygone(cotes, longueur, x, y, t, couleur=(1, 106, 136)):
     t.up()
+    t.color(couleur)
     t.goto(x, y)
     t.down()
-    t.color(c)
-    t.setheading(90)
-    t.width(20)
-    t.forward(longueur)
-    t.width(30)
-    t.color("red")
-    t.forward(2)
+    t.seth(0)
+    for i in range(cotes):
+        t.forward(longueur)
+        t.left(360 / cotes)
 
 
-def dessinePaquet(x, y, longueur, c, t, nb):
-    """"
-    x:int position en abscisse
-    y:int position en ordonnée
-    longueur:int longueur de l'allumette
-    c:str or tuple couleur de l'allumette
-    t:turtle
-    nb:int nombre d'allumettes dans le paquet
-    Fonction reprenant la fonction dessineAllumette() pour dessiner un paquet d'allumette
-    """
-    for i in range(nb):
-        dessineAllumette(x + i * 50, y, longueur, c, t)
+def dessineCercle(x, y, t, couleur, longueur=1):
+    t.color(couleur)
+    t.begin_fill()
+    dessinePolygone(250, longueur, x, y, t, couleur)
+    t.end_fill()
+
+
+def buisson(x, y, fruits, t):
+    t.hideturtle()
+    for i in range(3):
+        dessineCercle(x + 25 * i, y, t, (110, 196, 0), 1)
+    for j in range(min(7, fruits)):
+        dessineCercle(x + 15 * (j - 1.5), y + 20, t, (196, 14, 0), 0.1)
+    fruits -= 7
+    for i in range(min(7, fruits)):
+        dessineCercle(x + 15 * (i - 1.5), y + 50, t, (196, 14, 0), 0.1)
 
 
 def couronne(s) -> None:
@@ -67,7 +61,8 @@ def couronne(s) -> None:
     s.clear()
     s.colormode(255)
     tu.hideturtle()
-    tu.color(236, 228, 0)
+    tu.color(186, 180, 0)
+    tu.width(2)
     tu.up()
     tu.goto(-100, -100)
     tu.seth(0)
@@ -236,6 +231,7 @@ def rectangle(x, y):
     tu.left(90)
 
 def tete(s):
+    tu.hideturtle()
     s.clear()
     bouche(-110, -100, 0)
     crane()

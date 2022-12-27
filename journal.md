@@ -89,8 +89,18 @@ De plus, il semblerait que le jeu n'enlève pas toujours toutes les allumettes d
 
 **TODO** (Mathieu) :
 
-* Chercher origine problème et le résoudre ----> Semble résolu en changeant une seule ligne dans tirageOrdi. A surveiller.
+* Chercher origine problème et le résoudre ----> Semble résolu en changeant une seule ligne dans tirageOrdi. A
+  surveiller.
 
 ## Jeudi 22 décembre
 
 Mathieu : dessin tête de mort + amélioration code
+
+## Mardi 27 décembre
+
+🚧 **Problème détecté** : les sapins ne se dessinent pas correctement, sauf s'ils sont placés en (0, 0)
+
+Résolu en changeant une des formules
+
+Mathieu : l'affichage était encore celui avant la maquette, sans les buissons. Changement d'affichage pour le nouveau +
+rectifications mineures sur l'affichage
