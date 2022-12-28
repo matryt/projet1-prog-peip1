@@ -104,3 +104,7 @@ Résolu en changeant une des formules
 
 Mathieu : l'affichage était encore celui avant la maquette, sans les buissons. Changement d'affichage pour le nouveau +
 rectifications mineures sur l'affichage
+
+## Mercredi 28 décembre
+
+Mathieu et Loïc : ajout de documentation + ajout des règles du jeu

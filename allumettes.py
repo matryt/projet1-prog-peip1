@@ -10,9 +10,12 @@ from fond import *
 
 
 def reglesJeu():
+	"""
+	Permet d'afficher les règles du jeu au début de chaque partie
+	"""
 	print("Bienvenue dans notre jeu de Nim !")
 	print("Des buissons vont s'afficher, avec plus ou moins de fruits dessus qui représentent les allumettes.")
-	print("Pour gagner, il faut prendre la dernière allumette du dernier buisson.")
+	print("Pour gagner, il faut prendre le dernier fruit du dernier buisson.")
 	print("Les choix d'allumettes vont s'afficher juste après.")
 	r = input("Voulez-vous réafficher les règles (o / n) ?")
 	if r == "o":
@@ -145,15 +148,13 @@ def enleverAllumettes(tas: list, regle: List[int]) -> list:
 	return tas
 
 
-def afficherAllumettes(tas: list, t, ECRAN: tuple) -> None:
+def afficherAllumettes(tas: list, t) -> None:
 	"""
 	Affiche le nombre d'allumettes passées en paramètre
 	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
 	:type tas: list
 	:param t: L'objet Turtle à utiliser pour le dessin
 	:type t: Turtle
-	:param ECRAN: La taille de la fenêtre fixée
-	:type ECRAN: tuple[int]
 
 	"""
 	t.clear()
