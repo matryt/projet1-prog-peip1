@@ -216,7 +216,7 @@ def jeu() -> None:
 	afficheTas(tas)
 	while not fini:
 		afficheChoix(REGLE)
-		afficherAllumettes(tas, tc, TAILLE_ECRAN)
+		afficherAllumettes(tas, tc)
 		tas = enleverAllumettes(tas, REGLE)
 		if tasVide(tas):
 			print("Vous avez gagné !")

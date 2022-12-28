@@ -1,5 +1,4 @@
 import math
-import random as rd
 import turtle as tu
 
 
@@ -159,4 +158,5 @@ def fond_():
 
 
 fond_()
-tu.exitonclick()
+if __name__ == "__main__":
+    tu.exitonclick()
