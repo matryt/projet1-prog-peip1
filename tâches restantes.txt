@@ -1,6 +1,5 @@
 - Finir décor :
 	-- Buissons avec et sans allumettes à dessiner puis à placer
-	-- Coder fond avec montagnes et ciel. Possibilité images ?
 	-- Placer éléments
 	-- Insérer numéro tas
 
