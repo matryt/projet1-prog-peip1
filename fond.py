@@ -71,12 +71,13 @@ def sapin(longueur, x, y):
     tu.end_fill()
 
 
-def fond_(t):
+def fond_():
     TAILLE_ECRAN = (1400, 700)
+    t=tu.Turtle()
     s = tu.Screen()
     s.colormode(255)
     s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
-    tu.speed(0)
+    t.speed(0)
     s.bgcolor(15, 135, 228)
     t.up()
     t.hideturtle()
@@ -93,3 +94,6 @@ def fond_(t):
     t.goto(-700, 27.5)
     t.end_fill()
     foret(50, -250, -280)
+
+
+

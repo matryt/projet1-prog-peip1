@@ -210,9 +210,9 @@ def jeu() -> None:
 	s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
 	tu.speed(0)
 
-	tFond = tu.Turtle()
+	
 
-	fond.fond_(tFond)
+	fond.fond_()
 
 	TAILLE_ECRAN = (1920, 1080)
 
