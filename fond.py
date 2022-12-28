@@ -93,7 +93,7 @@ def fond_():
     t.goto(-700, -400)
     t.goto(-700, 27.5)
     t.end_fill()
-    foret(50, -450, -300)
+    foret(50, -430, -300)
 
 
 fond_()
