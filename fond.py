@@ -3,7 +3,7 @@ import random as rd
 import turtle as tu
 
 
-def dessinePolygone(cotes, longueur, x, y, couleur=(1, 106, 136)):
+def dessinePolygone(cotes, longueur, x, y, couleur):
     tu.up()
     tu.color(couleur)
     tu.goto(x, y)
