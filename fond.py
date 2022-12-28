@@ -30,7 +30,7 @@ def sapin_foret(longueur, x, y):
 
 def foret(longueur, x, y):
     tu.speed(0)
-    for i in range(rd.randint(1, 9)):
+    for i in range(9):
         sapin_foret(longueur, x + i * 2 * longueur, y)
 
 
@@ -93,7 +93,8 @@ def fond_():
     t.goto(-700, -400)
     t.goto(-700, 27.5)
     t.end_fill()
-    foret(50, -250, -280)
+    foret(50, -450, -300)
 
 
-
+fond_()
+tu.exitonclick()
