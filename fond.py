@@ -157,6 +157,6 @@ def fond_():
     foret(50, -430, -300)
 
 
-fond_()
 if __name__ == "__main__":
+    fond_()
     tu.exitonclick()
