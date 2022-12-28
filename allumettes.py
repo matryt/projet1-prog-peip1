@@ -9,6 +9,16 @@ from affichage import *
 from fond import *
 
 
+def reglesJeu():
+	print("Bienvenue dans notre jeu de Nim !")
+	print("Des buissons vont s'afficher, avec plus ou moins de fruits dessus qui représentent les allumettes.")
+	print("Pour gagner, il faut prendre la dernière allumette du dernier buisson.")
+	print("Les choix d'allumettes vont s'afficher juste après.")
+	r = input("Voulez-vous réafficher les règles (o / n) ?")
+	if r == "o":
+		reglesJeu()
+
+
 def genererTas() -> list:
 	"""
 	Permet de générer les différents tas d'allumettes pour la partie à jouer
@@ -152,31 +162,6 @@ def afficherAllumettes(tas: list, t, ECRAN: tuple) -> None:
 		buisson(coords[ta][0], coords[ta][1], tas[ta], t)
 
 
-def jeuPossible(tas: list, regle: List[int]) -> bool:
-	"""
-	Détermine s'il est encore possible de jouer, en fonction du nombre d'allumettes, et si au moins un des nombres contenu dans la règle permet d'enlever des allumettes
-	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
-	:type tas: list
-	:param regle: Choix d'allumettes possibles
-	:type regle: List[int]
-	:return: True s'il est encore possible de jouer, False sinon
-	:rtype: bool
-
-	:example:
-	>>> jeuPossible([2, 5, 6],[2,3,4])
-	False
-
-	>>> jeuPossible([2, 2, 2],[3,5,7])
-	True
-
-	"""
-	possible = False
-	for allumette in tas:
-		if allumette != 0 or allumette - regle[0] >= 0:
-			possible = True
-	return possible
-
-
 def tirageOrdi(tas: list, regle: List[int]) -> list:
 	"""
 	Permet de générer un nombre aléatoire d'allumettes correspondant au nombre d'allumettes qu'enlève l'ordinateur
@@ -222,6 +207,7 @@ def jeu() -> None:
 	tc.hideturtle()
 
 	fini = False
+	reglesJeu()
 	tas = genererTas()
 	REGLE = genererRegle()
 	REGLE.sort()
@@ -231,14 +217,14 @@ def jeu() -> None:
 		afficheChoix(REGLE)
 		afficherAllumettes(tas, tc, TAILLE_ECRAN)
 		tas = enleverAllumettes(tas, REGLE)
-		if tasVide(tas) or not jeuPossible(tas, REGLE):
+		if tasVide(tas):
 			print("Vous avez gagné !")
 			couronne(s)
 			sleep(5)
 			fini = True
 		else:
 			tas = tirageOrdi(tas, REGLE)
-			if tasVide(tas) or not jeuPossible(tas, REGLE):
+			if tasVide(tas):
 				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 				fini = True
 				tete(s)
