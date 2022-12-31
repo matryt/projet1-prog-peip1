@@ -108,3 +108,6 @@ rectifications mineures sur l'affichage
 ## Mercredi 28 décembre
 
 Mathieu et Loïc : ajout de documentation + ajout des règles du jeu
+
+## Samedi 31 décembre
+Loïc : Documentation affichage.py
