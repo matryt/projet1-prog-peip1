@@ -106,6 +106,7 @@ def couronne(s) -> None:
     s.clear()
     s.colormode(255)
     tu.hideturtle()
+    initialize()
     tu.color(186, 180, 0)
     tu.width(2)
     tu.up()
@@ -119,6 +120,7 @@ def couronne(s) -> None:
     pointe(53.13)
     tu.setheading(270)
     tu.forward(200)
+    finish()
 
 
 def pointe(angle):
@@ -298,6 +300,17 @@ def rectangle(x, y):
     tu.forward(y)
     tu.left(90)
 
+import turtle as tu 
+def initialize():
+ tu.speed(0)
+ tu.delay(0)
+ tu.tracer(0,0)
+ tu.hideturtle()
+ return tu
+def finish():
+ tu.update()
+ tu.done()
+
 def tete(s):
     """
     s:screen
@@ -305,6 +318,7 @@ def tete(s):
     """
     tu.hideturtle()
     s.clear()
+    initialize()
     bouche(-110, -100, 0)
     crane()
     yeux()
@@ -312,3 +326,4 @@ def tete(s):
     os(-110+191.88, -100)
     tu.seth(201)
     os(-110-sqrt(5000), -100+sqrt(5000), False)
+    finish()

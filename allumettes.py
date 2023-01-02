@@ -5,6 +5,7 @@ from time import sleep
 from typing import List
 
 import fond
+import turtle as tu 
 from affichage import *
 from fond import *
 
@@ -186,7 +187,7 @@ def tirageOrdi(tas: list, regle: List[int]) -> list:
 	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
 	return tas
 
-import turtle as tu 
+
 def initialize():
  tu.speed(0)
  tu.delay(0)
@@ -253,4 +254,5 @@ def jeu() -> None:
 	s.bye()
 
 
-jeu()  # Appelle la fonction principale jeu et lance le mini jeu
+ # Appelle la fonction principale jeu et lance le mini jeu
+jeu()
