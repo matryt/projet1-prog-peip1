@@ -117,15 +117,15 @@ def sapin(longueur, x, y):
     tu.seth(0)
     tu.begin_fill()
     tu.up()
-    dessineTriangle(2 * longueur, x - longueur / 2, 3 / 2 * longueur, 'green')
+    dessineTriangle(2 * longueur, x - longueur / 2, y + 3 / 2 * longueur, 'green')
     tu.end_fill()
     tu.begin_fill()
     dessineTriangle((3 / 2) * longueur, x - longueur / 3,
-                    3 / 2 * longueur + math.sqrt(longueur ** 2 / 4 + longueur ** 2) - 1, 'green')
+                    y + 3 / 2 * longueur + math.sqrt(longueur ** 2 / 4 + longueur ** 2) - 1, 'green')
     tu.end_fill()
     tu.begin_fill()
     dessineTriangle(longueur, x - longueur / 4 + 10,
-                    3 / 2 * longueur + math.sqrt(longueur ** 2 / 4 + longueur ** 2) - 1 + longueur, 'green')
+                    y + 3 / 2 * longueur + math.sqrt(longueur ** 2 / 4 + longueur ** 2) - 1 + longueur, 'green')
     tu.end_fill()
 
 
@@ -155,6 +155,9 @@ def fond_():
     t.goto(-700, 27.5)
     t.end_fill()
     foret(50, -430, -300)
+    sapin(50, -60, -60)
+    sapin(50, -140, -100)
+    sapin(50, 60, -120)
 
 
 if __name__ == "__main__":
