@@ -111,3 +111,6 @@ Mathieu et Loïc : ajout de documentation + ajout des règles du jeu
 
 ## Samedi 31 décembre
 Loïc : Documentation affichage.py
+
+## Lundi 2 janvier 
+Mathieu et Loïc : optimisation fonction os , changement odre d'affichage , ajout numero tas et ajustement police et taille 
