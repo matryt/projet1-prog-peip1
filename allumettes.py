@@ -188,16 +188,6 @@ def tirageOrdi(tas: list, regle: List[int]) -> list:
 	return tas
 
 
-def initialize():
- tu.speed(0)
- tu.delay(0)
- tu.tracer(0,0)
- tu.hideturtle()
- return tu
-def finish():
- tu.update()
- tu.done()
-
 
 
 

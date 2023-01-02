@@ -300,7 +300,7 @@ def rectangle(x, y):
     tu.forward(y)
     tu.left(90)
 
-import turtle as tu 
+
 def initialize():
  tu.speed(0)
  tu.delay(0)
