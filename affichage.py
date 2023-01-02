@@ -47,13 +47,13 @@ def dessinePolygone(cotes, longueur, x, y, t, couleur=(1, 106, 136)):
         t.left(360 / cotes)
 
 
-def dessineCercle(x, y, t, couleur, longueur=1):
+def dessineCercle(x, y, t, couleur, longueur):
     """
     x:int position en abscisse
     y:int position en ordonnée
     t turtle
     couleur:str or tuple 
-    longueur:int
+    longueur:float/int
     Fonction pour dessiner un cercle
 
     """
