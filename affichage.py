@@ -26,6 +26,17 @@ def dessineCroix(x, y, longueur, c, t):
 
 
 def dessinePolygone(cotes, longueur, x, y, t, couleur=(1, 106, 136)):
+    """
+
+    cotes:int nombre de cotes
+    longueur:int longueur 
+    x:int position en abcisse
+    y:int position en ordonnée
+    t turtle
+    couleur:tuple 
+    fonction pour dessinner un polygone quelconque 
+
+    """
     t.up()
     t.color(couleur)
     t.goto(x, y)
@@ -37,6 +48,15 @@ def dessinePolygone(cotes, longueur, x, y, t, couleur=(1, 106, 136)):
 
 
 def dessineCercle(x, y, t, couleur, longueur=1):
+    """
+    x:int position en abscisse
+    y:int position en ordonnée
+    t turtle
+    couleur:str or tuple 
+    longueur:int
+    Fonction pour dessiner un cercle
+
+    """
     t.color(couleur)
     t.begin_fill()
     dessinePolygone(250, longueur, x, y, t, couleur)
@@ -44,6 +64,13 @@ def dessineCercle(x, y, t, couleur, longueur=1):
 
 
 def buisson(x, y, fruits, t):
+    """
+    x:int position abscisse
+    y:int position ordonnée 
+    fruits:int nombre de fruits dans un buisson
+    t turtle 
+    fonction pour dessiner un buisson avec les fruits 
+    """
     t.hideturtle()
     for i in range(3):
         dessineCercle(x + 25 * i, y, t, (110, 196, 0), 1)
@@ -70,6 +97,7 @@ def numero(coords, n, t):
 
 def couronne(s) -> None:
     """
+    
     fonction pour dessiner une couronne à la fin lorsque le joueur gagne
     """
     s.clear()
@@ -102,6 +130,12 @@ def pointe(angle):
     tu.forward(120)
 
 def os(x, y, droite = True):
+    """
+    x:int position abscisse 
+    y:int position ordonnée
+    droite:bool indique la position de l'os( droite ou gauche )
+    fonction pour dessiner un os 
+    """
     tu.up()
     tu.goto(x, y)
     tu.down()
@@ -150,6 +184,12 @@ def os(x, y, droite = True):
     tu.goto(x, y)
 
 def bouche(x, y, angle):
+    """
+    x:int position abscisse 
+    y:int position ordonnée
+    angle:float
+    fonction pour dessinner une bouche 
+    """
     tu.seth(angle)
     tu.right(90)
     tu.up()
@@ -207,6 +247,9 @@ def bouche(x, y, angle):
     tu.down()
 
 def crane():
+    """
+    fonction pour dessiner un crâne
+    """
     tu.seth(45)
     tu.forward(100)
     tu.left(45)
@@ -223,6 +266,9 @@ def crane():
     tu.forward(100)
 
 def yeux():
+    """
+    fonction pour dessiner des yeux
+    """
     tu.seth(90)
     tu.up()
     tu.forward(150)
@@ -235,6 +281,11 @@ def yeux():
     rectangle(70, 40)
 
 def rectangle(x, y):
+    """
+    x:float longueur rectangle
+    y:float largeur rectangle 
+    fonction pour dessiner un rectangle
+    """
     tu.forward(x)
     tu.left(90)
     tu.forward(y)
@@ -245,6 +296,10 @@ def rectangle(x, y):
     tu.left(90)
 
 def tete(s):
+    """
+    s:screen
+    fonction pour dessiner une tête de mort reprenant d'autres fonctions définies précedements
+    """
     tu.hideturtle()
     s.clear()
     bouche(-110, -100, 0)
