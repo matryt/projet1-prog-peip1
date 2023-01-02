@@ -158,8 +158,8 @@ def afficherAllumettes(tas: list, t) -> None:
 n
 	"""
 	t.clear()
-	coords_buissons = ((-325, -100), (-325, 75), (250, 85), (250, -100))
-	coords_numeros  = ((-325,-125),(-325,75),(250,75),(250,-125))
+	coords_buissons = ((-325, -100), (-325, 50), (250, 85), (250, -100))
+	coords_numeros = ((-325, -125), (-325, 20), (250, 55), (250, -125))
 	for ta in range(len(tas)):
 		buisson(coords_buissons[ta][0], coords_buissons[ta][1], tas[ta], t)
 		numero(coords_numeros[ta],ta+1,t,"white")
