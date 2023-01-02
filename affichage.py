@@ -80,7 +80,7 @@ def buisson(x, y, fruits, t):
     for i in range(min(7, fruits)):
         dessineCercle(x + 15 * (i - 1.5), y + 50, t, (196, 14, 0), 0.1)
 
-def numero(coords, n, t):
+def numero(coords, n, t, couleur):
     """
     Permet d'écrire un numéro aux coordonnées spécifiées
     :param coords: Les coordonnées du texte
@@ -89,11 +89,14 @@ def numero(coords, n, t):
     :type n: int
     :param t: La tortue à utiliser
     :type t: Turtle
+    :param couleur: couleur texte
+    :type couleur: str or tuple
     """
     t.up()
     t.goto(coords[0], coords[1])
     t.down()
-    t.write(str(n), align="center")
+    t.color(couleur)
+    t.write('Tas ' + str(n), align="center",font=('Arial',16,"bold"))
 
 def couronne(s) -> None:
     """

@@ -158,9 +158,11 @@ def afficherAllumettes(tas: list, t) -> None:
 
 	"""
 	t.clear()
-	coords = ((-325, -100), (-325, 100), (250, 100), (250, -100))
+	coords_buissons = ((-325, -100), (-325, 100), (250, 100), (250, -100))
+	coords_numeros  = ((-325,-125),(-325,75),(250,75),(250,-125))
 	for ta in range(len(tas)):
-		buisson(coords[ta][0], coords[ta][1], tas[ta], t)
+		buisson(coords_buissons[ta][0], coords_buissons[ta][1], tas[ta], t)
+		numero(coords_numeros[ta],ta+1,t,"white")
 
 
 def tirageOrdi(tas: list, regle: List[int]) -> list:
@@ -189,15 +191,14 @@ def jeu() -> None:
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
 	"""
+	reglesJeu()
 	TAILLE_ECRAN = (1400, 700)
 	s = tu.Screen()
 	tu.delay(0)
 	s.colormode(255)
 	s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
 	tu.speed(0)
-
 	
-
 	fond.fond_()
 
 	TAILLE_ECRAN = (1920, 1080)
@@ -208,7 +209,6 @@ def jeu() -> None:
 	tc.hideturtle()
 
 	fini = False
-	reglesJeu()
 	tas = genererTas()
 	REGLE = genererRegle()
 	REGLE.sort()
