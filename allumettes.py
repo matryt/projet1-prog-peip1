@@ -186,6 +186,21 @@ def tirageOrdi(tas: list, regle: List[int]) -> list:
 	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
 	return tas
 
+import turtle as tu 
+def initialize():
+ tu.speed(0)
+ tu.delay(0)
+ tu.tracer(0,0)
+ tu.hideturtle()
+ return tu
+def finish():
+ tu.update()
+ tu.done()
+
+
+
+
+
 
 def jeu() -> None:
 	"""
@@ -197,9 +212,10 @@ def jeu() -> None:
 	tu.delay(0)
 	s.colormode(255)
 	s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
-	tu.speed(0)
+	initialize()
 	
 	fond.fond_()
+
 
 	TAILLE_ECRAN = (1920, 1080)
 
@@ -216,11 +232,14 @@ def jeu() -> None:
 	afficheTas(tas)
 	while not fini:
 		afficheChoix(REGLE)
+		initialize()
 		afficherAllumettes(tas, tc)
 		tas = enleverAllumettes(tas, REGLE)
 		if tasVide(tas):
 			print("Vous avez gagné !")
+			initialize()
 			couronne(s)
+			finish()
 			sleep(5)
 			fini = True
 		else:
@@ -228,6 +247,7 @@ def jeu() -> None:
 			if tasVide(tas):
 				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 				fini = True
+				initialize()
 				tete(s)
 				sleep(5)
 	s.bye()
