@@ -25,7 +25,7 @@ def dessineCroix(x, y, longueur, c, t):
     t.width(1)
 
 
-def dessinePolygone(cotes, longueur, x, y, t, couleur=(1, 106, 136)):
+def dessinePolygone(cotes, longueur, x, y, t, couleur):
     """
 
     cotes:int nombre de cotes
