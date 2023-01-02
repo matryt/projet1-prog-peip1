@@ -53,6 +53,20 @@ def buisson(x, y, fruits, t):
     for i in range(min(7, fruits)):
         dessineCercle(x + 15 * (i - 1.5), y + 50, t, (196, 14, 0), 0.1)
 
+def numero(coords, n, t):
+    """
+    Permet d'écrire un numéro aux coordonnées spécifiées
+    :param coords: Les coordonnées du texte
+    :type coords: tuple
+    :param n: Le numéro à afficher
+    :type n: int
+    :param t: La tortue à utiliser
+    :type t: Turtle
+    """
+    t.up()
+    t.goto(coords[0], coords[1])
+    t.down()
+    t.write(str(n), align="center")
 
 def couronne(s) -> None:
     """
