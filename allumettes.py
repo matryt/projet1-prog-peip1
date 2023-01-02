@@ -155,10 +155,10 @@ def afficherAllumettes(tas: list, t) -> None:
 	:type tas: list
 	:param t: L'objet Turtle à utiliser pour le dessin
 	:type t: Turtle
-
+n
 	"""
 	t.clear()
-	coords_buissons = ((-325, -100), (-325, 100), (250, 100), (250, -100))
+	coords_buissons = ((-325, -100), (-325, 75), (250, 85), (250, -100))
 	coords_numeros  = ((-325,-125),(-325,75),(250,75),(250,-125))
 	for ta in range(len(tas)):
 		buisson(coords_buissons[ta][0], coords_buissons[ta][1], tas[ta], t)
