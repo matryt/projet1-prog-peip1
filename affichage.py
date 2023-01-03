@@ -1,16 +1,23 @@
+# Loic LAMOUR et Mathieu CUVELIER - Groupe 5
+
 import turtle as tu
 from math import sqrt
 
-# dessine une croix dans le carré de largeur l dont le point en bas
-# à gauche est (x,y), avec la tortue t
+
 def dessineCroix(x, y, longueur, c, t):
-    """"
-    x:int position en abscisse 
-    y:int position en ordonnée
-    longueur:int longueur
-    c:str or tuple  couleur 
-    t:turtle
-    Fonction pour dessiner une croix
+    """
+    Fonction qui dessine une croix dans le carré de largeur l dont le point en bas à gauche est (x,y), avec la tortue t
+
+    :param x: Position en abscisse
+    :type x: int/float
+    :param y: Position en ordonnée
+    :type y: int/float
+    :param longueur: Longueur de chaque trait
+    :type longueur: int/float
+    :param c: Couleur dans laquelle dessiner la croix
+    :type c: str/tuple
+    :param t: La tortue à utiliser
+    :type t: Turtle()
     """
     t.up()
     t.goto(x, y)
@@ -27,15 +34,20 @@ def dessineCroix(x, y, longueur, c, t):
 
 def dessinePolygone(cotes, longueur, x, y, t, couleur):
     """
+    Fonction pour dessiner un polygone régulier
 
-    cotes:int nombre de cotes
-    longueur:int longueur 
-    x:int position en abcisse
-    y:int position en ordonnée
-    t turtle
-    couleur:tuple 
-    fonction pour dessinner un polygone quelconque 
-
+    :param cotes: Nombre de côtés
+    :type cotes: int
+    :param longueur: Longueur de chaque côté
+    :type longueur: int/float
+    :param x: Position en abscisse
+    :type x: int/float
+    :param y: Position en ordonnée
+    :type y: int/float
+    :param t: La tortue à utiliser
+    :type t: Turtle()
+    :param couleur: Couleur dans laquelle dessiner le cercle
+    :type couleur: str/tuple
     """
     t.up()
     t.color(couleur)
@@ -49,13 +61,17 @@ def dessinePolygone(cotes, longueur, x, y, t, couleur):
 
 def dessineCercle(x, y, t, couleur, longueur):
     """
-    x:int position en abscisse
-    y:int position en ordonnée
-    t turtle
-    couleur:str or tuple 
-    longueur:float/int
     Fonction pour dessiner un cercle
-
+    :param x: Position en abscisse
+    :type x: int/float
+    :param y: Position en ordonnée
+    :type y: int/float
+    :param t: La tortue à utiliser
+    :type t: Turtle()
+    :param couleur: Couleur dans laquelle dessiner le cercle
+    :type couleur: str/tuple
+    :param longueur: Longueur de chaque arc de cercle
+    :type longueur: int/float
     """
     t.color(couleur)
     t.begin_fill()
@@ -65,11 +81,16 @@ def dessineCercle(x, y, t, couleur, longueur):
 
 def buisson(x, y, fruits, t):
     """
-    x:int position abscisse
-    y:int position ordonnée 
-    fruits:int nombre de fruits dans un buisson
-    t turtle 
-    fonction pour dessiner un buisson avec les fruits 
+    Fonction pour dessiner un buisson avec les fruits
+
+    :param x: Position en abscisse
+    :type x: int/float
+    :param y: Position en ordonnée
+    :type y: int/float
+    :param fruits: Le nombre de fruits à dessiner
+    :type fruits: int
+    :param t: La tortue à utiliser
+    :type t: Turtle()
     """
     t.hideturtle()
     for i in range(3):
@@ -79,6 +100,7 @@ def buisson(x, y, fruits, t):
     fruits -= 7
     for i in range(min(7, fruits)):
         dessineCercle(x + 15 * (i - 1.5), y + 50, t, (196, 14, 0), 0.1)
+
 
 def numero(coords, n, t, couleur):
     """
@@ -96,12 +118,15 @@ def numero(coords, n, t, couleur):
     t.goto(coords[0], coords[1])
     t.down()
     t.color(couleur)
-    t.write('Tas ' + str(n), align="center",font=('Arial',16,"bold"))
+    t.write(f'Tas {str(n)}', align="center", font=('Arial', 16, "bold"))
+
 
 def couronne(s) -> None:
     """
-    
-    fonction pour dessiner une couronne à la fin lorsque le joueur gagne
+    Fonction pour dessiner une couronne à la fin lorsque le joueur gagne
+
+    :param s: La classe Screen sur laquelle dessiner
+    :type s: Screen()
     """
     s.clear()
     s.colormode(255)
@@ -125,21 +150,28 @@ def couronne(s) -> None:
 
 def pointe(angle):
     """
-    angle:float
-    dessine une pointe pour le dessin de la couronne 
-    fonction réutilisée dans la fonction couronne()
+    Dessine une pointe pour le dessin de la couronne
+    Fonction réutilisée dans la fonction couronne()
+
+    :param angle: L'angle de départ pour la pointe
+    :type angle: int/float
     """
     tu.left(180 - angle)
     tu.forward(120)
     tu.right(180 - 53.13)
     tu.forward(120)
 
+
 def os(x, y, droite = True):
     """
-    x:int position abscisse 
-    y:int position ordonnée
-    droite:bool indique la position de l'os( droite ou gauche )
-    fonction pour dessiner un os 
+    Fonction pour dessiner un os de la tête de mort
+
+    :param x: Position en abscisse
+    :type x: int/float
+    :param y: Position en ordonnée
+    :type y: int/float
+    :param droite: True si cela concerne l'os droit, False sinon
+    :type droite: bool
     """
     tu.up()
     tu.goto(x, y)
@@ -188,12 +220,17 @@ def os(x, y, droite = True):
     tu.up()
     tu.goto(x, y)
 
+
 def bouche(x, y, angle):
     """
-    x:int position abscisse 
-    y:int position ordonnée
-    angle:float
-    fonction pour dessinner une bouche 
+    Fonction pour dessiner une bouche de la tête de mort
+
+    :param x: Position en abscisse
+    :type x: int/float
+    :param y: Position en ordonnée
+    :type y: int/float
+    :param angle: L'angle de départ
+    :type angle: int/float
     """
     tu.seth(angle)
     tu.right(90)
@@ -206,44 +243,13 @@ def bouche(x, y, angle):
     tu.seth(90)
     tu.forward(115.44000000000001)
     tu.forward(-46.800000000000004)
+
+    for i in range(3):
+        dent()
+
     tu.left(90)
     tu.forward(27.411428571428573)
-    tu.right(90)
-    tu.forward(28.080000000000002)
-    tu.forward(-56.160000000000004)
-    tu.forward(28.080000000000002)
-    tu.left(90)
-    tu.forward(27.411428571428573)
-    tu.right(90)
-    tu.forward(19.24)
-    tu.forward(-38.48)
-    tu.forward(19.24)
-    tu.left(90)
-    tu.forward(27.411428571428573)
-    tu.right(90)
-    tu.forward(28.080000000000002)
-    tu.forward(-56.160000000000004)
-    tu.forward(28.080000000000002)
-    tu.left(90)
-    tu.forward(27.411428571428573)
-    tu.right(90)
-    tu.forward(19.24)
-    tu.forward(-38.48)
-    tu.forward(19.24)
-    tu.left(90)
-    tu.forward(27.411428571428573)
-    tu.right(90)
-    tu.forward(28.080000000000002)
-    tu.forward(-56.160000000000004)
-    tu.forward(28.080000000000002)
-    tu.left(90)
-    tu.forward(27.411428571428573)
-    tu.right(90)
-    tu.forward(19.24)
-    tu.forward(-38.48)
-    tu.forward(19.24)
-    tu.left(90)
-    tu.forward(27.411428571428573)
+
     tu.up()
     tu.goto(x, y)
     tu.right(180)
@@ -251,9 +257,10 @@ def bouche(x, y, angle):
     tu.forward(191.88)
     tu.down()
 
+
 def crane():
     """
-    fonction pour dessiner un crâne
+    Fonction pour dessiner le crâne de la tête de mort
     """
     tu.seth(45)
     tu.forward(100)
@@ -270,9 +277,10 @@ def crane():
     tu.left(45)
     tu.forward(100)
 
+
 def yeux():
     """
-    fonction pour dessiner des yeux
+    Fonction pour dessiner des yeux
     """
     tu.seth(90)
     tu.up()
@@ -285,11 +293,15 @@ def yeux():
     tu.down()
     rectangle(70, 40)
 
+
 def rectangle(x, y):
     """
-    x:float longueur rectangle
-    y:float largeur rectangle 
-    fonction pour dessiner un rectangle
+    Fonction pour dessiner un rectangle
+
+    :param x: La longueur du rectangle
+    :type x: int/float
+    :param y: La largeur du rectangle
+    :type y: int/float
     """
     tu.forward(x)
     tu.left(90)
@@ -302,19 +314,24 @@ def rectangle(x, y):
 
 
 def initialize():
- tu.speed(0)
- tu.delay(0)
- tu.tracer(0,0)
- tu.hideturtle()
- return tu
+    tu.speed(0)
+    tu.delay(0)
+    tu.tracer(0, 0)
+    tu.hideturtle()
+    return tu
+
+
 def finish():
- tu.update()
- tu.done()
+    tu.update()
+    tu.done()
+
 
 def tete(s):
     """
-    s:screen
-    fonction pour dessiner une tête de mort reprenant d'autres fonctions définies précedements
+    Fonction pour dessiner une tête de mort reprenant d'autres fonctions définies précédemment
+
+    :param s: La classe Screen sur laquelle dessiner
+    :type s: Screen()
     """
     tu.hideturtle()
     s.clear()
@@ -323,7 +340,25 @@ def tete(s):
     crane()
     yeux()
     tu.seth(315)
-    os(-110+191.88, -100)
+    os(-110 + 191.88, -100)
     tu.seth(201)
-    os(-110-sqrt(5000), -100+sqrt(5000), False)
+    os(-110 - sqrt(5000), -100 + sqrt(5000), False)
     finish()
+
+
+def dent():
+    """
+    Permet de dessiner une dent de la tête de mort
+    """
+    tu.left(90)
+    tu.forward(27.411428571428573)
+    tu.right(90)
+    tu.forward(28.080000000000002)
+    tu.forward(-56.160000000000004)
+    tu.forward(28.080000000000002)
+    tu.left(90)
+    tu.forward(27.411428571428573)
+    tu.right(90)
+    tu.forward(19.24)
+    tu.forward(-38.48)
+    tu.forward(19.24)

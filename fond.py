@@ -1,3 +1,5 @@
+# Loic LAMOUR et Mathieu CUVELIER - Groupe 5
+
 import math
 import turtle as tu
 
@@ -35,7 +37,7 @@ def dessineTriangle(longueur, x, y, couleur):
     :param y: L'ordonnée du début du triangle
     :type y: int/float
     :param couleur: La couleur dans laquelle tracer le triangle
-    :type couleur: tuple
+    :type couleur: tuple/str
     """
     dessinePolygone(3, longueur, x, y, couleur)
 
@@ -83,7 +85,7 @@ def rectangle(longueur, x, y, couleur):
     :param y: L'ordonnée du début du rectangle
     :type y: int/float
     :param couleur: La couleur dans laquelle tracer le rectangle
-    :type couleur: tuple
+    :type couleur: tuple/str
     """
     tu.up()
     tu.goto(x, y)

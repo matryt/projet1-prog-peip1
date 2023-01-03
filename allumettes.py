@@ -1,13 +1,11 @@
 # Loic LAMOUR et Mathieu CUVELIER - Groupe 5
 
+import turtle as tu
 from random import randint, choice
 from time import sleep
-from typing import List
 
+import affichage as aff
 import fond
-import turtle as tu 
-from affichage import *
-from fond import *
 
 
 def reglesJeu():
@@ -41,13 +39,19 @@ def genererTas() -> list:
 	return tas
 
 
-def tasVide(tas):
+def tasVide(tas: list) -> bool:
 	"""
 	Teste si tous les tas sont vides ou non
 	:param tas: Le nombre d'allumettes par tas
 	:type tas: list
 	:return: True si tout est vide, False sinon
 	:rtype: bool
+
+	:Example:
+	>>> tasVide([2, 8, 0])
+	False
+	>>> tasVide([0, 0, 0])
+	True
 	"""
 	for allumettes in tas:
 		if allumettes != 0:
@@ -55,11 +59,11 @@ def tasVide(tas):
 	return True
 
 
-def genererRegle() -> List[int]:
+def genererRegle() -> list:
 	"""
 	Permet de générer la liste faisant office de règle pour le jeu en cours
 	:return: La liste contenant les différents choix possibles
-	:rtype: List[Int]
+	:rtype: list
 
 	:Example:
 
@@ -91,14 +95,14 @@ def testNombre(message: str) -> int:
 		except ValueError:
 			print("Vous devez rentrer un nombre !")
 
-	return n  # type: ignore
+	return n
 
 
-def afficheChoix(regle: List[int]) -> None:
+def afficheChoix(regle: list):
 	"""
 	Permet d'afficher à l'écran les choix d'allumettes possibles.
 	:param regle: Les choix possibles d'allumettes
-	:type regle: List[int]
+	:type regle: list
 
 	:example:
 	>>> afficheChoix([1, 2, 5])
@@ -112,28 +116,32 @@ def afficheChoix(regle: List[int]) -> None:
 
 def afficheTas(tas: list):
 	"""
-	Affiche le nombre de tas et le nombre d'allumettes dans chaque
+	Affiche le nombre de tas et le nombre d'allumettes dans chaque tas
 	:param tas: Le nombre d'allumettes dans chaque tas
 	:type tas: list
-	"""
-	c = ""
 
-	c += f"Il y a {len(tas)} tas. \nIls possèdent respectivement "
+	:example:
+	>>> afficheTas([2, 3, 6])
+	Il y a 3 tas.
+	Ils possèdent respectivement 2, 3, 6 allumettes.
+	"""
+	c = f"Il y a {len(tas)} tas. \nIls possèdent respectivement "
 
 	for allumettes in tas:
 		c += f"{allumettes}, "
 
 	print(f"{c[:-2]} allumettes.")
 
-def enleverAllumettes(tas: list, regle: List[int]) -> list:
+
+def enleverAllumettes(tas: list, regle: list) -> list:
 	"""
 	Permet de retourner le nombre d'allumettes après le tour du joueur
 	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
 	:type tas: list
 	:param regle: Les choix possibles
-	:type regle: List[int]
-	:return: Le nombre d'allumettes après le tour
-	:rtype: int
+	:type regle: list
+	:return: Le nombre d'allumettes par tas après le tour
+	:rtype: list
 	"""
 	allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?")
 	tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?") - 1
@@ -149,7 +157,7 @@ def enleverAllumettes(tas: list, regle: List[int]) -> list:
 	return tas
 
 
-def afficherAllumettes(tas: list, t) -> None:
+def afficherAllumettes(tas: list, t):
 	"""
 	Affiche le nombre d'allumettes passées en paramètre
 	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
@@ -159,22 +167,22 @@ def afficherAllumettes(tas: list, t) -> None:
 n
 	"""
 	t.clear()
-	coords_buissons = ((-325, -100), (-325, 50), (250, 85), (250, -100))
-	coords_numeros = ((-325, -125), (-325, 20), (250, 55), (250, -125))
+	coordsBuissons = ((-325, -100), (-325, 50), (250, 85), (250, -100))
+	coordsNumeros = ((-325, -125), (-325, 20), (250, 55), (250, -125))
 	for ta in range(len(tas)):
-		buisson(coords_buissons[ta][0], coords_buissons[ta][1], tas[ta], t)
-		numero(coords_numeros[ta],ta+1,t,"white")
+		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta], t)
+		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
 
 
-def tirageOrdi(tas: list, regle: List[int]) -> list:
+def tirageOrdi(tas: list, regle: list) -> list:
 	"""
 	Permet de générer un nombre aléatoire d'allumettes correspondant au nombre d'allumettes qu'enlève l'ordinateur
 	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
 	:type tas: list
 	:param regle: Choix d'allumettes possibles
-	:type regle: List[int]
-	:return: Le nombre d'allumettes après le tour de l'ordinateur
-	:rtype: int
+	:type regle: list
+	:return: Le nombre d'allumettes par tas après le tour de l'ordinateur
+	:rtype: list
 	"""
 	tasAEnlever = randint(0, len(tas) - 1)
 	allumettesMax = tas[tasAEnlever]
@@ -188,27 +196,21 @@ def tirageOrdi(tas: list, regle: List[int]) -> list:
 	return tas
 
 
-
-
-
-
-
-def jeu() -> None:
+def jeu():
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
 	"""
-	reglesJeu()
 	TAILLE_ECRAN = (1400, 700)
+
+	reglesJeu()
+
 	s = tu.Screen()
 	tu.delay(0)
 	s.colormode(255)
 	s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
-	initialize()
-	
+
+	aff.initialize()
 	fond.fond_()
-
-
-	TAILLE_ECRAN = (1920, 1080)
 
 	tu.hideturtle()
 
@@ -221,16 +223,17 @@ def jeu() -> None:
 	REGLE.sort()
 	print(f"Il y a {sum(tas)} allumettes au début.")
 	afficheTas(tas)
+
 	while not fini:
 		afficheChoix(REGLE)
-		initialize()
+		aff.initialize()
 		afficherAllumettes(tas, tc)
 		tas = enleverAllumettes(tas, REGLE)
 		if tasVide(tas):
 			print("Vous avez gagné !")
-			initialize()
-			couronne(s)
-			finish()
+			aff.initialize()
+			aff.couronne(s)
+			aff.finish()
 			sleep(5)
 			fini = True
 		else:
@@ -238,11 +241,11 @@ def jeu() -> None:
 			if tasVide(tas):
 				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 				fini = True
-				initialize()
-				tete(s)
+				aff.initialize()
+				aff.tete(s)
 				sleep(5)
 	s.bye()
 
 
- # Appelle la fonction principale jeu et lance le mini jeu
+# Appelle la fonction principale jeu et lance le jeu
 jeu()
