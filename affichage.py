@@ -314,6 +314,9 @@ def rectangle(x, y):
 
 
 def initialize():
+    """
+    Fonction pour initialiser Turtle de manière à réduire tous les délais de traçage et caché Turtle.
+    """
     tu.speed(0)
     tu.delay(0)
     tu.tracer(0, 0)
@@ -322,6 +325,10 @@ def initialize():
 
 
 def finish():
+    """
+    Fonction pour mettre à jour la turtle et recupérer presque instantanéement les tracés de Turtle cacher grâce à la fonction initialize()
+    """
+
     tu.update()
     tu.done()
 
