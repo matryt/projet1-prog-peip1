@@ -138,6 +138,7 @@ def couronne(s) -> None:
     tu.goto(-100, -100)
     tu.seth(0)
     tu.down()
+    tu.begin_fill()
     tu.forward(215)
     tu.left(90)
     tu.forward(200)
@@ -145,6 +146,7 @@ def couronne(s) -> None:
     pointe(53.13)
     tu.setheading(270)
     tu.forward(200)
+    tu.end_fill()
     finish()
 
 

@@ -13,7 +13,7 @@ def reglesJeu():
 	Permet d'afficher les règles du jeu au début de chaque partie
 	"""
 	print("Bienvenue dans notre jeu de Nim !")
-	print("Des buissons vont s'afficher, avec plus ou moins de fruits dessus qui représentent les allumettes.")
+	print("Des buissons vont s'afficher, avec plus ou moins de fruits dessus qui symbolisent des allumettes.")
 	print("Pour gagner, il faut prendre le dernier fruit du dernier buisson.")
 	print("Les choix d'allumettes vont s'afficher juste après.")
 	r = input("Voulez-vous réafficher les règles (o / n) ?")
@@ -31,9 +31,10 @@ def genererTas() -> list:
 	allumettesTotales = randint(15, 25)
 	for _ in range(randint(2, 3)):
 		if allumettesTotales // 2 > 2:
-			a = randint(2, allumettesTotales // 2)
+			a = randint(2, 16)
 			tas.append(a)
-			allumettesTotales -= a
+			if allumettesTotales - a > 0:
+				allumettesTotales -= a
 	if allumettesTotales != 0:
 		tas.append(allumettesTotales)
 	return tas
@@ -196,11 +197,50 @@ def tirageOrdi(tas: list, regle: list) -> list:
 	return tas
 
 
+def fin(joueurVainqueur, s):
+	if joueurVainqueur:
+		print("Vous avez gagné !")
+		aff.initialize()
+		aff.couronne(s)
+		aff.finish()
+	else:
+		print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
+		aff.initialize()
+		aff.tete(s)
+	sleep(5)
+	tu.done()
+	s.bye()
+
+
+def bouclePrincipale(s, tc):
+	fini = False
+	tas = genererTas()
+	REGLE = genererRegle()
+	REGLE.sort()
+	print(f"Il y a {sum(tas)} allumettes au début.")
+	afficheTas(tas)
+
+	while not fini:
+		afficheChoix(REGLE)
+		aff.initialize()
+		afficherAllumettes(tas, tc)
+		tas = enleverAllumettes(tas, REGLE)
+		if tasVide(tas):
+			fin(True, s)
+			fini = True
+		else:
+			tas = tirageOrdi(tas, REGLE)
+			if tasVide(tas):
+				fin(False, s)
+				fini = True
+	s.bye()
+
+
 def jeu():
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
 	"""
-	TAILLE_ECRAN = (1400, 700)
+	TAILLE_ECRAN = (1920, 1080)
 
 	reglesJeu()
 
@@ -217,34 +257,7 @@ def jeu():
 	tc = tu.Turtle()
 	tc.hideturtle()
 
-	fini = False
-	tas = genererTas()
-	REGLE = genererRegle()
-	REGLE.sort()
-	print(f"Il y a {sum(tas)} allumettes au début.")
-	afficheTas(tas)
-
-	while not fini:
-		afficheChoix(REGLE)
-		aff.initialize()
-		afficherAllumettes(tas, tc)
-		tas = enleverAllumettes(tas, REGLE)
-		if tasVide(tas):
-			print("Vous avez gagné !")
-			aff.initialize()
-			aff.couronne(s)
-			aff.finish()
-			sleep(5)
-			fini = True
-		else:
-			tas = tirageOrdi(tas, REGLE)
-			if tasVide(tas):
-				print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
-				fini = True
-				aff.initialize()
-				aff.tete(s)
-				sleep(5)
-	s.bye()
+	bouclePrincipale(s, tc)
 
 
 # Appelle la fonction principale jeu et lance le jeu
