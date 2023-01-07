@@ -77,7 +77,7 @@ def genererRegle() -> list:
 	return r
 
 
-def testNombre(message: str, mini, maxi, texte):
+def testNombre(message: str, mini, maxi,texte) -> int:
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
@@ -144,9 +144,8 @@ def enleverAllumettes(tas: list, regle: list) -> list:
 	while allumettesSouhaitees > tas[tasDemande][0] or allumettesSouhaitees not in regle:
 		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
 		print(f"Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible !")
-		allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle),
-		                                  afficheChoix(regle))
-		tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, len(tas), "") - 1
+		allumettesSouhaitees = int(testNombre("Joueur, combien voulez-vous prendre d'allumettes ?",1,max(regle),afficheChoix(regle)))
+		tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?",1,len(tas),"")-1)
 
 	tas[tasDemande][0] -= allumettesSouhaitees
 
