@@ -97,7 +97,7 @@ def buisson(x, y, fruits, t):
 	"""
 	t.hideturtle()
 	for i in range(3):
-		dessineCercle(x + 25 * i, y, t, (110, 196, 0), 1)
+		dessineCercle(x + 25 * i, y, t, (0, 86, 27), 1)
 	for j in range(min(7, fruits)):
 		dessineCercle(x + 15 * (j - 1.5), y + 20, t, (196, 14, 0), 0.1)
 	fruits -= 7

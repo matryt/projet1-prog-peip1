@@ -93,7 +93,7 @@ def foret(longueur, x, y):
 	:type y: int/float
 	"""
 	tu.speed(0)
-	for i in range(9):
+	for i in range(13):
 		sapin_foret(longueur, x + i * 2 * longueur, y)
 
 
@@ -275,7 +275,7 @@ def arbres():
 	"""
 	Dessine tous les arbres du fond
 	"""
-	foret(50, -430, -300)
+	foret(50, -430, -500)
 	sapin(50 * coeffMystere(1, 5), -60, -60)
 	sapin(50 * coeffMystere(1, 5), -170, -100)
 	sapin(50 * coeffMystere(1, 5), 60, -120)
