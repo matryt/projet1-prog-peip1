@@ -77,7 +77,7 @@ def genererRegle() -> list:
 	return r
 
 
-def testNombre(message: str, mini, maxi,texte) -> int:
+def testNombre(message: str, mini, maxi, texte) -> int:
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
@@ -108,7 +108,7 @@ def afficheChoix(regle: list):
 	return c[:-2]
 
 
-def afficheTas(tas: list):
+def afficheTas(tas: list, s):
 	"""
 	Affiche le nombre de tas et le nombre d'allumettes dans chaque tas
 	:param tas: Le nombre d'allumettes dans chaque tas
@@ -119,12 +119,14 @@ def afficheTas(tas: list):
 	Il y a 3 tas.
 	Ils possèdent respectivement 2, 3, 6 allumettes.
 	"""
-	c = f"Il y a {len(tas)} tas. \nIls possèdent respectivement "
+	c = f"Il y a {sum(i[0] for i in tas)} allumettes au début. Il y a {len(tas)} tas. \nIls possèdent respectivement "
 
 	for allumettes in tas:
 		c += f"{allumettes[0]}, "
 
-	print(f"{c[:-2]} allumettes.")
+	c = c[:-2] + " allumettes.\nEntrez n'importe quel caractère pour continuer"
+
+	s.textinput("Début de la partie", c)
 
 
 def enleverAllumettes(tas: list, regle: list) -> list:
@@ -138,14 +140,20 @@ def enleverAllumettes(tas: list, regle: list) -> list:
 	:rtype: list
 	"""
 	allumettesSouhaitees = int(
-		testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle), afficheChoix(regle)))
-	tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, (len(tas)), "")) - 1
+		testNombre(f"{afficheChoix(regle)} \nJoueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle),
+		           "Nombre d'allumettes"))
+	tasDemande = int(
+		testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, (len(tas)), "Choix du tas")) - 1
 
 	while allumettesSouhaitees > tas[tasDemande][0] or allumettesSouhaitees not in regle:
 		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
-		print(f"Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible !")
-		allumettesSouhaitees = int(testNombre("Joueur, combien voulez-vous prendre d'allumettes ?",1,max(regle),afficheChoix(regle)))
-		tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?",1,len(tas),"")-1)
+		allumettesSouhaitees = int(
+			testNombre(
+				f"{afficheChoix(regle)} \n Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible ! \n Joueur, combien voulez-vous prendre d'allumettes ?",
+				1, max(regle),
+				"Nombre d'allumettes"))
+		tasDemande = int(
+			testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, (len(tas)), "Choix du tas")) - 1
 
 	tas[tasDemande][0] -= allumettesSouhaitees
 
@@ -211,11 +219,9 @@ def bouclePrincipale(s, tc):
 	tas = genererTas()
 	REGLE = genererRegle()
 	REGLE.sort()
-	print(f"Il y a {sum(i[0] for i in tas)} allumettes au début.")
-	afficheTas(tas)
+	afficheTas(tas, s)
 
 	while not fini:
-		print(afficheChoix(REGLE))
 		aff.initialize()
 		afficherAllumettes(tas, tc)
 		tas = enleverAllumettes(tas, REGLE)
