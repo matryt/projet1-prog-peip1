@@ -93,8 +93,8 @@ def foret(longueur, x, y):
 	:type y: int/float
 	"""
 	tu.speed(0)
-	for i in range(13):
-		sapin_foret(longueur, x + i * 2 * longueur, y)
+	for i in range(18):
+		sapin(rd.uniform(longueur/2,1.5*longueur), x + i * 2 * longueur, y)
 
 
 def rectangle(longueur, x, y, couleur):
@@ -275,10 +275,39 @@ def arbres():
 	"""
 	Dessine tous les arbres du fond
 	"""
-	foret(50, -430, -500)
+	foret(50, -900, -500)
 	sapin(50 * coeffMystere(1, 5), -60, -60)
 	sapin(50 * coeffMystere(1, 5), -170, -100)
 	sapin(50 * coeffMystere(1, 5), 60, -120)
+
+def neige():
+	""""
+	Permet de tracer la neige
+
+	"""
+	tu.up()
+	tu.hideturtle()
+	tu.goto(-635,228.4)
+	tu.down()
+	tu.begin_fill()
+	tu.color('white')
+	tu.goto(-360,228.4)
+	tu.goto(-500,300)
+	tu.goto(-635,228.4)
+	tu.end_fill()
+	tu.up()
+	tu.goto(270,350)
+	tu.down()
+	tu.begin_fill()
+	tu.color('white')
+	tu.goto(525,350)
+	tu.goto(350,440)
+	tu.goto(270,350)
+	tu.end_fill()
+
+
+
+
 
 
 def fond_():
@@ -292,6 +321,7 @@ def fond_():
 	s.screensize(TAILLE_ECRAN[0], TAILLE_ECRAN[1])
 	t.speed(0)
 	montagne(s, t)
+	neige()
 	arbres()
 	nuages_ensemble()
 
