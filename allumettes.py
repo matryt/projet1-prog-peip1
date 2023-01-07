@@ -79,16 +79,19 @@ def genererRegle() -> list:
 	return r
 
 
-def testNombre(message: str, mini, maxi) -> int:
+def testNombre(message: str, mini, maxi,texte) -> int:
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
 	:param message: Le message à demander à l'utilisateur
 	:type message: str
+	:param texte: titre de la fenetre numinput
+	:type texte: str
 	:return: Le nombre converti
 	:rtype: int
 	"""
-	return tu.numinput("Jeu de nim", message, None, mini, maxi)
+	
+	return tu.numinput(texte, message, None, mini, maxi)
 
 
 def afficheChoix(regle: list):
@@ -104,7 +107,7 @@ def afficheChoix(regle: list):
 	c = "Les choix possibles sont "
 	for choix in regle:
 		c = c + str(choix) + " - "
-	print(c[:-2])
+	return c[:-2]
 
 
 def afficheTas(tas: list):
@@ -136,14 +139,14 @@ def enleverAllumettes(tas: list, regle: list) -> list:
 	:return: Le nombre d'allumettes par tas après le tour
 	:rtype: list
 	"""
-	allumettesSouhaitees = int(testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle)))
-	tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, len(tas) + 1) - 1)
+	allumettesSouhaitees = int(testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle),afficheChoix(regle)))
+	tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1,(len(tas)),""))-1
 
 	while allumettesSouhaitees > tas[tasDemande][0] or allumettesSouhaitees not in regle:
 		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
 		print(f"Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible !")
-		allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?")
-		tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?") - 1
+		allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?",1,max(regle),afficheChoix(regle))
+		tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?",1,len(tas),"")-1
 
 	tas[tasDemande][0] -= allumettesSouhaitees
 
@@ -213,7 +216,7 @@ def bouclePrincipale(s, tc):
 	afficheTas(tas)
 
 	while not fini:
-		afficheChoix(REGLE)
+		print(afficheChoix(REGLE))
 		aff.initialize()
 		afficherAllumettes(tas, tc)
 		tas = enleverAllumettes(tas, REGLE)
