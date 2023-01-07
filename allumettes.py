@@ -3,22 +3,20 @@
 import turtle as tu
 from random import randint, choice
 from time import sleep
+from tkinter import Tk
 
 import affichage as aff
 import fond
 
 
-def reglesJeu():
+def reglesJeu(s):
 	"""
 	Permet d'afficher les règles du jeu au début de chaque partie
 	"""
-	print("Bienvenue dans notre jeu de Nim !")
-	print("Des buissons vont s'afficher, avec plus ou moins de fruits dessus qui symbolisent des allumettes.")
-	print("Pour gagner, il faut prendre le dernier fruit du dernier buisson.")
-	print("Les choix d'allumettes vont s'afficher juste après.")
-	r = input("Voulez-vous réafficher les règles (o / n) ?")
+	r = s.textinput("Règles du jeu",
+	                "Bienvenue dans notre jeu de Nim ! \n Des buissons vont s'afficher, avec plus ou moins de fruits dessus qui symbolisent des allumettes. \n Pour gagner, il faut prendre le dernier fruit du dernier buisson. \n Les choix d'allumettes vont s'afficher juste après. \n Voulez-vous réafficher les règles (o / n) ?")
 	if r == "o":
-		reglesJeu()
+		reglesJeu(s)
 
 
 def genererTas() -> list:
@@ -79,7 +77,7 @@ def genererRegle() -> list:
 	return r
 
 
-def testNombre(message: str, mini, maxi,texte) -> int:
+def testNombre(message: str, mini, maxi, texte):
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
@@ -88,9 +86,9 @@ def testNombre(message: str, mini, maxi,texte) -> int:
 	:param texte: titre de la fenetre numinput
 	:type texte: str
 	:return: Le nombre converti
-	:rtype: int
+	:rtype: float
 	"""
-	
+
 	return tu.numinput(texte, message, None, mini, maxi)
 
 
@@ -139,14 +137,16 @@ def enleverAllumettes(tas: list, regle: list) -> list:
 	:return: Le nombre d'allumettes par tas après le tour
 	:rtype: list
 	"""
-	allumettesSouhaitees = int(testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle),afficheChoix(regle)))
-	tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1,(len(tas)),""))-1
+	allumettesSouhaitees = int(
+		testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle), afficheChoix(regle)))
+	tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, (len(tas)), "")) - 1
 
 	while allumettesSouhaitees > tas[tasDemande][0] or allumettesSouhaitees not in regle:
 		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
 		print(f"Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible !")
-		allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?",1,max(regle),afficheChoix(regle))
-		tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?",1,len(tas),"")-1
+		allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle),
+		                                  afficheChoix(regle))
+		tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, len(tas), "") - 1
 
 	tas[tasDemande][0] -= allumettesSouhaitees
 
@@ -235,10 +235,11 @@ def jeu():
 	"""
 	Fonction principale du jeu, qui appelle toutes les autres
 	"""
-	TAILLE_ECRAN = (1920, 1080)
+	t = Tk()
+	TAILLE_ECRAN = (min(1920, t.winfo_screenwidth()), min(1080, t.winfo_screenheight()) - 80)
+	t.withdraw()
 
-	reglesJeu()
-
+	tu.setup(TAILLE_ECRAN[0], TAILLE_ECRAN[1], 0, 0)
 	s = tu.Screen()
 	tu.delay(0)
 	s.colormode(255)
@@ -246,6 +247,8 @@ def jeu():
 
 	aff.initialize()
 	fond.fond_()
+
+	reglesJeu(s)
 
 	tu.hideturtle()
 
