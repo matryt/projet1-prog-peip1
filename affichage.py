@@ -4,34 +4,6 @@ import turtle as tu
 from math import sqrt
 
 
-def dessineCroix(x, y, longueur, c, t):
-    """
-    Fonction qui dessine une croix dans le carré de largeur l dont le point en bas à gauche est (x,y), avec la tortue t
-
-    :param x: Position en abscisse
-    :type x: int/float
-    :param y: Position en ordonnée
-    :type y: int/float
-    :param longueur: Longueur de chaque trait
-    :type longueur: int/float
-    :param c: Couleur dans laquelle dessiner la croix
-    :type c: str/tuple
-    :param t: La tortue à utiliser
-    :type t: Turtle()
-    """
-    t.up()
-    t.goto(x, y)
-    t.down()
-    t.color(c)
-    t.width(5)
-    t.goto(x + longueur, y + longueur)
-    t.up()
-    t.goto(x + longueur, y)
-    t.down()
-    t.goto(x, y + longueur)
-    t.width(1)
-
-
 def dessinePolygone(cotes, longueur, x, y, t, couleur):
     """
     Fonction pour dessiner un polygone régulier
@@ -76,6 +48,37 @@ def dessineCercle(x, y, t, couleur, longueur):
     t.color(couleur)
     t.begin_fill()
     dessinePolygone(250, longueur, x, y, t, couleur)
+    t.end_fill()
+
+
+def dessineDemiCercle(cotes, longueur, x, y, t, couleur):
+    """
+    Fonction pour dessiner un polygone régulier
+
+    :param cotes: Nombre de côtés
+    :type cotes: int
+    :param longueur: Longueur de chaque côté
+    :type longueur: int/float
+    :param x: Position en abscisse
+    :type x: int/float
+    :param y: Position en ordonnée
+    :type y: int/float
+    :param t: La tortue à utiliser
+    :type t: Turtle()
+    :param couleur: Couleur dans laquelle dessiner le cercle
+    :type couleur: str/tuple
+    """
+    t.up()
+    t.begin_fill()
+    t.color(couleur)
+    t.goto(x, y)
+    t.down()
+    t.seth(0)
+    for i in range(cotes // 2):
+        t.forward(longueur)
+        t.left(360 / cotes)
+    t.left(90)
+    t.forward(80 * longueur)
     t.end_fill()
 
 
@@ -178,6 +181,7 @@ def os(x, y, droite = True):
     tu.up()
     tu.goto(x, y)
     tu.down()
+    tu.width(10)
     tu.left(15)
     if droite:
         tu.forward(154.96)
@@ -239,6 +243,7 @@ def bouche(x, y, angle):
     tu.up()
     tu.goto(x, y)
     tu.down()
+    tu.width(10)
     tu.forward(115.44000000000001)
     tu.seth(0)
     tu.forward(191.88)
@@ -264,6 +269,7 @@ def crane():
     """
     Fonction pour dessiner le crâne de la tête de mort
     """
+    tu.width(10)
     tu.seth(45)
     tu.forward(100)
     tu.left(45)
@@ -289,6 +295,7 @@ def yeux():
     tu.forward(150)
     tu.right(90)
     tu.down()
+    tu.width(10)
     rectangle(70, 40)
     tu.up()
     tu.forward(110)

@@ -124,16 +124,24 @@ def rectangle(longueur, x, y, couleur):
 
 
 def eclair(x, y, coeff):
-    c = min(255, 240 + rd.randint(0, 20) * (-1) ** rd.randint(0, 1))
-    tu.color(c, c, 17)
-    tu.up()
-    tu.goto(x, y)
-    tu.down()
-    tu.begin_fill()
-    tu.forward(50 * coeff)
-    tu.right(135)
-    tu.forward(85 * coeff)
-    tu.left(135)
+	"""
+	:param x: Position en abscisse
+	:type x: int/float
+	:param y: Position en ordonnée
+	:type y: int/float
+	:param coeff: Le coefficient par lequel multiplier les longueurs
+	:type coeff: int/float
+	"""
+	c = min(255, 240 + rd.randint(0, 20) * (-1) ** rd.randint(0, 1))
+	tu.color(c, c, 17)
+	tu.up()
+	tu.goto(x, y)
+	tu.down()
+	tu.begin_fill()
+	tu.forward(50 * coeff)
+	tu.right(135)
+	tu.forward(85 * coeff)
+	tu.left(135)
     tu.forward(30 * coeff)
     tu.right(135)
     tu.forward(100 * coeff)
@@ -179,7 +187,14 @@ def nuage(x, y, numero=1):
 
 
 def coeffMystere(nombreDepart, variance):
-    return nombreDepart + (-1) ** rd.randint(1, 2) * rd.random() / variance
+	"""
+
+	:param nombreDepart: Coefficient d'origine
+	:type nombreDepart: int/float
+	:param variance: Un nombre permettant de changer la variance par rapport au coefficient d'origine
+	:type variance: int/float
+	"""
+	return nombreDepart + (-1) ** rd.randint(1, 2) * rd.random() / variance
 
 
 def sapin(longueur, x, y):
@@ -214,38 +229,51 @@ def sapin(longueur, x, y):
 
 
 def nuages_ensemble():
-    nuage(-780, 240, rd.randint(1, 2))
-    nuage(-590 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 180, rd.randint(1, 2))
-    nuage(-370 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 250, rd.randint(1, 2))
-    nuage(-130 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 320, rd.randint(1, 2))
-    nuage(120 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 210, rd.randint(1, 2))
-    nuage(370 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 280, rd.randint(1, 2))
-    nuage(620 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 190, rd.randint(1, 2))
+	"""
+	Permet de dessiner l'ensemble
+	"""
+	nuage(-780, 240, rd.randint(1, 2))
+	nuage(-590 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 180, rd.randint(1, 2))
+	nuage(-370 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 250, rd.randint(1, 2))
+	nuage(-130 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 320, rd.randint(1, 2))
+	nuage(120 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 210, rd.randint(1, 2))
+	nuage(370 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 280, rd.randint(1, 2))
+	nuage(620 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 190, rd.randint(1, 2))
 
 
 def montagne(s, t):
-    s.bgcolor(15, 135, 228)
-    t.up()
-    t.hideturtle()
-    t.goto(-700, 27.5)
-    t.down()
-    t.begin_fill()
-    t.color(8, 40, 100)
-    t.goto(-350, 150)
-    t.goto(0, 40)
-    t.goto(350, 220)
-    t.goto(700, 45)
-    t.goto(700, -400)
-    t.goto(-700, -400)
-    t.goto(-700, 27.5)
-    t.end_fill()
+	"""
+	Dessine une montagne en fond à l'aide du Screen s et de la Turtle t
+	:param s: La classe Screen à utiliser
+	:type s: Screen()
+	:param t: La tortue à utiliser
+	:type t: Turtle()
+	"""
+	s.bgcolor(15, 135, 228)
+	t.up()
+	t.hideturtle()
+	t.goto(-800, 55)
+	t.down()
+	t.begin_fill()
+	t.color(8, 40, 100)
+	t.goto(-500, 300)
+	t.goto(0, 40)
+	t.goto(350, 440)
+	t.goto(790, 120)
+	t.goto(790, -540)
+	t.goto(-800, -540)
+	t.goto(-800, 55)
+	t.end_fill()
 
 
 def arbres():
-    foret(50, -430, -300)
-    sapin(50 * coeffMystere(1, 5), -60, -60)
-    sapin(50 * coeffMystere(1, 5), -170, -100)
-    sapin(50 * coeffMystere(1, 5), 60, -120)
+	"""
+	Dessine tous les arbres du fond
+	"""
+	foret(50, -430, -300)
+	sapin(50 * coeffMystere(1, 5), -60, -60)
+	sapin(50 * coeffMystere(1, 5), -170, -100)
+	sapin(50 * coeffMystere(1, 5), 60, -120)
 
 
 def fond_():

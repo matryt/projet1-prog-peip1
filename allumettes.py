@@ -32,11 +32,11 @@ def genererTas() -> list:
 	for _ in range(randint(2, 3)):
 		if allumettesTotales // 2 > 2:
 			a = randint(2, 16)
-			tas.append(a)
+			tas.append([a, a])
 			if allumettesTotales - a > 0:
 				allumettesTotales -= a
 	if allumettesTotales != 0:
-		tas.append(allumettesTotales)
+		tas.append([allumettesTotales, allumettesTotales])
 	return tas
 
 
@@ -55,7 +55,7 @@ def tasVide(tas: list) -> bool:
 	True
 	"""
 	for allumettes in tas:
-		if allumettes != 0:
+		if allumettes[0] != 0:
 			return False
 	return True
 
@@ -79,7 +79,7 @@ def genererRegle() -> list:
 	return r
 
 
-def testNombre(message: str) -> int:
+def testNombre(message: str, mini, maxi) -> int:
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
@@ -88,15 +88,7 @@ def testNombre(message: str) -> int:
 	:return: Le nombre converti
 	:rtype: int
 	"""
-	test = False
-	while not test:
-		try:
-			n = int(input(message))
-			test = True
-		except ValueError:
-			print("Vous devez rentrer un nombre !")
-
-	return n
+	return tu.numinput("Jeu de nim", message, None, mini, maxi)
 
 
 def afficheChoix(regle: list):
@@ -129,7 +121,7 @@ def afficheTas(tas: list):
 	c = f"Il y a {len(tas)} tas. \nIls possèdent respectivement "
 
 	for allumettes in tas:
-		c += f"{allumettes}, "
+		c += f"{allumettes[0]}, "
 
 	print(f"{c[:-2]} allumettes.")
 
@@ -144,16 +136,16 @@ def enleverAllumettes(tas: list, regle: list) -> list:
 	:return: Le nombre d'allumettes par tas après le tour
 	:rtype: list
 	"""
-	allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?")
-	tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?") - 1
+	allumettesSouhaitees = int(testNombre("Joueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle)))
+	tasDemande = int(testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, len(tas) + 1) - 1)
 
-	while allumettesSouhaitees > tas[tasDemande] or allumettesSouhaitees not in regle:
+	while allumettesSouhaitees > tas[tasDemande][0] or allumettesSouhaitees not in regle:
 		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
 		print(f"Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible !")
 		allumettesSouhaitees = testNombre("Joueur, combien voulez-vous prendre d'allumettes ?")
 		tasDemande = testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?") - 1
 
-	tas[tasDemande] -= allumettesSouhaitees
+	tas[tasDemande][0] -= allumettesSouhaitees
 
 	return tas
 
@@ -171,7 +163,7 @@ n
 	coordsBuissons = ((-325, -100), (-325, 50), (250, 85), (250, -100))
 	coordsNumeros = ((-325, -125), (-325, 20), (250, 55), (250, -125))
 	for ta in range(len(tas)):
-		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta], t)
+		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], t)
 		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
 
 
@@ -186,13 +178,13 @@ def tirageOrdi(tas: list, regle: list) -> list:
 	:rtype: list
 	"""
 	tasAEnlever = randint(0, len(tas) - 1)
-	allumettesMax = tas[tasAEnlever]
+	allumettesMax = tas[tasAEnlever][0]
 	c = choice(regle)
 	while c > allumettesMax:
 		c = choice(regle)
 		tasAEnlever = randint(0, len(tas) - 1)
-		allumettesMax = tas[tasAEnlever]
-	tas[tasAEnlever] -= c
+		allumettesMax = tas[tasAEnlever][0]
+	tas[tasAEnlever][0] -= c
 	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
 	return tas
 
@@ -217,7 +209,7 @@ def bouclePrincipale(s, tc):
 	tas = genererTas()
 	REGLE = genererRegle()
 	REGLE.sort()
-	print(f"Il y a {sum(tas)} allumettes au début.")
+	print(f"Il y a {sum(i[0] for i in tas)} allumettes au début.")
 	afficheTas(tas)
 
 	while not fini:
