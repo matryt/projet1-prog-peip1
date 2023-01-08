@@ -77,7 +77,7 @@ def genererRegle() -> list:
 	return r
 
 
-def testNombre(message: str, mini, maxi, texte) -> int:
+def testNombre(message: str, mini, maxi, texte):
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
@@ -200,14 +200,10 @@ def tirageOrdi(tas: list, regle: list) -> list:
 
 
 def animation_tas_vide(TasAnim):
-	L=[[-780,250],[620,200],[-130,330],[370,280]]
-	for i in range(len(TasAnim)) :
-		if  TasAnim[i][0]==0:
-			fond.eclair(L[i][0],L[i][1],1)
-		
-
-
-
+	L = [[-360, 260], [620, 200], [-130, 330], [370, 280]]
+	for i in range(len(TasAnim)):
+		if TasAnim[i][0] == 0:
+			fond.eclair(L[i][0], L[i][1], 1)
 
 
 def fin(joueurVainqueur, s):
@@ -228,7 +224,7 @@ def fin(joueurVainqueur, s):
 def bouclePrincipale(s, tc):
 	fini = False
 	tas = genererTas()
-	TasAnim=tas[:]
+	TasAnim = tas[:]
 	REGLE = genererRegle()
 	REGLE.sort()
 	afficheTas(tas, s)
