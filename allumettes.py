@@ -199,6 +199,19 @@ def tirageOrdi(tas: list, regle: list) -> list:
 	return tas
 
 
+def animation_tas_vide(TasAnim):
+	L=[[-780,250],[620,200],[-130,330]]
+	i=-1
+	for x in TasAnim :
+		if  TasAnim[i+1][0]==0:
+			fond.eclair(L[i][0],L[i][1],1)
+		i+=1
+		
+
+
+
+
+
 def fin(joueurVainqueur, s):
 	if joueurVainqueur:
 		print("Vous avez gagné !")
@@ -217,6 +230,7 @@ def fin(joueurVainqueur, s):
 def bouclePrincipale(s, tc):
 	fini = False
 	tas = genererTas()
+	TasAnim=tas[:]
 	REGLE = genererRegle()
 	REGLE.sort()
 	afficheTas(tas, s)
@@ -225,11 +239,15 @@ def bouclePrincipale(s, tc):
 		aff.initialize()
 		afficherAllumettes(tas, tc)
 		tas = enleverAllumettes(tas, REGLE)
+		animation_tas_vide(TasAnim)
+
 		if tasVide(tas):
 			fin(True, s)
 			fini = True
 		else:
 			tas = tirageOrdi(tas, REGLE)
+			animation_tas_vide(TasAnim)
+			print(TasAnim)
 			if tasVide(tas):
 				fin(False, s)
 				fini = True

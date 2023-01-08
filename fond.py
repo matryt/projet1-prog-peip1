@@ -152,6 +152,8 @@ def eclair(x, y, coeff):
 	tu.right(135)
 	tu.forward(85 * coeff)
 	tu.end_fill()
+	tu.seth(0)
+	
 
 
 def nuage(x, y, numero=1):
@@ -172,18 +174,13 @@ def nuage(x, y, numero=1):
 		for i in range(3):
 			dessineCercle(x + 25 * i, y + 10 * coeff, (couleur, couleur, couleur), coeff)
 			dessineCercle(x + 25 * (i + 1), y - 10 * coeff, (couleur, couleur, couleur), coeff)
-		if rd.randint(0, 1) == 1:
-			coeff = coeffMystere(0.75, 8)
-			eclair(x + 50 * coeff, y + 45 * coeff, coeff)
 	else:
 		for i in range(2):
 			c = coeffMystere(1, 6)
 			dessineCercle(x + 25 * i, y - 8 * c, (couleur, couleur, couleur), c)
 			dessineCercle(x + 25 * (i + 1), y + 8 * c, (couleur, couleur, couleur), c)
 			dessineCercle(x + 25 * (i + 2), y - 8 * c, (couleur, couleur, couleur), c)
-		if rd.randint(0, 1) == 1:
-			c = coeffMystere(0.75, 8)
-			eclair(x + 50 * c, y + 50 * c, c)
+			
 
 
 def coeffMystere(nombreDepart, variance):
