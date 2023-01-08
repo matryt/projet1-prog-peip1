@@ -173,7 +173,7 @@ n
 	coordsBuissons = ((-325, -100), (-325, 50), (250, 85), (250, -100))
 	coordsNumeros = ((-325, -125), (-325, 20), (250, 55), (250, -125))
 	for ta in range(len(tas)):
-		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], t)
+		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], tas[ta][1] - tas[ta][0], t)
 		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
 
 
@@ -241,7 +241,6 @@ def bouclePrincipale(s, tc):
 		else:
 			tas = tirageOrdi(tas, REGLE)
 			animation_tas_vide(TasAnim)
-			print(TasAnim)
 			if tasVide(tas):
 				fin(False, s)
 				fini = True

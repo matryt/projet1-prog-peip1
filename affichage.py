@@ -73,16 +73,16 @@ def dessineDemiCercle(cotes, longueur, x, y, t, couleur):
 	t.color(couleur)
 	t.goto(x, y)
 	t.down()
-	t.seth(0)
+	t.seth(180)
 	for i in range(cotes // 2):
 		t.forward(longueur)
-		t.left(360 / cotes)
-	t.left(90)
+		t.right(360 / cotes)
+	t.right(90)
 	t.forward(80 * longueur)
 	t.end_fill()
 
 
-def buisson(x, y, fruits, t):
+def buisson(x, y, fruitsADessiner, fruitsManges, t):
 	"""
 	Fonction pour dessiner un buisson avec les fruits
 
@@ -96,14 +96,30 @@ def buisson(x, y, fruits, t):
 	:type t: Turtle()
 	"""
 	t.hideturtle()
+	emplacements = [
+		(x - 22.5, y + 20),
+		(x - 7.5, y + 20),
+		(x + 7.5, y + 20),
+		(x + 22.5, y + 20),
+		(x + 37.5, y + 20),
+		(x + 52.5, y + 20),
+		(x + 67.5, y + 20),
+		(x - 22.5, y + 40),
+		(x - 7.5, y + 40),
+		(x + 7.5, y + 40),
+		(x + 22.5, y + 40),
+		(x + 37.5, y + 40),
+		(x + 52.5, y + 40),
+		(x + 67.5, y + 40)
+	]
 	for i in range(3):
 		dessineCercle(x + 25 * i, y, t, (0, 86, 27), 1)
-	for j in range(min(7, fruits)):
-		dessineCercle(x + 15 * (j - 1.5), y + 20, t, (196, 14, 0), 0.1)
-	fruits -= 7
-	for i in range(min(7, fruits)):
-		dessineCercle(x + 15 * (i - 1.5), y + 50, t, (196, 14, 0), 0.1)
-
+	for j in range(fruitsADessiner):
+		dessineCercle(emplacements[0][0], emplacements[0][1], t, (196, 14, 0), 0.1)
+		emplacements.pop(0)
+	for k in range(fruitsManges):
+		dessineDemiCercle(250, 0.13, emplacements[0][0], emplacements[0][1], t, (163, 163, 163))
+		emplacements.pop(0)
 
 def numero(coords, n, t, couleur):
 	"""
