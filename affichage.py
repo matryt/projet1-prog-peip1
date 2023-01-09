@@ -82,6 +82,81 @@ def dessineDemiCercle(cotes, longueur, x, y, t, couleur):
 	t.end_fill()
 
 
+def coin(longueur, portion, t, droite=True):
+	for i in range(int(round(250 * portion, 0))):
+		t.forward(longueur)
+		if droite:
+			t.right(360 / 108)
+		else:
+			t.left(360 / 108)
+
+
+def arrondiFeuille(longueur, portion, t, droite=True):
+	for i in range(int(round(250 * portion, 0))):
+		t.forward(longueur)
+		if droite:
+			t.right(360 / 339)
+		else:
+			t.left(360 / 139)
+
+
+def fraise(x, y, t):
+	t.up()
+	t.goto(x, y)
+	t.down()
+	t.seth(120)
+	t.color((231, 15, 15))
+	t.ht()
+	t.begin_fill()
+	for i in range(3):
+		coin(1.9 / 3, 1 / 7, t)
+		t.forward(90 / 3)
+	t.end_fill()
+
+	t.up()
+	coin(1.9 / 3, 1 / 7, t)
+	t.right(60)
+	t.down()
+
+	t.color((95, 183, 36))
+	t.begin_fill()
+	arrondiFeuille(2.3 / 3, 0.19, t, False)
+	t.seth(0)
+	t.forward(-90 / 3)
+	t.end_fill()
+	t.up()
+	t.forward(45 / 3)
+	t.seth(90)
+	t.down()
+	t.width(10 / 3)
+	arrondiFeuille(1.8 / 3, 0.1, t)
+
+
+def fraiseMangee(x, y, t):
+	t.up()
+	t.goto(x, y)
+	t.seth(120)
+	t.color((231, 15, 15))
+	t.ht()
+	coin(1.9 / 3, 1 / 7, t)
+	t.forward(90 / 6)
+	t.right(60)
+	t.down()
+
+	t.color((95, 183, 36))
+	t.begin_fill()
+	arrondiFeuille(2.3 / 3, 0.19, t, False)
+	t.seth(0)
+	t.forward(-90 / 3)
+	t.end_fill()
+	t.up()
+	t.forward(45 / 3)
+	t.seth(90)
+	t.down()
+	t.width(10 / 3)
+	arrondiFeuille(1.8 / 3, 0.1, t)
+
+
 def buisson(x, y, fruitsADessiner, fruitsManges, t):
 	"""
 	Fonction pour dessiner un buisson avec les fruits
@@ -96,30 +171,38 @@ def buisson(x, y, fruitsADessiner, fruitsManges, t):
 	:type t: Turtle()
 	"""
 	t.hideturtle()
-	emplacements = [
-		(x - 22.5, y + 20),
-		(x - 7.5, y + 20),
-		(x + 7.5, y + 20),
-		(x + 22.5, y + 20),
-		(x + 37.5, y + 20),
-		(x + 52.5, y + 20),
-		(x + 67.5, y + 20),
-		(x - 22.5, y + 40),
-		(x - 7.5, y + 40),
-		(x + 7.5, y + 40),
-		(x + 22.5, y + 40),
-		(x + 37.5, y + 40),
-		(x + 52.5, y + 40),
-		(x + 67.5, y + 40)
+	buissons = [
+		(x, y, t, (0, 86, 27), 1.5),
+		(x, y + 85, t, (0, 86, 27), 1.5),
+		(x + 90, y + 5, t, (0, 86, 27), 1.5),
+		(x + 90, y + 85, t, (0, 86, 27), 1.5),
+		(x + 180, y + 5, t, (0, 86, 27), 1.5),
+		(x + 180, y + 90, t, (0, 86, 27), 1.5),
+		(x - 70, y + 45, t, (0, 86, 27), 1.3),
+		(x + 250, y + 45, t, (0, 86, 27), 1.3)
 	]
-	for i in range(3):
-		dessineCercle(x + 25 * i, y, t, (0, 86, 27), 1)
+	emplacementsFruits = [
+		(x - 32.5, y + 55),
+		(x + 18.5, y + 55),
+		(x + 68.5, y + 55),
+		(x + 118.5, y + 55),
+		(x + 168.5, y + 55),
+		(x - 82.5, y + 120),
+		(x - 32.5, y + 120),
+		(x + 18.5, y + 120),
+		(x + 68.5, y + 120),
+		(x + 118.5, y + 120),
+		(x + 168.5, y + 120),
+		(x + 218.5, y + 120),
+	]
+	for b in buissons:
+		dessineCercle(b[0], b[1], b[2], b[3], b[4])
 	for j in range(fruitsADessiner):
-		dessineCercle(emplacements[0][0], emplacements[0][1], t, (196, 14, 0), 0.1)
-		emplacements.pop(0)
+		fraise(emplacementsFruits[0][0], emplacementsFruits[0][1], t)
+		emplacementsFruits.pop(0)
 	for k in range(fruitsManges):
-		dessineDemiCercle(250, 0.13, emplacements[0][0], emplacements[0][1], t, (163, 163, 163))
-		emplacements.pop(0)
+		fraiseMangee(emplacementsFruits[0][0], emplacementsFruits[0][1], t)
+		emplacementsFruits.pop(0)
 
 def numero(coords, n, t, couleur):
 	"""

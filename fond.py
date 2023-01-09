@@ -230,9 +230,9 @@ def nuages_ensemble():
 	Permet de dessiner l'ensemble
 	"""
 	NUAGES = (
-		(-780, 240, rd.randint(1, 2)),
-		(-590 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 180, rd.randint(1, 2)),
-		(-370 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 250, rd.randint(1, 2)),
+		(-780, 180, rd.randint(1, 2)),
+		(-595 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 295, rd.randint(1, 2)),
+		(-340 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 270, rd.randint(1, 2)),
 		(-130 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 320, rd.randint(1, 2)),
 		(120 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 210, rd.randint(1, 2)),
 		(370 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 280, rd.randint(1, 2)),

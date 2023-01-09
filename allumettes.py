@@ -29,7 +29,7 @@ def genererTas() -> list:
 	allumettesTotales = randint(15, 25)
 	for _ in range(randint(2, 3)):
 		if allumettesTotales // 2 > 2:
-			a = randint(2, 16)
+			a = randint(2, 12)
 			tas.append([a, a])
 			if allumettesTotales - a > 0:
 				allumettesTotales -= a
@@ -170,8 +170,8 @@ def afficherAllumettes(tas: list, t):
 n
 	"""
 	t.clear()
-	coordsBuissons = ((-325, -100), (-325, 50), (250, 85), (250, -100))
-	coordsNumeros = ((-325, -125), (-325, 20), (250, 55), (250, -125))
+	coordsBuissons = ((-545, -195), (-545, 5), (365, -30), (365, -245))
+	coordsNumeros = ((-325, -125), (-325, 20), (250, 65), (250, -115))
 	for ta in range(len(tas)):
 		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], tas[ta][1] - tas[ta][0], t)
 		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
@@ -200,7 +200,7 @@ def tirageOrdi(tas: list, regle: list) -> list:
 
 
 def animation_tas_vide(TasAnim):
-	L = [[-360, 260], [620, 200], [-130, 330], [370, 280]]
+	L = [[-305, 290], [645, 200], [-120, 330], [390, 295]]
 	for i in range(len(TasAnim)):
 		if TasAnim[i][0] == 0:
 			fond.eclair(L[i][0], L[i][1], 1)
