@@ -171,7 +171,7 @@ n
 	"""
 	t.clear()
 	coordsBuissons = ((-545, -195), (-545, 5), (365, -30), (365, -245))
-	coordsNumeros = ((-325, -125), (-325, 20), (250, 65), (250, -115))
+	coordsNumeros = ((-210, -105), (-275, 20), (200, 55), (200, -165))
 	for ta in range(len(tas)):
 		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], tas[ta][1] - tas[ta][0], t)
 		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
