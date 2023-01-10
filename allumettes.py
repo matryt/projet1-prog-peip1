@@ -34,7 +34,8 @@ def genererTas() -> list:
 			if allumettesTotales - a > 0:
 				allumettesTotales -= a
 	if allumettesTotales != 0:
-		tas.append([allumettesTotales, allumettesTotales])
+		m = min(12, allumettesTotales)
+		tas.append([m, m])
 	return tas
 
 
