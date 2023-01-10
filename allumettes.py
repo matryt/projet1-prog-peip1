@@ -38,6 +38,10 @@ def genererTas() -> list:
 	return tas
 
 
+def prenom():
+	return tu.textinput("Début de partie", "Quel est votre prénom ?")
+
+
 def tasVide(tas: list) -> bool:
 	"""
 	Teste si tous les tas sont vides ou non
@@ -129,7 +133,7 @@ def afficheTas(tas: list, s):
 	s.textinput("Début de la partie", c)
 
 
-def enleverAllumettes(tas: list, regle: list) -> list:
+def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 	"""
 	Permet de retourner le nombre d'allumettes après le tour du joueur
 	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
@@ -140,20 +144,20 @@ def enleverAllumettes(tas: list, regle: list) -> list:
 	:rtype: list
 	"""
 	allumettesSouhaitees = int(
-		testNombre(f"{afficheChoix(regle)} \nJoueur, combien voulez-vous prendre d'allumettes ?", 1, max(regle),
+		testNombre(f"{afficheChoix(regle)} \n{prenom}, combien voulez-vous prendre de fraises ?", 1, max(regle),
 		           "Nombre d'allumettes"))
 	tasDemande = int(
-		testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, (len(tas)), "Choix du tas")) - 1
+		testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 
 	while allumettesSouhaitees > tas[tasDemande][0] or allumettesSouhaitees not in regle:
 		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
 		allumettesSouhaitees = int(
 			testNombre(
-				f"{afficheChoix(regle)} \n Vous voulez prendre {allumettesSouhaitees} allumettes, ce qui est impossible ! \n Joueur, combien voulez-vous prendre d'allumettes ?",
+				f"Vous voulez prendre {allumettesSouhaitees} fraises, ce qui est impossible ! \n \n {afficheChoix(regle)} \n {prenom}, combien voulez-vous prendre de fraises ?",
 				1, max(regle),
 				"Nombre d'allumettes"))
 		tasDemande = int(
-			testNombre("Joueur, dans quel tas voulez-vous prendre ces allumettes ?", 1, (len(tas)), "Choix du tas")) - 1
+			testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 
 	tas[tasDemande][0] -= allumettesSouhaitees
 
@@ -221,7 +225,7 @@ def fin(joueurVainqueur, s):
 	s.bye()
 
 
-def bouclePrincipale(s, tc):
+def bouclePrincipale(s, tc, p):
 	fini = False
 	tas = genererTas()
 	TasAnim = tas[:]
@@ -232,7 +236,7 @@ def bouclePrincipale(s, tc):
 	while not fini:
 		aff.initialize()
 		afficherAllumettes(tas, tc)
-		tas = enleverAllumettes(tas, REGLE)
+		tas = enleverAllumettes(tas, REGLE, p)
 		animation_tas_vide(TasAnim)
 
 		if tasVide(tas):
@@ -271,7 +275,9 @@ def jeu():
 	tc = tu.Turtle()
 	tc.hideturtle()
 
-	bouclePrincipale(s, tc)
+	p = prenom().capitalize()
+
+	bouclePrincipale(s, tc, p)
 
 
 # Appelle la fonction principale jeu et lance le jeu

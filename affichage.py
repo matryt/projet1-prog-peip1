@@ -100,6 +100,15 @@ def arrondiFeuille(longueur, portion, t, droite=True):
 			t.left(360 / 139)
 
 
+def attache(longueur, portion, t, droite=True):
+	for i in range(int(round(250 * portion, 0))):
+		t.forward(longueur)
+		if droite:
+			t.right(2)
+		else:
+			t.left(2)
+
+
 def fraise(x, y, t):
 	t.up()
 	t.goto(x, y)
@@ -129,7 +138,7 @@ def fraise(x, y, t):
 	t.seth(90)
 	t.down()
 	t.width(10 / 3)
-	arrondiFeuille(1.8 / 3, 0.1, t)
+	attache(1.8 / 3, 0.1, t)
 
 
 def fraiseMangee(x, y, t):
@@ -154,7 +163,7 @@ def fraiseMangee(x, y, t):
 	t.seth(90)
 	t.down()
 	t.width(10 / 3)
-	arrondiFeuille(1.8 / 3, 0.1, t)
+	attache(1.8 / 3, 0.1, t)
 
 
 def buisson(x, y, fruitsADessiner, fruitsManges, t):
