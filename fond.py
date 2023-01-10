@@ -94,7 +94,7 @@ def foret(longueur, x, y):
 	"""
 	tu.speed(0)
 	for i in range(18):
-		sapin(rd.uniform(longueur/2,1.5*longueur), x + i * 2 * longueur, y)
+		sapin(rd.uniform(longueur / 2, 1.5 * longueur), x + i * 2 * longueur, y)
 
 
 def rectangle(longueur, x, y, couleur):
@@ -153,7 +153,6 @@ def eclair(x, y, coeff):
 	tu.forward(85 * coeff)
 	tu.end_fill()
 	tu.seth(0)
-	
 
 
 def nuage(x, y, numero=1):
@@ -180,7 +179,6 @@ def nuage(x, y, numero=1):
 			dessineCercle(x + 25 * i, y - 8 * c, (couleur, couleur, couleur), c)
 			dessineCercle(x + 25 * (i + 1), y + 8 * c, (couleur, couleur, couleur), c)
 			dessineCercle(x + 25 * (i + 2), y - 8 * c, (couleur, couleur, couleur), c)
-			
 
 
 def coeffMystere(nombreDepart, variance):
@@ -277,6 +275,7 @@ def arbres():
 	sapin(50 * coeffMystere(1, 5), -170, -100)
 	sapin(50 * coeffMystere(1, 5), 60, -120)
 
+
 def neige():
 	""""
 	Permet de tracer la neige
@@ -284,27 +283,23 @@ def neige():
 	"""
 	tu.up()
 	tu.hideturtle()
-	tu.goto(-635,228.4)
+	tu.goto(-635, 228.4)
 	tu.down()
 	tu.begin_fill()
 	tu.color('white')
-	tu.goto(-360,228.4)
-	tu.goto(-500,300)
-	tu.goto(-635,228.4)
+	tu.goto(-360, 228.4)
+	tu.goto(-500, 300)
+	tu.goto(-635, 228.4)
 	tu.end_fill()
 	tu.up()
-	tu.goto(270,350)
+	tu.goto(270, 350)
 	tu.down()
 	tu.begin_fill()
 	tu.color('white')
-	tu.goto(525,350)
-	tu.goto(350,440)
-	tu.goto(270,350)
+	tu.goto(525, 350)
+	tu.goto(350, 440)
+	tu.goto(270, 350)
 	tu.end_fill()
-
-
-
-
 
 
 def fond_():

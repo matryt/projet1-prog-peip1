@@ -177,7 +177,7 @@ n
 	coordsBuissons = ((-400, -170), (-640, 25), (500, -5), (240, -170))
 	coordsNumeros = ((-195, -170), (-440, 20), (410, 10), (185, -180))
 	for ta in range(len(tas)):
-		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], tas[ta][1] - tas[ta][0],0.7, t)
+		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], tas[ta][1] - tas[ta][0], 0.7, t)
 		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
 
 
@@ -219,7 +219,7 @@ def fin(joueurVainqueur, s):
 	else:
 		print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 		aff.initialize()
-		aff.tete(s) 
+		aff.tete(s)
 	sleep(5)
 	tu.done()
 	s.bye()
