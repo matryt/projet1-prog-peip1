@@ -109,10 +109,10 @@ def attache(longueur, portion, t, coeff, droite=True):
 			t.left(2)
 
 
-def grains(x, y, t):
-	dessineCercle(x + 21, y - 24, t, (246, 151, 73), 0.05)
-	dessineCercle(x + 9, y - 1, t, (246, 151, 73), 0.05)
-	dessineCercle(x + 35, y - 11, t, (246, 151, 73), 0.05)
+def grains(x, y,coeff, t):
+	dessineCercle(x + 21*coeff, y - 24*coeff, t, (246, 151, 73), 0.05*coeff)
+	dessineCercle(x + 9*coeff, y - 1, t, (246, 151, 73), 0.05*coeff)
+	dessineCercle(x + 35*coeff, y - 11*coeff, t, (246, 151, 73), 0.05*coeff)
 
 
 def fraise(x, y, t, coeff):
@@ -145,7 +145,7 @@ def fraise(x, y, t, coeff):
 	t.down()
 	t.width((10 / 3) * coeff)
 	attache(1.8 / 3, 0.1, t, coeff)
-	grains(x, y, t)
+	grains(x, y,coeff,t)
 
 
 def fraiseMangee(x, y, t, coeff):
@@ -210,18 +210,18 @@ def buisson(x, y, fruitsADessiner, fruitsManges, coeff, t):
 
 	]
 	emplacementsFruits = [
-		(x - 32.5, y + 55),
-		(x + 18.5, y + 55),
-		(x + 68.5, y + 55),
-		(x + 118.5, y + 55),
-		(x + 168.5, y + 55),
-		(x - 82.5, y + 120),
-		(x - 32.5, y + 120),
-		(x + 18.5, y + 120),
-		(x + 68.5, y + 120),
-		(x + 118.5, y + 120),
-		(x + 168.5, y + 120),
-		(x + 218.5, y + 120),
+		(x - 32.5*coeff, y + 55*coeff),
+		(x + 18.5*coeff, y + 55*coeff),
+		(x + 68.5*coeff, y + 55*coeff),
+		(x + 118.5*coeff, y + 55*coeff),
+		(x + 168.5*coeff, y + 55*coeff),
+		(x - 82.5*coeff, y + 120*coeff),
+		(x - 32.5*coeff, y + 120*coeff),
+		(x + 18.5*coeff, y + 120*coeff),
+		(x + 68.5*coeff, y + 120*coeff),
+		(x + 118.5*coeff, y + 120*coeff),
+		(x + 168.5*coeff, y + 120*coeff),
+		(x + 218.5*coeff, y + 120*coeff),
 	]
 	for b in buissons:
 		dessineCercle(b[0], b[1], b[2], b[3], b[4])
