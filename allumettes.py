@@ -174,10 +174,10 @@ def afficherAllumettes(tas: list, t):
 n
 	"""
 	t.clear()
-	coordsBuissons = ((-545, -195), (-545, 5), (365, -30), (365, -245))
-	coordsNumeros = ((-210, -105), (-275, 20), (200, 55), (200, -165))
+	coordsBuissons = ((-545, -190), (-545, 25), (365, -5), (365, -240))
+	coordsNumeros = ((-300, -185), (-295, 20), (250, 10), (255, -215))
 	for ta in range(len(tas)):
-		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], tas[ta][1] - tas[ta][0], t)
+		aff.buisson(coordsBuissons[ta][0], coordsBuissons[ta][1], tas[ta][0], tas[ta][1] - tas[ta][0],0.7, t)
 		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
 
 
@@ -219,7 +219,7 @@ def fin(joueurVainqueur, s):
 	else:
 		print("☠ Malheureusement l'ordi a gagné ! 👎 Peut-être la prochaine fois !")
 		aff.initialize()
-		aff.tete(s)
+		aff.tete(s) 
 	sleep(5)
 	tu.done()
 	s.bye()

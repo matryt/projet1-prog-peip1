@@ -82,34 +82,34 @@ def dessineDemiCercle(cotes, longueur, x, y, t, couleur):
 	t.end_fill()
 
 
-def coin(longueur, portion, t, droite=True):
+def coin(longueur, portion, t,coeff, droite=True):
 	for i in range(int(round(250 * portion, 0))):
-		t.forward(longueur)
+		t.forward(longueur*coeff)
 		if droite:
 			t.right(360 / 108)
 		else:
 			t.left(360 / 108)
 
 
-def arrondiFeuille(longueur, portion, t, droite=True):
+def arrondiFeuille(longueur, portion, t,coeff, droite=True):
 	for i in range(int(round(250 * portion, 0))):
-		t.forward(longueur)
+		t.forward(longueur*coeff)
 		if droite:
 			t.right(360 / 339)
 		else:
 			t.left(360 / 139)
 
 
-def attache(longueur, portion, t, droite=True):
+def attache(longueur, portion, t,coeff, droite=True):
 	for i in range(int(round(250 * portion, 0))):
-		t.forward(longueur)
+		t.forward(longueur*coeff)
 		if droite:
 			t.right(2)
 		else:
 			t.left(2)
 
 
-def fraise(x, y, t):
+def fraise(x, y, t,coeff):
 	t.up()
 	t.goto(x, y)
 	t.down()
@@ -118,55 +118,55 @@ def fraise(x, y, t):
 	t.ht()
 	t.begin_fill()
 	for i in range(3):
-		coin(1.9 / 3, 1 / 7, t)
-		t.forward(90 / 3)
+		coin(1.9 / 3, 1 / 7, t,coeff)
+		t.forward((90 / 3)*coeff)
 	t.end_fill()
 
 	t.up()
-	coin(1.9 / 3, 1 / 7, t)
+	coin(1.9 / 3, 1 / 7, t,coeff)
 	t.right(60)
 	t.down()
 
 	t.color((95, 183, 36))
 	t.begin_fill()
-	arrondiFeuille(2.3 / 3, 0.19, t, False)
+	arrondiFeuille(2.3 / 3, 0.19, t,coeff, False)
 	t.seth(0)
-	t.forward(-90 / 3)
+	t.forward((-90 / 3)*coeff)
 	t.end_fill()
 	t.up()
-	t.forward(45 / 3)
+	t.forward((45 / 3)*coeff)
 	t.seth(90)
 	t.down()
-	t.width(10 / 3)
-	attache(1.8 / 3, 0.1, t)
+	t.width((10 / 3)*coeff)
+	attache(1.8 / 3, 0.1,t,coeff)
 
 
-def fraiseMangee(x, y, t):
+def fraiseMangee(x, y, t,coeff):
 	t.up()
 	t.goto(x, y)
 	t.seth(120)
 	t.color((231, 15, 15))
 	t.ht()
-	coin(1.9 / 3, 1 / 7, t)
+	coin(1.9 / 3, 1 / 7, t,coeff)
 	t.forward(90 / 6)
 	t.right(60)
 	t.down()
 
 	t.color((95, 183, 36))
 	t.begin_fill()
-	arrondiFeuille(2.3 / 3, 0.19, t, False)
+	arrondiFeuille(2.3 / 3, 0.19, t,coeff, False)
 	t.seth(0)
-	t.forward(-90 / 3)
+	t.forward((-90 / 3)*coeff)
 	t.end_fill()
 	t.up()
-	t.forward(45 / 3)
+	t.forward((45 / 3)*coeff)
 	t.seth(90)
 	t.down()
-	t.width(10 / 3)
-	attache(1.8 / 3, 0.1, t)
+	t.width((10 / 3)*coeff)
+	attache(1.8 / 3, 0.1,t,coeff)
 
 
-def buisson(x, y, fruitsADessiner, fruitsManges, t):
+def buisson(x, y, fruitsADessiner, fruitsManges,coeff, t):
 	"""
 	Fonction pour dessiner un buisson avec les fruits
 
@@ -176,50 +176,53 @@ def buisson(x, y, fruitsADessiner, fruitsManges, t):
 	:type y: int/float
 	:param fruits: Le nombre de fruits à dessiner
 	:type fruits: int
+	:param coeff: pour gérer la taille
+	:type coeff: int/float
 	:param t: La tortue à utiliser
 	:type t: Turtle()
+	
 	"""
 	t.hideturtle()
 	buissons = [
-		(x, y, t, (0, 86, 27), 1.4),
-		(x, y + 85, t, (0, 86, 27), 1.4),
-		(x+50, y, t, (0, 86, 27), 1.4),
-		(x + 100, y , t, (0, 86, 27), 1.4),
-		(x+50, y+85, t, (0, 86, 27), 1.4),
-		(x + 100, y + 85, t, (0, 86, 27), 1.4),
-		(x+148, y, t, (0, 86, 27), 1.4),
-		(x + 195, y , t, (0, 86, 27), 1.4),
-		(x+147, y+90, t, (0, 86, 27), 1.4),
-		(x + 195, y + 90, t, (0, 86, 27), 1.4),
-		(x - 60, y + 45, t, (0, 86, 27), 1.2),
-		(x - 45, y + 22, t, (0, 86, 27), 1.3),
-		(x - 45,y + 67, t, (0, 86, 27), 1.3),
-		(x + 250, y + 45, t, (0, 86, 27), 1.2),
-		(x + 235, y + 22, t, (0, 86, 27), 1.3),
-		(x + 235, y + 67, t, (0, 86, 27), 1.3),
+		(x, y, t, (0, 86, 27), 1.4*coeff),
+		(x, y + 85*coeff, t, (0, 86, 27), 1.4*coeff),
+		(x+50*coeff, y, t, (0, 86, 27), 1.4*coeff),
+		(x + 100*coeff, y , t, (0, 86, 27), 1.4*coeff),
+		(x+50*coeff, y+85*coeff, t, (0, 86, 27), 1.4*coeff),
+		(x + 100*coeff, y + 85*coeff, t, (0, 86, 27), 1.4*coeff),
+		(x+148*coeff, y, t, (0, 86, 27), 1.4*coeff),
+		(x + 195*coeff, y , t, (0, 86, 27), 1.4*coeff),
+		(x+147*coeff, y+90*coeff, t, (0, 86, 27), 1.4*coeff),
+		(x + 195*coeff, y + 90*coeff, t, (0, 86, 27), 1.4*coeff),
+		(x - 60*coeff, y + 45*coeff, t, (0, 86, 27), 1.2*coeff),
+		(x - 45*coeff, y + 22*coeff, t, (0, 86, 27), 1.3*coeff),
+		(x - 45*coeff,y + 67*coeff, t, (0, 86, 27), 1.3*coeff),
+		(x + 250*coeff, y + 45*coeff, t, (0, 86, 27), 1.2*coeff),
+		(x + 235*coeff, y + 22*coeff, t, (0, 86, 27), 1.3*coeff),
+		(x + 235*coeff, y + 67*coeff, t, (0, 86, 27), 1.3*coeff),
 		
 	]
 	emplacementsFruits = [
-		(x - 32.5, y + 55),
-		(x + 18.5, y + 55),
-		(x + 68.5, y + 55),
-		(x + 118.5, y + 55),
-		(x + 168.5, y + 55),
-		(x - 82.5, y + 120),
-		(x - 32.5, y + 120),
-		(x + 18.5, y + 120),
-		(x + 68.5, y + 120),
-		(x + 118.5, y + 120),
-		(x + 168.5, y + 120),
-		(x + 218.5, y + 120),
+		(x - 32.5*coeff, y + 55*coeff),
+		(x + 18.5*coeff, y + 55*coeff),
+		(x + 68.5*coeff, y + 55*coeff),
+		(x + 118.5*coeff, y + 55*coeff),
+		(x + 168.5*coeff, y + 55*coeff),
+		(x - 82.5*coeff, y + 120*coeff),
+		(x - 32.5*coeff, y + 120*coeff),
+		(x + 18.5*coeff, y + 120*coeff),
+		(x + 68.5*coeff, y + 120*coeff),
+		(x + 118.5*coeff, y + 120*coeff),
+		(x + 168.5*coeff, y + 120*coeff),
+		(x + 218.5*coeff, y + 120*coeff),
 	]
 	for b in buissons:
 		dessineCercle(b[0], b[1], b[2], b[3], b[4])
 	for j in range(fruitsADessiner):
-		fraise(emplacementsFruits[0][0], emplacementsFruits[0][1], t)
+		fraise(emplacementsFruits[0][0], emplacementsFruits[0][1],t,coeff)
 		emplacementsFruits.pop(0)
 	for k in range(fruitsManges):
-		fraiseMangee(emplacementsFruits[0][0], emplacementsFruits[0][1], t)
+		fraiseMangee(emplacementsFruits[0][0], emplacementsFruits[0][1],t,coeff)
 		emplacementsFruits.pop(0)
 
 def numero(coords, n, t, couleur):
@@ -267,6 +270,9 @@ def couronne(s) -> None:
 	tu.setheading(270)
 	tu.forward(200)
 	tu.end_fill()
+	tu.up()
+	tu.goto(0,250)
+	tu.write('YOU WIN', move=False, align="center", font=("Arial", 90, "bold"))
 	finish()
 
 
@@ -476,6 +482,8 @@ def tete(s):
 	os(-110 + 191.88, -100)
 	tu.seth(201)
 	os(-110 - sqrt(5000), -100 + sqrt(5000), False)
+	tu.goto(0,250)
+	tu.write('GAME OVER', move=False, align="center", font=("Arial", 90, "bold"))
 	finish()
 
 
