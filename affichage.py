@@ -151,6 +151,36 @@ def fraise(x, y, t, coeff):
 def fraiseMangee(x, y, t, coeff):
 	t.up()
 	t.goto(x, y)
+	t.down()
+	t.color((231, 15, 15))
+	t.ht()
+	t.begin_fill()
+	t.seth(0)
+	t.forward(47 * coeff)
+	t.up()
+	t.goto(x, y)
+	t.down()
+	t.seth(120)
+	coin(1.9 / 3, 1 / 7, t, coeff)
+	t.forward((90 / 3) * coeff)
+	coin(1.9 / 3, 1 / 7, t, coeff)
+	t.up()
+	t.goto(x, y)
+	t.down()
+	t.seth(-60)
+	t.end_fill()
+	t.begin_fill()
+	t.forward((45 / 3) * coeff)
+	t.seth(30)
+	arrondiFeuille(2.3 / 3, 0.19, t, coeff, True)
+	t.seth(60)
+	t.forward((45 / 3) * coeff)
+	t.end_fill()
+	dessineCercle(x + 9*coeff, y - 1, t, (246, 151, 73), 0.05*coeff)
+	
+
+	t.up()
+	t.goto(x-20*coeff, y)
 	t.seth(120)
 	t.color((231, 15, 15))
 	t.ht()
@@ -171,6 +201,9 @@ def fraiseMangee(x, y, t, coeff):
 	t.down()
 	t.width((10 / 3) * coeff)
 	attache(1.8 / 3, 0.1, t, coeff)
+	
+	
+	
 
 
 def buisson(x, y, fruitsADessiner, fruitsManges, coeff, t):
@@ -210,18 +243,18 @@ def buisson(x, y, fruitsADessiner, fruitsManges, coeff, t):
 
 	]
 	emplacementsFruits = [
-		(x - 32.5*coeff, y + 55*coeff),
-		(x + 18.5*coeff, y + 55*coeff),
-		(x + 68.5*coeff, y + 55*coeff),
-		(x + 118.5*coeff, y + 55*coeff),
-		(x + 168.5*coeff, y + 55*coeff),
-		(x - 82.5*coeff, y + 120*coeff),
-		(x - 32.5*coeff, y + 120*coeff),
-		(x + 18.5*coeff, y + 120*coeff),
-		(x + 68.5*coeff, y + 120*coeff),
-		(x + 118.5*coeff, y + 120*coeff),
-		(x + 168.5*coeff, y + 120*coeff),
-		(x + 218.5*coeff, y + 120*coeff),
+		(x - 42.5*coeff, y + 55*coeff),
+		(x + 20*coeff, y + 55*coeff),
+		(x + 82.5*coeff, y + 55*coeff),
+		(x + 145*coeff, y + 55*coeff),
+		(x + 207.5*coeff, y + 55*coeff),
+		(x - 87.5*coeff, y + 120*coeff),
+		(x - 25*coeff, y + 120*coeff),
+		(x + 37.5*coeff, y + 120*coeff),
+		(x + 100*coeff, y + 120*coeff),
+		(x + 162.5*coeff, y + 120*coeff),
+		(x + 225*coeff, y + 120*coeff),
+		(x + 287.5*coeff, y + 120*coeff),
 	]
 	for b in buissons:
 		dessineCercle(b[0], b[1], b[2], b[3], b[4])

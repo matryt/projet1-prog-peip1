@@ -29,12 +29,12 @@ def genererTas() -> list:
 	allumettesTotales = randint(15, 25)
 	for _ in range(randint(2, 3)):
 		if allumettesTotales // 2 > 2:
-			a = randint(2, 12)
+			a = randint(2, 11)
 			tas.append([a, a])
 			if allumettesTotales - a > 0:
 				allumettesTotales -= a
 	if allumettesTotales != 0:
-		m = min(12, allumettesTotales)
+		m = min(11, allumettesTotales)
 		tas.append([m, m])
 	return tas
 
