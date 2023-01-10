@@ -109,6 +109,12 @@ def attache(longueur, portion, t,coeff, droite=True):
 			t.left(2)
 
 
+def grains(x, y, t):
+	dessineCercle(x + 21, y - 24, t, (246, 151, 73), 0.05)
+	dessineCercle(x + 9, y - 1, t, (246, 151, 73), 0.05)
+	dessineCercle(x + 35, y - 11, t, (246, 151, 73), 0.05)
+
+
 def fraise(x, y, t,coeff):
 	t.up()
 	t.goto(x, y)
@@ -138,8 +144,8 @@ def fraise(x, y, t,coeff):
 	t.seth(90)
 	t.down()
 	t.width((10 / 3)*coeff)
-	attache(1.8 / 3, 0.1,t,coeff)
-
+	attache(1.8 / 3, 0.1, t, coeff)
+	grains(x, y, t)
 
 def fraiseMangee(x, y, t,coeff):
 	t.up()
@@ -180,7 +186,7 @@ def buisson(x, y, fruitsADessiner, fruitsManges,coeff, t):
 	:type coeff: int/float
 	:param t: La tortue à utiliser
 	:type t: Turtle()
-	
+
 	"""
 	t.hideturtle()
 	buissons = [
@@ -200,7 +206,7 @@ def buisson(x, y, fruitsADessiner, fruitsManges,coeff, t):
 		(x + 250*coeff, y + 45*coeff, t, (0, 86, 27), 1.2*coeff),
 		(x + 235*coeff, y + 22*coeff, t, (0, 86, 27), 1.3*coeff),
 		(x + 235*coeff, y + 67*coeff, t, (0, 86, 27), 1.3*coeff),
-		
+
 	]
 	emplacementsFruits = [
 		(x - 32.5*coeff, y + 55*coeff),
