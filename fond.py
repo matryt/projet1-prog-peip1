@@ -229,12 +229,12 @@ def nuages_ensemble():
 	"""
 	NUAGES = (
 		(-780, 180, rd.randint(1, 2)),
-		(-595 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 295, rd.randint(1, 2)),
-		(-340 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 270, rd.randint(1, 2)),
-		(-130 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 320, rd.randint(1, 2)),
-		(120 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 210, rd.randint(1, 2)),
-		(370 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 280, rd.randint(1, 2)),
-		(620 + rd.randint(0, 30) * (-1) ** rd.randint(0, 1), 190, rd.randint(1, 2))
+		(-595, 295, rd.randint(1, 2)),
+		(-340, 270, rd.randint(1, 2)),
+		(-130, 320, rd.randint(1, 2)),
+		(120, 210, rd.randint(1, 2)),
+		(370, 280, rd.randint(1, 2)),
+		(620, 190, rd.randint(1, 2))
 	)
 
 	for t in NUAGES:
