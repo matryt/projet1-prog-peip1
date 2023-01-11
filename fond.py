@@ -218,7 +218,7 @@ def sapin(longueur, x, y):
 	                y + 3 / 2 * longueur + math.sqrt(longueur ** 2 / 4 + longueur ** 2) - 1, couleurSapin)
 	tu.end_fill()
 	tu.begin_fill()
-	dessineTriangle(longueur, x - longueur / 4 + 10,
+	dessineTriangle(longueur, x - longueur / 10,
 	                y + 3 / 2 * longueur + math.sqrt(longueur ** 2 / 4 + longueur ** 2) - 1 + longueur, couleurSapin)
 	tu.end_fill()
 
