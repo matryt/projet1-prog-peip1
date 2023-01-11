@@ -12,17 +12,19 @@ import fond
 def reglesJeu(s):
 	"""
 	Permet d'afficher les règles du jeu au début de chaque partie
+	:param s: La classe Screen avec laquelle afficher la fenêtre
+	:type s: Screen
 	"""
 	r = s.textinput("Règles du jeu",
 	                "Bienvenue dans notre jeu de Nim ! \n Des buissons vont s'afficher, avec plus ou moins de fraises dessus qui symbolisent des allumettes. \n Pour gagner, il faut prendre la dernière fraise du dernier buisson. \n Les choix de fruits vont s'afficher juste après. \n Voulez-vous réafficher les règles (o / n) ?")
-	if r == "o":
+	if r != "n":
 		reglesJeu(s)
 
 
 def genererTas() -> list:
 	"""
 	Permet de générer les différents tas d'allumettes pour la partie à jouer
-	:return: Le nombre d'allumettes par tas
+	:return: Une liste de listes contenant, pour chaque tas, le nombre d'allumettes restantes dans le tas et le nombre initial
 	:rtype: list
 	"""
 	tas = []
@@ -40,13 +42,18 @@ def genererTas() -> list:
 
 
 def prenom():
+	"""
+	Génère la fenêtre pour demander son prénom au joueur, et le renvoie
+	:return: Le prénom du joueur
+	:rtype: str
+	"""
 	return tu.textinput("Début de partie", "Quel est votre prénom ?")
 
 
 def tasVide(tas: list) -> bool:
 	"""
 	Teste si tous les tas sont vides ou non
-	:param tas: Le nombre d'allumettes par tas
+	:param tas: Une liste de listes contenant, pour chaque tas, le nombre d'allumettes restantes dans le tas et le nombre initial
 	:type tas: list
 	:return: True si tout est vide, False sinon
 	:rtype: bool
@@ -88,6 +95,10 @@ def testNombre(message: str, mini, maxi, texte):
 
 	:param message: Le message à demander à l'utilisateur
 	:type message: str
+	:param mini: Le minimum possible
+	:type mini: int
+	:param maxi: Le maximum possible
+	:type maxi: int
 	:param texte: titre de la fenetre numinput
 	:type texte: str
 	:return: Le nombre converti
@@ -102,6 +113,8 @@ def afficheChoix(regle: list):
 	Permet d'afficher à l'écran les choix d'allumettes possibles.
 	:param regle: Les choix possibles d'allumettes
 	:type regle: list
+	:return: Le message à afficher
+	:rtype: str
 
 	:example:
 	>>> afficheChoix([1, 2, 5])
@@ -116,7 +129,7 @@ def afficheChoix(regle: list):
 def afficheTas(tas: list, s):
 	"""
 	Affiche le nombre de tas et le nombre d'allumettes dans chaque tas
-	:param tas: Le nombre d'allumettes dans chaque tas
+	:param tas: Une liste de listes contenant, pour chaque tas, le nombre d'allumettes restantes dans le tas et le nombre initial
 	:type tas: list
 
 	:example:
@@ -141,6 +154,8 @@ def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 	:type tas: list
 	:param regle: Les choix possibles
 	:type regle: list
+	:param prenom: Le prénom du joueur
+	:type prenom: str
 	:return: Le nombre d'allumettes par tas après le tour
 	:rtype: list
 	"""
@@ -176,7 +191,7 @@ def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 def afficherAllumettes(tas: list, t):
 	"""
 	Affiche le nombre d'allumettes passées en paramètre
-	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
+	:param tas: Une liste de listes contenant, pour chaque tas, le nombre d'allumettes restantes dans le tas et le nombre initial
 	:type tas: list
 	:param t: L'objet Turtle à utiliser pour le dessin
 	:type t: Turtle
@@ -213,6 +228,11 @@ def tirageOrdi(tas: list, regle: list) -> list:
 
 
 def animation_tas_vide(TasAnim):
+	"""
+	Permet d'afficher des éclairs en fonction des tas vides
+	:param TasAnim: La liste des allumettes par tas
+	:type TasAnim: list
+	"""
 	L = [[-320, 290], [640, 330], [-120, 330], [390, 295]]
 	for i in range(len(TasAnim)):
 		if TasAnim[i][0] == 0:
@@ -220,6 +240,13 @@ def animation_tas_vide(TasAnim):
 
 
 def fin(joueurVainqueur, s):
+	"""
+	Permet d'afficher le message et les animations de fin
+	:param joueurVainqueur: True si c'est le joueur qui a gagné, False sinon
+	:type joueurVainqueur: bool
+	:param s: La classe Screen sur laquelle afficher les animations
+	:type s: Screen
+	"""
 	if joueurVainqueur:
 		print("Vous avez gagné !")
 		aff.initialize()
@@ -235,6 +262,15 @@ def fin(joueurVainqueur, s):
 
 
 def bouclePrincipale(s, tc, p):
+	"""
+
+	:param s: La classe Screen sur laquelle afficher les messages et les formes
+	:type s: Screen
+	:param tc: La tortue à utiliser pour les dessins
+	:type tc: Turtle
+	:param p: Le prénom du joueur
+	:type p: str
+	"""
 	fini = False
 	tas = genererTas()
 	TasAnim = tas[:]
