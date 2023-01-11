@@ -213,7 +213,7 @@ def tirageOrdi(tas: list, regle: list) -> list:
 
 
 def animation_tas_vide(TasAnim):
-	L = [[-320, 290], [645, 260], [-120, 330], [390, 295]]
+	L = [[-320, 290], [640, 330], [-120, 330], [390, 295]]
 	for i in range(len(TasAnim)):
 		if TasAnim[i][0] == 0:
 			fond.eclair(L[i][0], L[i][1], 1)

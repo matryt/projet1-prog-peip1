@@ -234,7 +234,7 @@ def nuages_ensemble():
 		(-130, 320, rd.randint(1, 2)),
 		(120, 230, rd.randint(1, 2)),
 		(370, 280, rd.randint(1, 2)),
-		(620, 230, rd.randint(1, 2))
+		(620, 320, rd.randint(1, 2))
 	)
 
 	for t in NUAGES:
