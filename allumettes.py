@@ -14,7 +14,7 @@ def reglesJeu(s):
 	Permet d'afficher les règles du jeu au début de chaque partie
 	"""
 	r = s.textinput("Règles du jeu",
-	                "Bienvenue dans notre jeu de Nim ! \n Des buissons vont s'afficher, avec plus ou moins de fruits dessus qui symbolisent des allumettes. \n Pour gagner, il faut prendre le dernier fruit du dernier buisson. \n Les choix d'allumettes vont s'afficher juste après. \n Voulez-vous réafficher les règles (o / n) ?")
+	                "Bienvenue dans notre jeu de Nim ! \n Des buissons vont s'afficher, avec plus ou moins de fraises dessus qui symbolisent des allumettes. \n Pour gagner, il faut prendre la dernière fraise du dernier buisson. \n Les choix de fruits vont s'afficher juste après. \n Voulez-vous réafficher les règles (o / n) ?")
 	if r == "o":
 		reglesJeu(s)
 
@@ -150,15 +150,23 @@ def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 	tasDemande = int(
 		testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 
-	while allumettesSouhaitees > tas[tasDemande][0] or allumettesSouhaitees not in regle:
+	impossibleTas = (allumettesSouhaitees > tas[tasDemande][0])
+	impossibleRegle = (allumettesSouhaitees not in regle)
+	while impossibleTas or impossibleRegle:
 		# Vérifie que qu'il reste au moins autant d'allumettes que le joueur veut en prendre et qu'il respecte les règles
+		if impossibleTas:
+			message = f"Vous voulez prendre {allumettesSouhaitees} fraises dans le tas {tasDemande}, alors qu'il n'en contient que {tas[tasDemande][0]} !"
+		else:
+			message = f"Vous voulez prendre {allumettesSouhaitees} fraises dans le tas {tasDemande}, alors que ce nombre n'est pas dans la règle !"
 		allumettesSouhaitees = int(
 			testNombre(
-				f"Vous voulez prendre {allumettesSouhaitees} fraises, ce qui est impossible ! \n \n {afficheChoix(regle)} \n {prenom}, combien voulez-vous prendre de fraises ?",
+				f"{message}\n \n {afficheChoix(regle)} \n {prenom}, combien voulez-vous prendre de fraises ?",
 				1, max(regle),
 				"Nombre d'allumettes"))
 		tasDemande = int(
 			testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
+		impossibleTas = (allumettesSouhaitees > tas[tasDemande][0])
+		impossibleRegle = (allumettesSouhaitees not in regle)
 
 	tas[tasDemande][0] -= allumettesSouhaitees
 
@@ -205,7 +213,7 @@ def tirageOrdi(tas: list, regle: list) -> list:
 
 
 def animation_tas_vide(TasAnim):
-	L = [[-320, 290], [645, 200], [-120, 330], [390, 295]]
+	L = [[-320, 290], [645, 260], [-120, 330], [390, 295]]
 	for i in range(len(TasAnim)):
 		if TasAnim[i][0] == 0:
 			fond.eclair(L[i][0], L[i][1], 1)
