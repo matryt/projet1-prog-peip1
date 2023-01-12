@@ -102,9 +102,8 @@ def testNombre(message: str, mini, maxi, texte):
 	:param texte: titre de la fenetre numinput
 	:type texte: str
 	:return: Le nombre converti
-	:rtype: float
+	:rtype: ignore
 	"""
-
 	return tu.numinput(texte, message, None, mini, maxi)
 
 
@@ -159,9 +158,9 @@ def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 	:return: Le nombre d'allumettes par tas après le tour
 	:rtype: list
 	"""
-	allumettesSouhaitees = int(
-		testNombre(f"{afficheChoix(regle)} \n{prenom}, combien voulez-vous prendre de fraises ?", 1, max(regle),
-		           "Nombre d'allumettes"))
+	
+	allumettesSouhaitees =int(
+	testNombre(f"{afficheChoix(regle)} \n{prenom}, combien voulez-vous prendre de fraises ?", 1, max(regle),"Nombre d'allumettes"))	
 	tasDemande = int(
 		testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 
@@ -177,9 +176,10 @@ def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 			testNombre(
 				f"{message}\n \n {afficheChoix(regle)} \n {prenom}, combien voulez-vous prendre de fraises ?",
 				1, max(regle),
-				"Nombre d'allumettes"))
-		tasDemande = int(
-			testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
+				"Nombre d'allumettes")
+			)
+		tasDemande = int(#type:ignore
+		testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 		impossibleTas = (allumettesSouhaitees > tas[tasDemande][0])
 		impossibleRegle = (allumettesSouhaitees not in regle)
 
@@ -195,7 +195,6 @@ def afficherAllumettes(tas: list, t):
 	:type tas: list
 	:param t: L'objet Turtle à utiliser pour le dessin
 	:type t: Turtle
-n
 	"""
 	t.clear()
 	coordsBuissons = ((-400, -170), (-640, 25), (500, -5), (240, -170))
