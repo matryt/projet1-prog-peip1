@@ -89,7 +89,7 @@ def genererRegle() -> list:
 	return r
 
 
-def testNombre(message: str, mini, maxi, texte):
+def testNombre(message, mini, maxi, texte):
 	"""
 	Demande des chaînes de caractères, jusqu'à qu'il soit possible de la convertir en nombre
 
@@ -102,7 +102,7 @@ def testNombre(message: str, mini, maxi, texte):
 	:param texte: titre de la fenetre numinput
 	:type texte: str
 	:return: Le nombre converti
-	:rtype: ignore
+	:rtype: int
 	"""
 	return tu.numinput(texte, message, None, mini, maxi)
 
@@ -130,6 +130,8 @@ def afficheTas(tas: list, s):
 	Affiche le nombre de tas et le nombre d'allumettes dans chaque tas
 	:param tas: Une liste de listes contenant, pour chaque tas, le nombre d'allumettes restantes dans le tas et le nombre initial
 	:type tas: list
+	:param s: La classe Screen avec laquelle afficher la fenêtre
+	:type s: Screen
 
 	:example:
 	>>> afficheTas([2, 3, 6])
@@ -178,7 +180,7 @@ def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 				1, max(regle),
 				"Nombre d'allumettes")
 			)
-		tasDemande = int(#type:ignore
+		tasDemande = int(
 		testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 		impossibleTas = (allumettesSouhaitees > tas[tasDemande][0])
 		impossibleRegle = (allumettesSouhaitees not in regle)

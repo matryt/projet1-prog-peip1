@@ -183,13 +183,14 @@ def nuage(x, y, numero=1):
 
 def coeffMystere(nombreDepart, variance):
 	"""
-
+	Génère un coefficient aléatoire
 	:param nombreDepart: Coefficient d'origine
 	:type nombreDepart: int/float
 	:param variance: Un nombre permettant de changer la variance par rapport au coefficient d'origine
 	:type variance: int/float
 	"""
-	return nombreDepart + (-1) ** rd.randint(1, 2) * rd.random() / variance
+	return nombreDepart + rd.uniform(-1/variance,1/variance)
+	# (-1) ** rd.randint(1, 2) * rd.random() / variance
 
 
 def sapin(longueur, x, y):

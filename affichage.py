@@ -83,6 +83,20 @@ def dessineDemiCercle(cotes, longueur, x, y, t, couleur):
 
 
 def coin(longueur, portion, t, coeff, droite=True):
+	"""
+	Fonction pour dessiner un coin
+
+	:param longueur: longueur de chaque mini droite
+	:type longueur: int/float
+	:param portion: définit la taille du coin 
+	:type portion: int/float
+	:param t: La tortue à utiliser
+	:type t:Turtle()
+	:param coeff: Coefficient multiplicatif pour la taille coin
+	:type coeff: int/float
+	:param droite: indique si c'est un coin droit ou gauche
+	:type droite: bool
+	"""
 	for i in range(int(round(250 * portion, 0))):
 		t.forward(longueur * coeff)
 		if droite:
@@ -92,6 +106,20 @@ def coin(longueur, portion, t, coeff, droite=True):
 
 
 def arrondiFeuille(longueur, portion, t, coeff, droite=True):
+	"""
+	Fonction pour dessiner un arrondi de feuille
+
+	:param longueur: longueur de chaque mini droite
+	:type longueur: int/float
+	:param portion: définit la taille du coin 
+	:type portion: int/float
+	:param t: La tortue à utiliser
+	:type t:Turtle()
+	:param coeff: Coefficient multiplicatif pour la taille de l'arrondi de la feuille
+	:type coeff: int/float
+	:param droite: True si la tortue doit tourner vers la droite, False sinon
+	:type droite: bool
+	"""
 	for i in range(int(round(250 * portion, 0))):
 		t.forward(longueur * coeff)
 		if droite:
@@ -101,6 +129,20 @@ def arrondiFeuille(longueur, portion, t, coeff, droite=True):
 
 
 def attache(longueur, portion, t, coeff, droite=True):
+	"""
+	Fonction pour dessiner l'attache/tige de la fraise 
+
+	:param longueur: longueur de chaque mini droite
+	:type longueur: int/float
+	:param portion: définit la taille du coin 
+	:type portion: int/float
+	:param t: La tortue à utiliser
+	:type t:Turtle()
+	:param coeff: Coefficient multiplicatif pour la taille de la tige
+	:type coeff: int/float
+	:param droite: indique si la tige est orienté à droite ou à gauche
+	:type droite: bool
+	"""
 	for i in range(int(round(250 * portion, 0))):
 		t.forward(longueur * coeff)
 		if droite:
@@ -110,12 +152,37 @@ def attache(longueur, portion, t, coeff, droite=True):
 
 
 def grains(x, y,coeff, t):
+	"""
+	Fonction pour dessiner les grains
+
+	:param x: position en abscisse
+	:type x: int/float
+	:param y:position en ordonnée 
+	:type y: int/float
+	:param coeff: Coefficient multiplicatif pour la taille des grains 
+	:type coeff: int/float
+	:param t: La tortue à utiliser
+	:type t:Turtle()
+	
+	"""
 	dessineCercle(x + 21*coeff, y - 24*coeff, t, (246, 151, 73), 0.05*coeff)
 	dessineCercle(x + 9*coeff, y - 1, t, (246, 151, 73), 0.05*coeff)
 	dessineCercle(x + 35*coeff, y - 11*coeff, t, (246, 151, 73), 0.05*coeff)
 
 
 def fraise(x, y, t, coeff):
+	"""
+	Permet de dessiner une fraise
+
+	:param x: Position en abscisse
+	:type x: int/float
+	:param y: Position en ordonnée
+	:type y: int/float
+	:param t: La tortue à utiliser
+	:type t: Turtle
+	:param coeff: Coefficient multiplicatif pour la taille de la fraise
+	:type coeff: int/float
+	"""
 	t.up()
 	t.goto(x, y)
 	t.down()
@@ -149,6 +216,19 @@ def fraise(x, y, t, coeff):
 
 
 def fraiseMangee(x, y, t, coeff):
+	"""
+	Permet de dessiner une fraise mangée
+
+	:param x: Position en abscisse
+	:type x: int/float
+	:param y: Position en ordonnée
+	:type y: int/float
+	:param t: La tortue à utiliser
+	:type t:Turtle()
+	:param coeff: Coefficient multiplicatif pour la taille des grains 
+	:type coeff: int/float
+	
+	"""
 	t.up()
 	t.goto(x, y)
 	t.down()
@@ -214,8 +294,10 @@ def buisson(x, y, fruitsADessiner, fruitsManges, coeff, t):
 	:type x: int/float
 	:param y: Position en ordonnée
 	:type y: int/float
-	:param fruits: Le nombre de fruits à dessiner
+	:param fruitsADessiner: Le nombre de fruits non pris
 	:type fruits: int
+	:param fruitsManges: Le nombre de fruits mangés
+	:type fruitsManges: int
 	:param coeff: pour gérer la taille
 	:type coeff: int/float
 	:param t: La tortue à utiliser
@@ -275,8 +357,8 @@ def numero(coords, n, t, couleur):
 	:type n: int
 	:param t: La tortue à utiliser
 	:type t: Turtle
-	:param couleur: couleur texte
-	:type couleur: str or tuple
+	:param couleur: couleur du texte
+	:type couleur: str/tuple
 	"""
 	t.up()
 	t.goto(coords[0], coords[1])
@@ -285,7 +367,7 @@ def numero(coords, n, t, couleur):
 	t.write(f'Tas {str(n)}', align="center", font=('Arial', 16, "bold"))
 
 
-def couronne(s) -> None:
+def couronne(s):
 	"""
 	Fonction pour dessiner une couronne à la fin lorsque le joueur gagne
 
@@ -548,4 +630,3 @@ def dent():
 	tu.forward(19.24)
 	tu.forward(-38.48)
 	tu.forward(19.24)
-tete(tu.Screen())
