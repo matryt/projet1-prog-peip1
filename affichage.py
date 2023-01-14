@@ -86,7 +86,7 @@ def coin(longueur, portion, t, coeff, droite=True):
 	"""
 	Fonction pour dessiner un coin
 
-	:param longueur: longueur de chaque mini droite
+	:param longueur: longueur de chaque partie de droite
 	:type longueur: int/float
 	:param portion: définit la taille du coin 
 	:type portion: int/float
@@ -109,7 +109,7 @@ def arrondiFeuille(longueur, portion, t, coeff, droite=True):
 	"""
 	Fonction pour dessiner un arrondi de feuille
 
-	:param longueur: longueur de chaque mini droite
+	:param longueur: longueur de chaque partie de droite
 	:type longueur: int/float
 	:param portion: définit la taille du coin 
 	:type portion: int/float
@@ -132,7 +132,7 @@ def attache(longueur, portion, t, coeff, droite=True):
 	"""
 	Fonction pour dessiner l'attache/tige de la fraise 
 
-	:param longueur: longueur de chaque mini droite
+	:param longueur: longueur de chaque partie de droite
 	:type longueur: int/float
 	:param portion: définit la taille du coin 
 	:type portion: int/float
@@ -140,7 +140,7 @@ def attache(longueur, portion, t, coeff, droite=True):
 	:type t:Turtle()
 	:param coeff: Coefficient multiplicatif pour la taille de la tige
 	:type coeff: int/float
-	:param droite: indique si la tige est orienté à droite ou à gauche
+	:param droite: indique si la tige est orientée à droite ou à gauche
 	:type droite: bool
 	"""
 	for i in range(int(round(250 * portion, 0))):
@@ -151,7 +151,7 @@ def attache(longueur, portion, t, coeff, droite=True):
 			t.left(2)
 
 
-def grains(x, y,coeff, t):
+def grains(x, y, coeff, t):
 	"""
 	Fonction pour dessiner les grains
 
@@ -165,9 +165,9 @@ def grains(x, y,coeff, t):
 	:type t:Turtle()
 	
 	"""
-	dessineCercle(x + 21*coeff, y - 24*coeff, t, (246, 151, 73), 0.05*coeff)
-	dessineCercle(x + 9*coeff, y - 1, t, (246, 151, 73), 0.05*coeff)
-	dessineCercle(x + 35*coeff, y - 11*coeff, t, (246, 151, 73), 0.05*coeff)
+	dessineCercle(x + 21 * coeff, y - 24 * coeff, t, (246, 151, 73), 0.05 * coeff)
+	dessineCercle(x + 9 * coeff, y - 1, t, (246, 151, 73), 0.05 * coeff)
+	dessineCercle(x + 35 * coeff, y - 11 * coeff, t, (246, 151, 73), 0.05 * coeff)
 
 
 def fraise(x, y, t, coeff):
@@ -212,7 +212,7 @@ def fraise(x, y, t, coeff):
 	t.down()
 	t.width((10 / 3) * coeff)
 	attache(1.8 / 3, 0.1, t, coeff)
-	grains(x, y,coeff,t)
+	grains(x, y, coeff, t)
 
 
 def fraiseMangee(x, y, t, coeff):
@@ -256,11 +256,10 @@ def fraiseMangee(x, y, t, coeff):
 	t.seth(60)
 	t.forward((45 / 3) * coeff)
 	t.end_fill()
-	dessineCercle(x + 9*coeff, y - 1, t, (246, 151, 73), 0.05*coeff)
-	
+	dessineCercle(x + 9 * coeff, y - 1, t, (246, 151, 73), 0.05 * coeff)
 
 	t.up()
-	t.goto(x-20*coeff, y)
+	t.goto(x - 20 * coeff, y)
 	t.seth(120)
 	t.color((231, 15, 15))
 	t.ht()
@@ -281,9 +280,6 @@ def fraiseMangee(x, y, t, coeff):
 	t.down()
 	t.width((10 / 3) * coeff)
 	attache(1.8 / 3, 0.1, t, coeff)
-	
-	
-	
 
 
 def buisson(x, y, fruitsADessiner, fruitsManges, coeff, t):
@@ -295,7 +291,7 @@ def buisson(x, y, fruitsADessiner, fruitsManges, coeff, t):
 	:param y: Position en ordonnée
 	:type y: int/float
 	:param fruitsADessiner: Le nombre de fruits non pris
-	:type fruits: int
+	:type fruitsADessiner: int
 	:param fruitsManges: Le nombre de fruits mangés
 	:type fruitsManges: int
 	:param coeff: pour gérer la taille
@@ -325,18 +321,18 @@ def buisson(x, y, fruitsADessiner, fruitsManges, coeff, t):
 
 	]
 	emplacementsFruits = [
-		(x - 42.5*coeff, y + 55*coeff),
-		(x + 20*coeff, y + 55*coeff),
-		(x + 82.5*coeff, y + 55*coeff),
-		(x + 145*coeff, y + 55*coeff),
-		(x + 207.5*coeff, y + 55*coeff),
-		(x - 87.5*coeff, y + 120*coeff),
-		(x - 25*coeff, y + 120*coeff),
-		(x + 37.5*coeff, y + 120*coeff),
-		(x + 100*coeff, y + 120*coeff),
-		(x + 162.5*coeff, y + 120*coeff),
-		(x + 225*coeff, y + 120*coeff),
-		(x + 287.5*coeff, y + 120*coeff),
+		(x - 42.5 * coeff, y + 55 * coeff),
+		(x + 20 * coeff, y + 55 * coeff),
+		(x + 82.5 * coeff, y + 55 * coeff),
+		(x + 145 * coeff, y + 55 * coeff),
+		(x + 207.5 * coeff, y + 55 * coeff),
+		(x - 87.5 * coeff, y + 120 * coeff),
+		(x - 25 * coeff, y + 120 * coeff),
+		(x + 37.5 * coeff, y + 120 * coeff),
+		(x + 100 * coeff, y + 120 * coeff),
+		(x + 162.5 * coeff, y + 120 * coeff),
+		(x + 225 * coeff, y + 120 * coeff),
+		(x + 287.5 * coeff, y + 120 * coeff),
 	]
 	for b in buissons:
 		dessineCercle(b[0], b[1], b[2], b[3], b[4])
@@ -606,9 +602,9 @@ def tete(s):
 	tu.seth(201)
 	os(-110 - sqrt(5000), -130 + sqrt(5000), False)
 	tu.seth(135)
-	os(-117,110)
+	os(-117, 110)
 	tu.seth(21)
-	os(80+sqrt(5000),121-sqrt(5000),False)
+	os(80 + sqrt(5000), 121 - sqrt(5000), False)
 	tu.goto(0, 300)
 	tu.write('GAME OVER', move=False, align="center", font=("Arial", 90, "bold"))
 	finish()

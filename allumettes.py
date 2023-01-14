@@ -148,23 +148,24 @@ def afficheTas(tas: list, s):
 	s.textinput("Début de la partie", c)
 
 
-def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
+def enleverAllumettes(tas: list, regle: list, p: str) -> list:
 	"""
 	Permet de retourner le nombre d'allumettes après le tour du joueur
 	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
 	:type tas: list
 	:param regle: Les choix possibles
 	:type regle: list
-	:param prenom: Le prénom du joueur
-	:type prenom: str
+	:param p: Le prénom du joueur
+	:type p: str
 	:return: Le nombre d'allumettes par tas après le tour
 	:rtype: list
 	"""
-	
-	allumettesSouhaitees =int(
-	testNombre(f"{afficheChoix(regle)} \n{prenom}, combien voulez-vous prendre de fraises ?", 1, max(regle),"Nombre d'allumettes"))	
+
+	allumettesSouhaitees = int(
+		testNombre(f"{afficheChoix(regle)} \n{p}, combien voulez-vous prendre de fraises ?", 1, max(regle),
+		           "Nombre d'allumettes"))
 	tasDemande = int(
-		testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
+		testNombre(f"{p}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 
 	impossibleTas = (allumettesSouhaitees > tas[tasDemande][0])
 	impossibleRegle = (allumettesSouhaitees not in regle)
@@ -176,12 +177,12 @@ def enleverAllumettes(tas: list, regle: list, prenom: str) -> list:
 			message = f"Vous voulez prendre {allumettesSouhaitees} fraises dans le tas {tasDemande}, alors que ce nombre n'est pas dans la règle !"
 		allumettesSouhaitees = int(
 			testNombre(
-				f"{message}\n \n {afficheChoix(regle)} \n {prenom}, combien voulez-vous prendre de fraises ?",
+				f"{message}\n \n {afficheChoix(regle)} \n {p}, combien voulez-vous prendre de fraises ?",
 				1, max(regle),
 				"Nombre d'allumettes")
-			)
+		)
 		tasDemande = int(
-		testNombre(f"{prenom}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
+			testNombre(f"{p}, dans quel tas voulez-vous prendre ces fraises ?", 1, (len(tas)), "Choix du tas")) - 1
 		impossibleTas = (allumettesSouhaitees > tas[tasDemande][0])
 		impossibleRegle = (allumettesSouhaitees not in regle)
 

@@ -189,8 +189,10 @@ def coeffMystere(nombreDepart, variance):
 	:param variance: Un nombre permettant de changer la variance par rapport au coefficient d'origine
 	:type variance: int/float
 	"""
-	return nombreDepart + rd.uniform(-1/variance,1/variance)
-	# (-1) ** rd.randint(1, 2) * rd.random() / variance
+	return nombreDepart + rd.uniform(-1 / variance, 1 / variance)
+
+
+# (-1) ** rd.randint(1, 2) * rd.random() / variance
 
 
 def sapin(longueur, x, y):
