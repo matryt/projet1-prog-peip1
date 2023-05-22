@@ -1,6 +1,7 @@
 # Loic LAMOUR et Mathieu CUVELIER - Groupe 5
 
 import turtle as tu
+from copy import deepcopy
 from random import randint, choice
 from time import sleep
 from tkinter import Tk
@@ -207,6 +208,49 @@ def afficherAllumettes(tas: list, t):
 		aff.numero(coordsNumeros[ta], ta + 1, t, "white")
 
 
+def mex(l):
+	i = 0
+	while i in l:
+		i += 1
+	return i
+
+
+def valPileAllumettes(J, L):
+	tab = [0]
+	if J:
+		for i in range(1, J[0] + 1):
+			tab.append(mex([tab[i - j] for j in L if i >= j]))
+		return [tab[J[0]], J[1]]
+	return [0, 0]
+
+
+def sumNimList(l):
+	s = 0
+	i = 0
+	l.append([0, 0])
+	while i < len(l):
+		s = s ^ l[i][0]
+		i = i + 1
+	return s
+
+
+def valJeuAllumettes(jeu, coups):
+	return sumNimList([valPileAllumettes(i, coups) for i in jeu])
+
+
+def trouverStratGagnante(tas, coups):
+	val = valJeuAllumettes(tas, coups)
+	if val != 0:
+		for t in range(len(tas)):
+			thisTat = tas[t][0]
+			for c in coups:
+				if thisTat >= c:
+					l = [tas[:t]] + [[thisTat - c, thisTat]] + tas[t + 1:]
+					if valJeuAllumettes(l, coups) == 0:
+						return t, c
+	return None
+
+
 def tirageOrdi(tas: list, regle: list) -> list:
 	"""
 	Permet de générer un nombre aléatoire d'allumettes correspondant au nombre d'allumettes qu'enlève l'ordinateur
@@ -225,6 +269,24 @@ def tirageOrdi(tas: list, regle: list) -> list:
 		tasAEnlever = randint(0, len(tas) - 1)
 		allumettesMax = tas[tasAEnlever][0]
 	tas[tasAEnlever][0] -= c
+	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
+	return tas
+
+
+def tirageOrdi(tas: list, regle: list) -> list:
+	s = trouverStratGagnante(tas, regle)
+	if s is not None:
+		tasAEnlever, c = s
+		tas[s[0]][0] -= s[1]
+	else:
+		tasAEnlever = randint(0, len(tas) - 1)
+		allumettesMax = tas[tasAEnlever][0]
+		c = choice(regle)
+		while c > allumettesMax:
+			c = choice(regle)
+			tasAEnlever = randint(0, len(tas) - 1)
+			allumettesMax = tas[tasAEnlever][0]
+		tas[tasAEnlever][0] -= c
 	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
 	return tas
 
@@ -279,18 +341,26 @@ def bouclePrincipale(s, tc, p):
 	REGLE = genererRegle()
 	REGLE.sort()
 	afficheTas(tas, s)
+	if trouverStratGagnante(tas, REGLE) is not None:
+		ordiCommence = True
 
 	while not fini:
 		aff.initialize()
 		afficherAllumettes(tas, tc)
-		tas = enleverAllumettes(tas, REGLE, p)
+		if not ordiCommence:
+			tas = enleverAllumettes(tas, REGLE, p)
+		else:
+			tas = tirageOrdi(tas, REGLE)
 		animation_tas_vide(TasAnim)
 
 		if tasVide(tas):
 			fin(True, s)
 			fini = True
 		else:
-			tas = tirageOrdi(tas, REGLE)
+			if ordiCommence:
+				tas = enleverAllumettes(tas, REGLE, p)
+			else:
+				tas = tirageOrdi(tas, REGLE)
 			animation_tas_vide(TasAnim)
 			if tasVide(tas):
 				fin(False, s)
