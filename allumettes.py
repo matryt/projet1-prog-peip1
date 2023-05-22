@@ -235,6 +235,11 @@ def sumNimList(l):
 
 
 def valJeuAllumettes(jeu, coups):
+	try:
+		if type(jeu[0][0]) == list:
+			print(jeu)
+	except:
+		pass
 	return sumNimList([valPileAllumettes(i, coups) for i in jeu])
 
 
@@ -245,7 +250,12 @@ def trouverStratGagnante(tas, coups):
 			thisTat = tas[t][0]
 			for c in coups:
 				if thisTat >= c:
-					l = [tas[:t]] + [[thisTat - c, thisTat]] + tas[t + 1:]
+					l = tas[:t] + [[thisTat - c, thisTat]] + tas[t + 1:]
+					try:
+						if type(l[0][0]) == list:
+							print(l)
+					except:
+						pass
 					if valJeuAllumettes(l, coups) == 0:
 						return t, c
 	return None
@@ -277,7 +287,6 @@ def tirageOrdi(tas: list, regle: list) -> list:
 	s = trouverStratGagnante(tas, regle)
 	if s is not None:
 		tasAEnlever, c = s
-		tas[s[0]][0] -= s[1]
 	else:
 		tasAEnlever = randint(0, len(tas) - 1)
 		allumettesMax = tas[tasAEnlever][0]
@@ -286,7 +295,7 @@ def tirageOrdi(tas: list, regle: list) -> list:
 			c = choice(regle)
 			tasAEnlever = randint(0, len(tas) - 1)
 			allumettesMax = tas[tasAEnlever][0]
-		tas[tasAEnlever][0] -= c
+	tas[tasAEnlever][0] -= c
 	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
 	return tas
 
@@ -343,6 +352,8 @@ def bouclePrincipale(s, tc, p):
 	afficheTas(tas, s)
 	if trouverStratGagnante(tas, REGLE) is not None:
 		ordiCommence = True
+	else:
+		ordiCommence = False
 
 	while not fini:
 		aff.initialize()
