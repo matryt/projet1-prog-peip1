@@ -232,8 +232,8 @@ def valPileAllumettes(J, L):
 	:return: La valeur de Nim de la pile
 	:rtype: int
 	"""
-	tab = [0]
 	if J:
+		tab = [0]
 		for i in range(1, J[0] + 1):
 			tab.append(mex([tab[i - j] for j in L if i >= j]))
 		return [tab[J[0]], J[1]]
@@ -249,11 +249,9 @@ def sumNimList(l):
 	:rtype: int
 	"""
 	s = 0
-	i = 0
 	l.append([0, 0])
-	while i < len(l):
+	for i in range(len(l)):
 		s = s ^ l[i][0]
-		i = i + 1
 	return s
 
 
@@ -295,29 +293,6 @@ def trouverStratGagnante(tas, coups):
 					if valJeuAllumettes(l, coups) == 0:
 						return t, c
 	return None
-
-
-def tirageOrdi(tas: list, regle: list) -> list:
-	"""
-	Permet de générer un nombre aléatoire d'allumettes correspondant au nombre d'allumettes qu'enlève l'ordinateur
-	:param tas: Le nombre d'allumettes par tas avant que le joueur ne joue
-	:type tas: list
-	:param regle: Choix d'allumettes possibles
-	:type regle: list
-	:return: Le nombre d'allumettes par tas après le tour de l'ordinateur
-	:rtype: list
-	"""
-	tasAEnlever = randint(0, len(tas) - 1)
-	allumettesMax = tas[tasAEnlever][0]
-	c = choice(regle)
-	while c > allumettesMax:
-		c = choice(regle)
-		tasAEnlever = randint(0, len(tas) - 1)
-		allumettesMax = tas[tasAEnlever][0]
-	tas[tasAEnlever][0] -= c
-	print(f"--> L'ordi a pris {c} allumette(s) dans le tas {tasAEnlever + 1} \n")
-	return tas
-
 
 def tirageOrdi(tas: list, regle: list) -> list:
 	s = trouverStratGagnante(tas, regle)
@@ -393,24 +368,25 @@ def bouclePrincipale(s, tc, p):
 
 	while not fini:
 		aff.initialize()
-		afficherAllumettes(tas, tc)
 		if not ordiCommence:
+			afficherAllumettes(tas, tc)
 			tas = enleverAllumettes(tas, REGLE, p)
 		else:
 			tas = tirageOrdi(tas, REGLE)
-		animation_tas_vide(TasAnim)
+		animation_tas_vide(tas)
+		afficherAllumettes(tas, tc)
 
 		if tasVide(tas):
-			fin(True, s)
+			fin(not ordiCommence, s)
 			fini = True
 		else:
 			if ordiCommence:
 				tas = enleverAllumettes(tas, REGLE, p)
 			else:
 				tas = tirageOrdi(tas, REGLE)
-			animation_tas_vide(TasAnim)
+			animation_tas_vide(tas)
 			if tasVide(tas):
-				fin(False, s)
+				fin(ordiCommence, s)
 				fini = True
 	s.bye()
 
