@@ -209,6 +209,13 @@ def afficherAllumettes(tas: list, t):
 
 
 def mex(l):
+	"""
+	Calcule le mex d'une liste
+	:param l: La liste dont on veut calculer le mex
+	:type l: list
+	:return: Le mex de la liste
+	:rtype: int
+	"""
 	i = 0
 	while i in l:
 		i += 1
@@ -216,6 +223,15 @@ def mex(l):
 
 
 def valPileAllumettes(J, L):
+	"""
+	Calcule la valeur de Nim d'une pile d'allumettes
+	:param J: Le nombre d'allumettes dans la pile
+	:type J: int
+	:param L: Les règles du jeu
+	:type L: list
+	:return: La valeur de Nim de la pile
+	:rtype: int
+	"""
 	tab = [0]
 	if J:
 		for i in range(1, J[0] + 1):
@@ -225,6 +241,13 @@ def valPileAllumettes(J, L):
 
 
 def sumNimList(l):
+	"""
+	Calcule la somme d'une liste de valeurs de Nim
+	:param l: La liste de valeurs de Nim
+	:type l: list
+	:return: La somme des valeurs de Nim
+	:rtype: int
+	"""
 	s = 0
 	i = 0
 	l.append([0, 0])
@@ -235,15 +258,28 @@ def sumNimList(l):
 
 
 def valJeuAllumettes(jeu, coups):
-	try:
-		if type(jeu[0][0]) == list:
-			print(jeu)
-	except:
-		pass
+	"""
+	Calcule la valeur de Nim d'un jeu d'allumettes
+	:param jeu: Le jeu d'allumettes
+	:type jeu: list
+	:param coups: Les règles du jeu
+	:type coups: list
+	:return: La valeur de Nim du jeu
+	:rtype: int
+	"""
 	return sumNimList([valPileAllumettes(i, coups) for i in jeu])
 
 
 def trouverStratGagnante(tas, coups):
+	"""
+	Trouve une stratégie gagnante pour le joueur
+	:param tas: Le jeu d'allumettes
+	:type tas: list
+	:param coups: Les règles du jeu
+	:type coups: list
+	:return: La stratégie gagnante
+	:rtype: tuple
+	"""
 	val = valJeuAllumettes(tas, coups)
 	if val != 0:
 		for t in range(len(tas)):
